@@ -19,6 +19,8 @@
   flex: 1;
   position: absolute;
   z-index: -1;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .header-left {
@@ -28,12 +30,13 @@
 
 .patita {
   margin-right: 10px;
+  fill: var(--text-color);
 }
 
 .header-text {
   font-size: 24px;
   font-weight: bold;
-  color: #000000;
+  fill: var(--text-color);
 }
 
 .header-right {
@@ -55,4 +58,30 @@
 
 .language-selector i {
   margin-left: 5px;
+}
+
+/*temas nuevos*/
+.language-selector,
+.theme-selector {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.theme-selector svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color);
+}
+
+/* Tema claro */
+body.light {
+  --background-color: #b1dcff;
+  --text-color: #000000;
+}
+
+/* Tema oscuro */
+body.dark {
+  --background-color: #586e80;
+  --text-color: #ffffff;
 }

@@ -1,9 +1,53 @@
-.input-busqueda {
-  border-radius: 50px;
+.lupa-input {
+  display: flex;
+  align-items: center;
   margin-left: 250px;
-  text-align: center;
+  margin-top: 17px;
 }
 
-.lupa {
-  margin-left: 230px;
+.lupa-input svg {
+  margin-right: 10px;
+}
+
+.input-busqueda {
+  border-radius: 50px;
+  text-align: center;
+  padding: 5px 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.boton-añade-guarderia {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 30px;
+}
+
+.boton-añade-guarderia:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.iniciar-sesion {
+  background-color: #000000;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 50%;
+  border: none;
+  margin-left: 350px;
+  cursor: pointer;
+}
+
+.iniciar-sesion:hover {
+  opacity: 0.9;
 }
