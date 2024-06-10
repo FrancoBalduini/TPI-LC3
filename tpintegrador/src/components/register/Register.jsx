@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './index.css';
 
 const Register = () => {
   const [email, setEmail] = useState("");

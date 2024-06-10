@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+* {
+  font-family: "Bree Serif", serif;
+}
+
+body {
+  background-image: url("../../img/perros.png");
+}
+.fondo {
+  margin-top: 150px;
+}
+.cuadrado {
+  width: 500px;
+  height: 500px;
+  background: bisque;
+  margin: auto;
+  border-radius: 15px;
+}
+
+.button {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  border: none;
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  margin-top: 100px;
+  cursor: pointer;
+}
+.button:hover {
+  color: grey;
+}
+
+.email-input {
+  margin-top: 70px;
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+}
+.password-input {
+  margin-top: 70px;
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+}
+
+.patita {
+  display: flex;
+  align-items: center;
+  margin-left: 170px;
+}
