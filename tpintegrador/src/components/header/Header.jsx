@@ -1,21 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./Header.css";
-//import { useEffect } from "react";
 import { ThemeContext } from "../context/Context";
+
 const Header = () => {
-  const { Theme, toogleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  /*useEffect(() => {
-    document.body.className = Theme;
-  }, [Theme]);*/
-
-  /*const changeTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };*/
+  useEffect(() => {
+    const header = document.querySelector(".header");
+    header.style.backgroundColor = theme === "light" ? "#b1dcff" : "#333"; // Ajusta el color de fondo según el tema
+  }, [theme]);
 
   return (
     <div>
-      <header className={`header ${Theme}`}>
+      <header className={`header ${theme}`}>
         <div className="header-left">
           <div className="patita">
             <svg
@@ -30,8 +27,8 @@ const Header = () => {
           <span className="header-text">Happy Pet</span>
         </div>
         <div className="header-right">
-          <div className="theme-selector" onClick={toogleTheme}>
-            {Theme === "light" ? (
+          <div className="theme-selector" onClick={toggleTheme}>
+            {theme === "light" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

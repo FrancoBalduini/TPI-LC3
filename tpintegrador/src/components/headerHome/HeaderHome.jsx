@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import Header from "../header/Header";
 import "./Home.css";
+import { ThemeContext } from "../context/Context";
 
 const HeaderHome = () => {
+
   return (
     <>
-      <Header />
+    <Header />
       <div className="lupa-input">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,10 +23,12 @@ const HeaderHome = () => {
           type="search"
           className="input-busqueda"
           placeholder="Buscar guarderia"
-        ></input>
+        />
         <button className="boton-añade-guarderia">Añade tu guarderia</button>
-        <button className="iniciar-sesion">Iniciar sesion</button>
+        <button className="iniciar-sesion">Iniciar sesión</button>
+        
       </div>
+      
     </>
   );
 };

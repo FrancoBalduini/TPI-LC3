@@ -18,7 +18,6 @@
   top: 0;
   flex: 1;
   position: absolute;
-  z-index: -1;
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -60,12 +59,11 @@
   margin-left: 5px;
 }
 
-/*temas nuevos*/
-.language-selector,
 .theme-selector {
   cursor: pointer;
   display: flex;
   align-items: center;
+  z-index: 15;
 }
 
 .theme-selector svg {
@@ -74,14 +72,12 @@
   fill: var(--text-color);
 }
 
-/* Tema claro */
-body.light {
-  --background-color: #b1dcff;
-  --text-color: #000000;
+.header.light {
+  background-color: #b1dcff; /* Color de fondo para el tema claro */
+  z-index: -1;
 }
 
-/* Tema oscuro */
-body.dark {
-  --background-color: #586e80;
-  --text-color: #ffffff;
+.header.dark {
+  background-color: #586e80; /* Color de fondo para el tema oscuro */
+  --text-color: white;
 }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const ThemeContext = createContext({
   theme: "light",
-  toogleTheme: () => {},
+  toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }) => {
@@ -19,8 +19,9 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
 ThemeProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node.isRequired,
 };
 
 export default ThemeProvider;
