@@ -27,6 +27,7 @@ body {
   font-size: 13px;
   margin-top: 100px;
   cursor: pointer;
+  margin-left: 200px;
 }
 .button:hover {
   color: grey;
@@ -39,6 +40,7 @@ body {
   text-align: center;
   border-radius: 15px;
   border: none;
+  margin-left: 100px;
 }
 .password-input {
   margin-top: 70px;
@@ -47,6 +49,7 @@ body {
   text-align: center;
   border-radius: 15px;
   border: none;
+  margin-left: 100px;
 }
 
 .patita {
@@ -54,3 +57,12 @@ body {
   align-items: center;
   margin-left: 170px;
 }
+
+.cuenta {
+  margin-left: 170px;
+}
+
+.link {
+  margin-left: 205px;
+}
+

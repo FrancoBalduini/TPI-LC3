@@ -1,53 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
+* {
+  font-family: "Bree Serif", serif;
+}
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #cceeff; 
-    padding: 10px 20px;
-    border-bottom: 2px solid #ccc; 
-    width: 100%; 
-    box-sizing: border-box; 
-    position: relative;
-    left: 0;
-    right: 0;
-    top: 0;
-    flex: 1;
-  }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .patita {
-    margin-right: 10px; 
-  }
-  
-  .header-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #000000; 
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .language-selector {
-    display: flex;
-    align-items: center;
-    cursor: pointer; 
-    color: #000000; 
-    font-size: 18px;
-  }
-  
-  .language-selector:hover {
-    text-decoration: underline; 
-  }
-  
-  .language-selector i {
-    margin-left: 5px; 
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #b1dcff;
+  padding: 10px 20px;
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  top: 0;
+  flex: 1;
+  position: absolute;
+  z-index: -1;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.patita {
+  margin-right: 10px;
+}
+
+.header-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #000000;
+  font-size: 18px;
+}
+
+.language-selector:hover {
+  text-decoration: underline;
+}
+
+.language-selector i {
+  margin-left: 5px;
+}

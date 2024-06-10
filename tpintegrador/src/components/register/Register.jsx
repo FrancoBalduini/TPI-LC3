@@ -52,8 +52,8 @@ const Register = () => {
           Registrate
         </button>
         <div>
-          <h3>¿Ya tienes cuenta?</h3>
-          <a href="">Inicia Sesion</a>
+          <h3 className="cuenta">¿Ya tienes cuenta?</h3>
+          <a href="" className="link">Inicia Sesion</a>
         </div>
       </form>
     </div>

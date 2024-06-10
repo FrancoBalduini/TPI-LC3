@@ -52,8 +52,8 @@ const Login = () => {
           Inicia Sesion
         </button>
         <div>
-          <h3>¿No tienes cuenta?</h3>
-          <a href="">Registrate</a>
+          <h3 className="cuenta">¿No tienes cuenta?</h3>
+          <a href="" className="link">Registrate</a>
         </div>
       </form>
     </div>
