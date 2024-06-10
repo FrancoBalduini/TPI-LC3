@@ -9,7 +9,7 @@ const App = () => {
   return (
     <ThemeProvider>
       
-        <Header />
+        <HeaderHome />
       
     </ThemeProvider>
   );
