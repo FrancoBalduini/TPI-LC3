@@ -73,12 +73,12 @@
 }
 
 .header.light {
-  background-color: #b1dcff; 
+  background-color: #b1dcff;
   z-index: 0;
 }
 
 .header.dark {
-  background-color: #586e80; 
+  background-color: #586e80;
   --text-color: white;
   z-index: 0;
 }

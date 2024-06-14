@@ -55,3 +55,78 @@
 .zIndex5 {
   z-index: 5;
 }
+.lupa-input {
+  display: flex;
+  align-items: center;
+  margin-left: 250px;
+  margin-top: 17px;
+}
+
+.lupa-input svg {
+  margin-right: 10px;
+}
+
+.input-busqueda {
+  border-radius: 50px;
+  text-align: center;
+  padding: 5px 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.boton-añade-guarderia {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 30px;
+}
+
+.boton-añade-guarderia:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.iniciar-sesion {
+  background-color: #000000;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 50%;
+  border: none;
+  margin-left: 350px;
+  cursor: pointer;
+}
+
+.iniciar-sesion:hover {
+  opacity: 0.9;
+}
+
+.zIndex5 {
+  z-index: 5;
+}
+
+.lupa-input.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.lupa-input.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.boton-añade-guarderia.light {
+  color: #000;
+}
+
+.boton-añade-guarderia.dark {
+  color: #fff;
+}
