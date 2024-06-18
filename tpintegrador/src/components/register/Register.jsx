@@ -4,6 +4,8 @@ import './index.css';
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -13,9 +15,25 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
+  const confirmPasswordHandler = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Las contraseñas no coinciden");
+    } else {
+      setErrorMessage("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    }
+  };
+
   return (
     <div className="fondo">
-      <form className="cuadrado">
+      <form className="cuadrado" onSubmit={handleSubmit}>
         <div className="patita">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +54,8 @@ const Register = () => {
             id="email"
             onChange={emailHandler}
             placeholder="Ingrese su email"
-          ></input>
+            required
+          />
         </div>
         <div>
           <input
@@ -46,14 +65,27 @@ const Register = () => {
             id="password"
             onChange={passwordHandler}
             placeholder="Ingrese su contraseña"
-          ></input>
+            required
+          />
         </div>
+        <div>
+          <input
+            className="password-input"
+            type="password"
+            value={confirmPassword}
+            id="confirm-password"
+            onChange={confirmPasswordHandler}
+            placeholder="Confirme su contraseña"
+            required
+          />
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button className="button" type="submit">
-          Registrate
+          Regístrate
         </button>
         <div>
           <h3 className="cuenta">¿Ya tienes cuenta?</h3>
-          <a href="" className="link">Inicia Sesion</a>
+          <a href="/login" className="link">Inicia Sesión</a>
         </div>
       </form>
     </div>
@@ -61,3 +93,4 @@ const Register = () => {
 };
 
 export default Register;
+
