@@ -3,14 +3,13 @@
 * {
   font-family: "Bree Serif", serif;
   margin-bottom: 0px;
-  
 }
-body{
-  background-color: #ffffcc
+body {
+  background-color: #f4d03f;
 }
 
-body.dark{
-  background-color: #3d4d8e;
+body.dark {
+  background-color: #3f63f4;
 }
 
 .header {
@@ -30,10 +29,15 @@ body.dark{
 .header-left {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .patita {
   margin-right: 10px;
+  margin-left: 0;
+  padding-left: 0;
   fill: var(--text-color);
 }
 
