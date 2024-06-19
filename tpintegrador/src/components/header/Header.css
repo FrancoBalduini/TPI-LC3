@@ -2,6 +2,14 @@
 
 * {
   font-family: "Bree Serif", serif;
+  
+}
+body{
+  background-color: #ffffcc
+}
+
+body.dark{
+  background-color: #000000;
 }
 
 .header {

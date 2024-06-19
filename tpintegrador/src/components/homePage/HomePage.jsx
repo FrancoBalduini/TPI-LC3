@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./HomePage.css";
 import HeaderHome from "../headerHome/HeaderHome";
+import { ThemeContext } from "../context/Context";
+import { useContext } from "react";
 
 const HomePage = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +30,8 @@ const HomePage = () => {
     console.log(formData);
   };
 
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
       <HeaderHome
@@ -36,16 +40,20 @@ const HomePage = () => {
           setFormData({ ...formData, search: e.target.value })
         }
       />
-      <main>
-        <div className="reservation">
-          <h2>"Donde tus mascotas se sientan como en casa"</h2>
+      <body className={`body-theme ${theme}`}>
+        <img src="src\img\goldenChiquito.jpg" className="golden-chiquito"></img>
+        <div className={`reservation ${theme}`}>
+          <h2>
+            <em>Donde tus mascotas se sientan como en casa</em>
+          </h2>
           <form onSubmit={handleSubmit}>
             <div>
               <label>Busco guardería para mi:</label>
               <select
                 name="petType"
                 value={formData.petType}
-                onChange={handleChange}>
+                onChange={handleChange}
+              >
                 <option value="">Mascota</option>
                 <option value="Perro/a">Perro/a</option>
                 <option value="Gato/a">Gato/a</option>
@@ -119,7 +127,7 @@ const HomePage = () => {
             <button type="submit">Buscar</button>
           </form>
         </div>
-      </main>
+      </body>
     </>
   );
 };
