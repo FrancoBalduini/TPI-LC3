@@ -40,7 +40,7 @@ const HomePage = () => {
           setFormData({ ...formData, search: e.target.value })
         }
       />
-      <body className={`body-theme ${theme}`}>
+      <body className={`body ${theme}`}>
         <img src="src\img\goldenChiquito.jpg" className="golden-chiquito"></img>
         <div className={`reservation ${theme}`}>
           <h2>

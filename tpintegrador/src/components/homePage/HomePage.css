@@ -7,19 +7,23 @@ main {
   width: 100%;
 }
 
-.image img {
-  width: 300px;
+.golden-chiquito  {
+  width: 700px;
   height: auto;
-  border-radius: 10px;
-  margin-right: 20px;
+}
+
+.body {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 .reservation {
   background-color: #ffffcc;
-  height: 1200px;
   border-radius: 10px;
-  width: 1100px;
-  margin-left: 700px;
+  grid-column-start: 2;
 }
 
 .reservation.dark {
@@ -31,7 +35,7 @@ main {
 .reservation h2 {
   font-size: 18px;
   margin-bottom: 20px;
-  margin-left: 320px;
+  margin-left: 200px;
 }
 
 form div {
@@ -42,7 +46,7 @@ form label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  margin-left: 400px;
+  margin-left: 290px;
 }
 
 form input[type="date"],
@@ -61,7 +65,7 @@ form input[type="date"]:last-child {
 }
 
 form input[type="radio"] {
-  margin-left: 300px;
+  margin-left: 235px;
 }
 
 form .checkboxes {
@@ -81,7 +85,7 @@ form button {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  margin-left: 450px;
+  margin-left: 345px;
 }
 
 form button:hover {
