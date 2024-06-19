@@ -54,7 +54,9 @@ const HomePage = () => {
                 value={formData.petType}
                 onChange={handleChange}
               >
-                <option value="">Mascota</option>
+                <option disabled value={""}>
+                  Mascota
+                </option>
                 <option value="Perro/a">Perro/a</option>
                 <option value="Gato/a">Gato/a</option>
               </select>
