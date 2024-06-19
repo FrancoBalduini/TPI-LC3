@@ -1,11 +1,7 @@
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-}
+* {
+  margin-left: 0px;
+  margin-bottom: 0px;
+} 
 
 .golden-chiquito  {
   width: 700px;
@@ -18,12 +14,14 @@ main {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
+  margin: 0px;
 }
 
 .reservation {
   background-color: #ffffcc;
   border-radius: 10px;
   grid-column-start: 2;
+  
 }
 
 .reservation.dark {
@@ -36,6 +34,7 @@ main {
   font-size: 18px;
   margin-bottom: 20px;
   margin-left: 200px;
+  margin-top: 50px;
 }
 
 form div {
