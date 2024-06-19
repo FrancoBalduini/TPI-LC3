@@ -5,6 +5,7 @@ import ThemeProvider from "./components/context/Context";
 // import Header from "./components/header/Header";
 // import HeaderHome from "./components/headerHome/HeaderHome";
 import HomePage from "./components/homePage/HomePage";
+//import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 
 const App = () => {
   const router = createBrowserRouter([
