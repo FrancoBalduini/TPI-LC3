@@ -2,6 +2,7 @@
 
 * {
   font-family: "Bree Serif", serif;
+  margin-bottom: 0px;
   
 }
 body{
@@ -9,24 +10,20 @@ body{
 }
 
 body.dark{
-  background-color: #000000;
+  background-color: #3d4d8e;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #b1dcff;
   padding: 10px 20px;
-  border-bottom: 2px solid #ccc;
   width: 100%;
   box-sizing: border-box;
   left: 0;
   right: 0;
   top: 0;
-  flex: 1;
   position: absolute;
-  background-color: var(--background-color);
   color: var(--text-color);
 }
 
@@ -81,12 +78,10 @@ body.dark{
 }
 
 .header.light {
-  background-color: #b1dcff;
   z-index: 0;
 }
 
 .header.dark {
-  background-color: #586e80;
   --text-color: white;
   z-index: 0;
 }
