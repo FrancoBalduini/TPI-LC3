@@ -126,7 +126,9 @@ const HomePage = () => {
                 Paseador
               </label>
             </div>
-            <button type="submit">Buscar</button>
+            <button type="submit" className={`boton ${theme}`}>
+              Buscar
+            </button>
           </form>
         </div>
       </body>

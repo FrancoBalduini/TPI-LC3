@@ -2,9 +2,9 @@
   margin-left: 0px;
   margin-bottom: 0px;
   margin-right: 0px;
-} 
+}
 
-.golden-chiquito  {
+.golden-chiquito {
   width: 700px;
   height: auto;
 }
@@ -19,16 +19,16 @@
 }
 
 .reservation {
-  background-color: #ffffcc;
+  background-color: #ffd4b1;
   border-radius: 10px;
   grid-column-start: 2;
-  
 }
 
 .reservation.dark {
-  background-color: #3d4d8e;
+  background-color: #806a58;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .reservation h2 {
@@ -87,8 +87,11 @@ form button {
   margin-top: 20px;
   margin-left: 345px;
 }
+form button.dark {
+  background-color: #f4d03f;
+  color: #000;
+}
 
 form button:hover {
   background-color: #0056b3;
 }
-

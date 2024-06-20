@@ -1,23 +1,23 @@
-// import Login from "./components/login/Login";
-// // import Register from "./components/register/Register";
-// import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// // import ThemeProvider from "./components/context/Context";
-// // import Header from "./components/header/Header";
-// // import HeaderHome from "./components/headerHome/HeaderHome";
-// import HomePage from "./components/homePage/HomePage";
-import UserHome from "./components/userHome/UserHome";
-//import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
+import Login from "./components/login/Login";
+// // // // import Register from "./components/register/Register";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+// // // // import ThemeProvider from "./components/context/Context";
+// // // // import Header from "./components/header/Header";
+// // // // import HeaderHome from "./components/headerHome/HeaderHome";
+import HomePage from "./components/homePage/HomePage";
+// // import UserHome from "./components/userHome/UserHome";
+// // //import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 
 const App = () => {
-  // const router = createBrowserRouter([
-  //   { path: "/", element: <Login /> },
-  //   { path: "/home", element: <HomePage /> },
-  // ]);
+  const router = createBrowserRouter([
+    { path: "/", element: <Login /> },
+    { path: "/home", element: <HomePage /> },
+  ]);
 
   return (
     <>
-      <UserHome />
-      {/* {<RouterProvider router={router} />} */}
+      {/* <UserHome /> */}
+      {<RouterProvider router={router} />}
     </>
   );
 };
