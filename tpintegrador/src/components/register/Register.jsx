@@ -1,11 +1,15 @@
-import { useState } from "react";
-import './index.css';
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "./index.css";
+import { AuthContext } from "../context/AuthenticationContext"; // Importa el contexto de autenticación
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { registerUser, setCurrentUser } = useContext(AuthContext); // Obtén la función de registro de usuario y el estado de usuario actual del contexto
+  const navigate = useNavigate();
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -24,10 +28,15 @@ const Register = () => {
     if (password !== confirmPassword) {
       setErrorMessage("Las contraseñas no coinciden");
     } else {
+      // Llama a la función de registro de usuario del contexto de autenticación
+      registerUser(email, password);
+      // Establece el usuario actual en el contexto
+      setCurrentUser({ email, password });
       setErrorMessage("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      navigate("/");
     }
   };
 
@@ -85,7 +94,9 @@ const Register = () => {
         </button>
         <div>
           <h3 className="cuenta">¿Ya tienes cuenta?</h3>
-          <a href="/login" className="link">Inicia Sesión</a>
+          <a href="#" className="link">
+            Inicia Sesión
+          </a>
         </div>
       </form>
     </div>
@@ -93,4 +104,3 @@ const Register = () => {
 };
 
 export default Register;
-

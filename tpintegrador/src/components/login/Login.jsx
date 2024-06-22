@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./index.css";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,12 +18,24 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/home");
+    const ownerEmail = "dueño";
+    const ownerPassword = "dueño123";
+
+    if (email === ownerEmail && password === ownerPassword) {
+      navigate("/dueñoHome");
+    } else {
+      navigate("/home");
+    }
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    navigate("/register");
   };
 
   return (
-    <div className="fondo" onSubmit={handleSubmit}>
-      <form className="cuadrado">
+    <div className="fondo">
+      <form className="cuadrado" onSubmit={handleSubmit}>
         <div className="patita">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +56,7 @@ const Login = () => {
             id="email"
             onChange={emailHandler}
             placeholder="Ingrese su email"
-          ></input>
+          />
         </div>
         <div>
           <input
@@ -54,15 +66,15 @@ const Login = () => {
             id="password"
             onChange={passwordHandler}
             placeholder="Ingrese su contraseña"
-          ></input>
+          />
         </div>
         <button className="button" type="submit">
           Inicia Sesion
         </button>
         <div>
           <h3 className="cuenta">¿No tienes cuenta?</h3>
-          <a href="" className="link">
-            Registrate
+          <a href="#" className="link" onClick={handleRegister}>
+            Regístrate
           </a>
         </div>
       </form>

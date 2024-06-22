@@ -51,7 +51,9 @@
 .iniciar-sesion:hover {
   opacity: 0.9;
 }
-
+.nombre-usuario {
+  margin-left: 350px;
+}
 .zIndex5 {
   z-index: 5;
 }
