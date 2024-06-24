@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./index.css";
+import "./Register.css";
 import { AuthContext } from "../context/AuthenticationContext"; // Importa el contexto de autenticación
 
 const Register = () => {

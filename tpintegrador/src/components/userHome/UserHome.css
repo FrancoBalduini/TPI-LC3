@@ -2,6 +2,10 @@ body.dark {
   background-color: #add8e6;
 }
 
+body{
+  background-image: url("");
+}
+
 .dynamic-image {
   background-color: #ffffff;
   height: 200px;
@@ -11,6 +15,7 @@ body.dark {
   justify-content: center;
   align-items: center;
   width: 80%;
+  
 }
 .dynamic-image img {
   max-width: 80%;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./index.css";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -68,7 +68,7 @@ const Login = () => {
             placeholder="Ingrese su contraseña"
           />
         </div>
-        <button className="button" type="submit">
+        <button className="boton" type="submit">
           Inicia Sesion
         </button>
         <div>

@@ -14,7 +14,7 @@ const Header = () => {
     <div>
       <header className={`header ${theme}`}>
         <div className="header-left">
-          <div className="patita">
+          <div className="pata">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"

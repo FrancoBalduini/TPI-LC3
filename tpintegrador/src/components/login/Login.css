@@ -6,9 +6,11 @@
 body {
   background-image: url("../../img/perros.png");
 }
+
 .fondo {
   margin-top: 80px;
 }
+
 .cuadrado {
   width: 500px;
   height: 500px;
@@ -17,7 +19,7 @@ body {
   border-radius: 15px;
 }
 
-.button {
+.boton {
   color: white;
   background-color: black;
   border-radius: 10px;
@@ -29,7 +31,7 @@ body {
   cursor: pointer;
   margin-left: 200px;
 }
-.button:hover {
+.boton:hover {
   color: grey;
 }
 

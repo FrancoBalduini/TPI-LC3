@@ -47,8 +47,8 @@ const HomePage = () => {
             <em>Donde tus mascotas se sientan como en casa</em>
           </h2>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label>Busco guardería para mi:</label>
+            <div className="divForm">
+              <label className="labelTipoMascota">Busco guardería para mi:</label>
               <select
                 name="petType"
                 value={formData.petType}
@@ -126,7 +126,7 @@ const HomePage = () => {
                 Paseador
               </label>
             </div>
-            <button type="submit" className={`boton ${theme}`}>
+            <button type="submit" className={`botonBuscar ${theme}`}>
               Buscar
             </button>
           </form>
