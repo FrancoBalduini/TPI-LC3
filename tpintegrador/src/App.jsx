@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./components/homePage/HomePage";
 import Register from "./components/register/Register";
 import UserHome from "./components/userHome/UserHome";
+import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 // // import UserHome from "./components/userHome/UserHome";
 // // //import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 
@@ -16,6 +17,7 @@ const App = () => {
     { path: "/home", element: <HomePage /> },
     { path: "/register", element: <Register /> },
     { path: "/userHome", element: <UserHome />},
+    { path: "/guarderia", element: <GuarderiaPage />},
   ]);
 
   return (

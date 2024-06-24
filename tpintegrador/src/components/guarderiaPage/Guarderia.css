@@ -1,16 +1,20 @@
+
 .container {
-  background-color: #ffffcc;
   padding: 20px;
   font-family: Arial, sans-serif;
   margin-top: 100px;
-}
-
-
-main {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
+
+.body.dark{
+  background-color: #806a58;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
 
 section {
   background-color: #add8e6;
@@ -53,3 +57,6 @@ li {
     2px -2px 0 #000, 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000;
 }
 
+.text-border a{
+  text-shadow: 0px 0px 0px #000;
+}
