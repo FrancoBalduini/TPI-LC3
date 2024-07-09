@@ -8,6 +8,7 @@ const Admin = () => {
   return (
     <>
       <Header />
+      
       <div className={`lupa-input ${theme}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +47,12 @@ const Admin = () => {
           </svg>
         </div>
       </div>
+      <body className={`cuerpo ${theme}`}>
+        <td>
+          <tl>prueba123</tl>
+          <tl></tl>
+        </td>
+      </body>
     </>
   );
 };
