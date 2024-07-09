@@ -1,0 +1,19 @@
+.bells-icon {
+  fill: black;
+  z-index: 3;
+}
+
+.user-icon {
+  fill: black;
+  z-index: 3;
+}
+
+.icon-container {
+  display: flex;
+  margin-left: 500px;
+}
+
+.user-icon.dark,
+.bells-icon.dark {
+  fill: white;
+}
