@@ -1,15 +1,21 @@
 import Header from "../header/Header";
 import { ThemeContext } from "../context/Context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./Admin.css";
+import Card from "../card/Card";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
     <>
       <Header />
-      
       <div className={`lupa-input ${theme}`}>
+        <span>Admin</span> {}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -25,7 +31,6 @@ const Admin = () => {
           className="input-busqueda zIndex5"
           placeholder="Buscar guarderia"
         />
-
         <div className="icon-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,12 +52,43 @@ const Admin = () => {
           </svg>
         </div>
       </div>
-      <body className={`cuerpo ${theme}`}>
-        <td>
-          <tl>prueba123</tl>
-          <tl></tl>
-        </td>
-      </body>
+      <div className={`cuerpo ${theme}`}>
+        <Card
+          title="Lista de Usuarios Registrados"
+          className="card1"
+          placeholder="Buscar usuarios"
+          typeTitle="Usuarios"
+        >
+          <div className="button-container">
+            <a href="#">
+              <button>Editar ✏️</button>
+            </a>{" "}
+            <a href="#">
+              <button>Eliminar ❌</button>
+            </a>{" "}
+            <a href="#">
+              <button>Agregar usuario ✅</button>
+            </a>{" "}
+          </div>
+        </Card>
+        <Card
+          title="Lista de Guarderías Registradas"
+          placeholder="Buscar guarderias"
+          typeTitle="Guarderias"
+        >
+          <div className="button-container">
+            <a href="#">
+              <button>Editar ✏️</button>
+            </a>{" "}
+            <a href="#">
+              <button>Eliminar ❌</button>
+            </a>{" "}
+            <a href="#">
+              <button>Agregar guarderia ✅</button>
+            </a>{" "}
+          </div>
+        </Card>
+      </div>
     </>
   );
 };

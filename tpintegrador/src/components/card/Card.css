@@ -1,0 +1,25 @@
+.card {
+  background-color: #f0f8ff;
+  border: 20px solid #b1dcff;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 480px;
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  margin-top: 150px;
+}
+
+h3 {
+  display: inline;
+}
+
+.input-busqueda-usuario {
+  margin-left: 16px;
+}

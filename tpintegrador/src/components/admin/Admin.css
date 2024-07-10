@@ -18,6 +18,39 @@
   fill: white;
 }
 
-.cuerpo.dark{
+.cuerpo.dark {
   background-color: #806a58;
+}
+
+.cuerpo {
+  display: flex;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container button {
+  margin-bottom: 8px;
+}
+
+.cuerpo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 16px;
+}
+
+.input-busqueda-usuario {
+  border-radius: 50px;
+  text-align: center;
+
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.button-container a button {
+  cursor: pointer;
 }
