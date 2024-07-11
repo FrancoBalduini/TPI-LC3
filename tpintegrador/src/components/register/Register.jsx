@@ -23,20 +23,22 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Las contraseñas no coinciden");
     } else {
-      // Llama a la función de registro de usuario del contexto de autenticación
-      registerUser(email, password);
-      // Establece el usuario actual en el contexto
-      setCurrentUser({ email, password });
-      setErrorMessage("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      navigate("/");
+      try {
+        const user = await registerUser(email, password); // Espera a que el usuario sea registrado
+        setCurrentUser(user);
+        setErrorMessage("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        navigate("/"); // Navega después de registrar y establecer el usuario
+      } catch (error) {
+        setErrorMessage("Error al registrar usuario: " + error.message);
+      }
     }
   };
 
