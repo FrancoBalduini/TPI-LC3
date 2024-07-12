@@ -15,7 +15,7 @@ import DuenoGuarderia from "./components/duenoGuarderia/DuenoGuarderia";
 
 const App = () => {
   const router = createBrowserRouter([
-    { path: "/", element: <Admin /> },
+    { path: "/", element: <Login /> },
     { path: "/home", element: <HomePage /> },
     { path: "/register", element: <Register /> },
     { path: "/userHome", element: <UserHome /> },

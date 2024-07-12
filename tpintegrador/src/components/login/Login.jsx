@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { AuthContext } from "../context/AuthenticationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const emailHandler = (e) => {
@@ -15,16 +18,14 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const ownerEmail = "dueño";
-    const ownerPassword = "dueño123";
-
-    if (email === ownerEmail && password === ownerPassword) {
-      navigate("/dueñoHome");
-    } else {
+    try {
+      await loginUser(email, password);
+      setErrorMessage("");
       navigate("/home");
+    } catch (error) {
+      setErrorMessage("Credenciales incorrectas");
     }
   };
 
@@ -68,6 +69,7 @@ const Login = () => {
             placeholder="Ingrese su contraseña"
           />
         </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button className="boton" type="submit">
           Inicia Sesion
         </button>
