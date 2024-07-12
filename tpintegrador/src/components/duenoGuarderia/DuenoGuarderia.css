@@ -1,0 +1,43 @@
+.dueno-guarderia {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f1f1f1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  margin-right: 16px;
+}
+
+.settings button {
+  margin-left: 8px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 16px;
+  flex-direction: row;
+}
+
+.card-cuadrada {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 16px;
+  padding: 16px;
+  background-color: #d0e7f9;
+  border: 2px solid #a9c4d4;
+  border-radius: 10px;
+}

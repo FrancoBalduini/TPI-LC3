@@ -9,6 +9,7 @@ import Register from "./components/register/Register";
 import UserHome from "./components/userHome/UserHome";
 import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 import Admin from "./components/admin/Admin";
+import DuenoGuarderia from "./components/duenoGuarderia/DuenoGuarderia";
 // // import UserHome from "./components/userHome/UserHome";
 // // //import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 
@@ -19,6 +20,7 @@ const App = () => {
     { path: "/register", element: <Register /> },
     { path: "/userHome", element: <UserHome /> },
     { path: "/guarderia", element: <GuarderiaPage /> },
+    { path: "/duenoguarderia", element: <DuenoGuarderia /> },
   ]);
 
   return (

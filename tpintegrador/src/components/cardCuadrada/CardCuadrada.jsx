@@ -1,0 +1,42 @@
+import PropTypes from "prop-types";
+import "./CardCuadrada.css";
+
+const CardCuadrada = ({ title, items, scrollable }) => {
+  return (
+    <div className="card-cuadrada">
+      <h3>{title}</h3>
+      <div className={scrollable ? "scrollable-table" : ""}>
+        <table>
+          <tbody>
+            {items.map((item, index) => (
+              <tr key={index}>
+                <td>{title === "Turnos" ? item.text : ""}</td>
+                <td>
+                  <button className="boton-agregar">Agregar ✅</button>
+                </td>
+                <td>
+                  <button className="boton-borrar">Eliminar ❌</button>
+                </td>
+                <td>
+                  <button className="boton-editar">Modificar ✏️</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+CardCuadrada.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  scrollable: PropTypes.bool,
+};
+
+export default CardCuadrada;

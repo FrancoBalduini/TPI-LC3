@@ -1,0 +1,52 @@
+.guarderia-container {
+  background-color: #e0f7fa;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.guarderia-container h2 {
+  text-align: center;
+  background-color: #81d4fa;
+  padding: 10px;
+  border-radius: 10px;
+  color: #000;
+}
+
+.guarderia-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.foto {
+  width: 50px;
+  height: 50px;
+  background-color: #eceff1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.descripcion {
+  flex: 1;
+}
+
+.modificar {
+  color: #000;
+  cursor: pointer;
+}
+
+.icono {
+  font-size: 1rem;
+  margin-left: 5px;
+  cursor: pointer;
+}
