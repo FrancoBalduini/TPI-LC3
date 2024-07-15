@@ -19,7 +19,7 @@ const DuenoGuarderia = () => {
     { text: "Turno 4" },
   ];
   return (
-    <>
+    <body className={`bodyDuenoG ${theme}`}>
       <Header />
       <div className="content">
         <div>
@@ -28,7 +28,7 @@ const DuenoGuarderia = () => {
         </div>
         <CardGuarderia />
       </div>
-    </>
+    </body>
   );
 };
 

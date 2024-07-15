@@ -43,8 +43,8 @@ const Register = () => {
   };
 
   return (
-    <div className="fondo">
-      <form className="cuadrado" onSubmit={handleSubmit}>
+    <body className="bodyRegister">
+      <form className="cuadradoRegister" onSubmit={handleSubmit}>
         <div className="patita">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ const Register = () => {
           </a>
         </div>
       </form>
-    </div>
+    </body>
   );
 };
 

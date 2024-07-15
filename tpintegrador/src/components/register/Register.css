@@ -3,17 +3,11 @@
   font-family: "Bree Serif", serif;
 }
 
-body {
-  background-image: url("../../img/perros.png");
-}
-.fondo {
-  margin-top: 150px;
-}
-.cuadrado {
+.cuadradoRegister {
   width: 500px;
   height: 500px;
   background: bisque;
-  margin: auto;
+  margin: 150px auto auto auto;
   border-radius: 15px;
 }
 

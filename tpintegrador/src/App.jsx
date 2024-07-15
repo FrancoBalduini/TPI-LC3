@@ -20,7 +20,7 @@ const App = () => {
     { path: "/home", element: <HomePage /> },
     { path: "/register", element: <Register /> },
     { path: "/userHome", element: <UserHome /> },
-    { path: "/guarderia", element: <GuarderiaPage /> },
+    { path: "/guarderia", element: <GuarderiaPage /> }, //Esta no carga bien el fondo
     { path: "/duenoguarderia", element: <DuenoGuarderia /> },
     { path: "/infouser", element: <InfoUser /> },
   ]);

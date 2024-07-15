@@ -2,6 +2,16 @@
   font-family: Arial, sans-serif;
 }
 
+
+.bodyDuenoG{
+  background-color: #ffd4b1 ;
+  margin-bottom: 0px;
+}
+
+.bodyDuenoG.dark{
+  background-color: #806a58;
+}
+
 header {
   display: flex;
   justify-content: space-between;
