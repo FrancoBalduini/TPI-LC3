@@ -1,16 +1,19 @@
 import Header from "../header/Header";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../context/Context";
+import { AuthContext } from "../context/AuthenticationContext"; // Importa AuthContext
 import "./InfoUser.css";
 import CardCuadrada from "./CardCuadrada";
 
 const InfoUser = () => {
   const { theme } = useContext(ThemeContext);
+  const { currentUser } = useContext(AuthContext); // Obtén currentUser del contexto de autenticación
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
+  // Ejemplo de reservas
   const reservas = [
     { text: "Mi Reserva 1" },
     { text: "Mi Reserva 2" },
@@ -45,20 +48,27 @@ const InfoUser = () => {
           <CardCuadrada title="Mis Datos" scrollable={false}>
             <div className="user-details">
               <button className="boton-editar">Editar ✏️</button>
-              <p>Nombre: diego</p>
-              <p>Apellido: maradona</p>
-              <p>Email: eldiego@gmail.com</p>
-              <p>Dirección: Sarmiento 2456</p>
-              <p>Num. Tel: 123456789</p>
-              <h4>Mis Mascotas</h4>
-              <div className="pet-info">
-                <div className="pet-photo">Foto</div>
-                <p>Descripción de la mascota</p>
-              </div>
-              <div className="pet-info">
-                <div className="pet-photo">Foto</div>
-                <p>Descripción de la mascota</p>
-              </div>
+              {currentUser ? ( // Verifica si currentUser está definido
+                <>
+                  <p>Nombre: {currentUser.nombre}</p>
+                  <p>Apellido: {currentUser.apellido}</p>
+                  <p>Email: {currentUser.email}</p>
+                  <p>Dirección: {currentUser.direccion}</p>
+                  <p>Num. Tel: {currentUser.numTelefono}</p>
+                  {/* Aquí puedes mostrar las mascotas del usuario si tienes esa información */}
+                  <h4>Mis Mascotas</h4>
+                  <div className="pet-info">
+                    <div className="pet-photo">Foto</div>
+                    <p>Descripción de la mascota</p>
+                  </div>
+                  <div className="pet-info">
+                    <div className="pet-photo">Foto</div>
+                    <p>Descripción de la mascota</p>
+                  </div>
+                </>
+              ) : (
+                <p>No se ha encontrado información del usuario.</p>
+              )}
             </div>
           </CardCuadrada>
         </div>

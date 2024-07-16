@@ -1,19 +1,46 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [loggedUser, setLoggedUser] = useState(null);
   const [userList, setUserList] = useState([]);
+  const [guarderiaList, setGuarderiaList] = useState([]);
 
-  const registerUser = async (email, password) => {
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/users");
+      const users = await response.json();
+      setUserList(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
+  const fetchGuarderias = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/guarderias");
+      const guarderias = await response.json();
+      setGuarderiaList(guarderias);
+    } catch (error) {
+      console.error("Error fetching guarderias:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+    fetchGuarderias();
+  }, []);
+
+  const registerUser = async (email, password, role = "cliente") => {
     try {
       const response = await fetch("http://localhost:8000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, role }),
       });
 
       if (response.ok) {
@@ -41,12 +68,14 @@ const AuthContextProvider = ({ children }) => {
 
       if (response.ok) {
         const user = await response.json();
-        setCurrentUser(user);
+        setLoggedUser(user);
         return user;
       } else {
-        const user = userList.find((user) => user.email === email && user.password === password);
+        const user = userList.find(
+          (user) => user.email === email && user.password === password
+        );
         if (user) {
-          setCurrentUser(user);
+          setLoggedUser(user);
           return user;
         } else {
           throw new Error("Credenciales incorrectas");
@@ -59,10 +88,23 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, userList, registerUser, loginUser, setCurrentUser }}>
+    <AuthContext.Provider
+      value={{
+        loggedUser,
+        userList,
+        registerUser,
+        loginUser,
+        setLoggedUser,
+        guarderiaList,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.node,
 };
 
 export default AuthContextProvider;

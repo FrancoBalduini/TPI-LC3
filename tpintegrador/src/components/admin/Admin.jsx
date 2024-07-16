@@ -1,15 +1,35 @@
 import Header from "../header/Header";
+import { AuthContext } from "../context/AuthenticationContext";
 import { ThemeContext } from "../context/Context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Admin.css";
 import Card from "../card/Card";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
+  const { userList, guarderiaList } = useContext(AuthContext);
+  const [userSearchTerm, setUserSearchTerm] = useState("");
+  const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
+
+  const handleUserSearchChange = (e) => {
+    setUserSearchTerm(e.target.value);
+  };
+
+  const handleGuarderiaSearchChange = (e) => {
+    setGuarderiaSearchTerm(e.target.value);
+  };
+
+  const filteredUsers = userList.filter((user) =>
+    user.email.toLowerCase().includes(userSearchTerm.toLowerCase())
+  );
+
+  const filteredGuarderias = guarderiaList.filter((guarderia) =>
+    guarderia.name.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
+  );
 
   return (
     <>
@@ -26,11 +46,6 @@ const Admin = () => {
         >
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
-        <input
-          type="search"
-          className="input-busqueda zIndex5"
-          placeholder="Buscar guarderia"
-        />
         <div className="icon-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +73,20 @@ const Admin = () => {
           className="card1"
           placeholder="Buscar usuarios"
           typeTitle="Usuarios"
+          searchTerm={userSearchTerm}
+          onSearchChange={handleUserSearchChange}
         >
+          {filteredUsers.length > 0 ? (
+            <ul>
+              {filteredUsers.map((user) => (
+                <li key={user.id}>
+                  {user.email} - {user.role}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No hay usuarios registrados.</p>
+          )}
           <div className="button-container">
             <a href="#">
               <button>Editar ✏️</button>
@@ -75,7 +103,20 @@ const Admin = () => {
           title="Lista de Guarderías Registradas"
           placeholder="Buscar guarderias"
           typeTitle="Guarderias"
+          searchTerm={guarderiaSearchTerm}
+          onSearchChange={handleGuarderiaSearchChange}
         >
+          {filteredGuarderias.length > 0 ? (
+            <ul>
+              {filteredGuarderias.map((guarderia) => (
+                <li key={guarderia.id}>
+                  {guarderia.name} - {guarderia.address}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No hay guarderías registradas.</p>
+          )}
           <div className="button-container">
             <a href="#">
               <button>Editar ✏️</button>

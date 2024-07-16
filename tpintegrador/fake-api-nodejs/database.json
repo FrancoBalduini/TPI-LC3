@@ -16,15 +16,9 @@
   "users": [
     {
       "id": 1,
-      "firstName": "Administrator",
-      "lastName": "",
-      "username": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
-      "avatar": "https://robohash.org/eaquequasincidunt.png?size=50x50&set=set1",
-      "gender": "Genderfluid",
-      "phone": "933-658-1213",
-      "birthday": "1994-03-23",
+      "role": "admin",
       "status": true,
       "createdAt": 1609483221000,
       "modifiedAt": 1609483221000
@@ -33,6 +27,7 @@
       "id": 2,
       "email": "sahdasdsakd@gmail.com",
       "password": "asdfghjklñ",
+      "role": "cliente",
       "createdAt": 1720740136137,
       "modifiedAt": 1720740136137
     },
@@ -40,6 +35,7 @@
       "id": 3,
       "email": "marcose027@hotmail.com",
       "password": "12345",
+      "role": "cliente",
       "createdAt": 1720741005013,
       "modifiedAt": 1720741005013
     },
@@ -47,58 +43,34 @@
       "id": 4,
       "email": "pruebaprueba123@gmail.com",
       "password": "probando123",
+      "role": "dueño",
       "createdAt": 1720741091700,
       "modifiedAt": 1720741091700
     },
     {
       "id": 5,
-      "email": "prueba123@gmail.com",
-      "password": "probando123",
-      "createdAt": 1720741156906,
-      "modifiedAt": 1720741156906
-    },
-    {
-      "id": 6,
-      "email": "estoyprobando@gmail.com",
-      "password": "asdasd",
-      "createdAt": 1720741367650,
-      "modifiedAt": 1720741367650
-    },
-    {
-      "id": 7,
-      "email": "sdftyuikasda@gmail.com",
-      "password": "asdasd",
-      "createdAt": 1720741918817,
-      "modifiedAt": 1720741918817
-    },
-    {
-      "id": 8,
-      "email": "ikkojkkkklklk@gmail.com",
-      "password": "dalewachoanda",
-      "createdAt": 1720741978486,
-      "modifiedAt": 1720741978486
-    },
-    {
-      "id": 9,
-      "email": "ertyuiop@gmail.com",
-      "password": "qwertyuiop",
-      "createdAt": 1720742049208,
-      "modifiedAt": 1720742049208
-    },
-    {
-      "id": 10,
-      "email": "dsadasd@gmail.com",
-      "password": "asdasd",
-      "createdAt": 1720743680131,
-      "modifiedAt": 1720743680131
-    },
-    {
-      "id": 11,
-      "email": "koookokk@gmail.com",
-      "password": "asdasd",
-      "createdAt": 1720744007547,
-      "modifiedAt": 1720744007547
+      "email": "franco233433@gmail.com",
+      "password": "12345",
+      "role": "cliente",
+      "createdAt": 1721160149535,
+      "modifiedAt": 1721160149535
     }
   ],
-  "Guarderias": []
+  "Guarderias": [
+    {
+      "id": 1,
+      "name": "Lionel Messi",
+      "address": "La Scaloneta 54"
+    },
+    {
+      "id": 2,
+      "name": "Bokita papa",
+      "address": "El templo 6"
+    },
+    {
+      "id": 3,
+      "name": "Elden Ring",
+      "address": "Radhagon 1890"
+    }
+  ]
 }

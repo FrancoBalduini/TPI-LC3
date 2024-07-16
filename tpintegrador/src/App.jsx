@@ -23,6 +23,7 @@ const App = () => {
     { path: "/guarderia", element: <GuarderiaPage /> }, //Esta no carga bien el fondo
     { path: "/duenoguarderia", element: <DuenoGuarderia /> },
     { path: "/infouser", element: <InfoUser /> },
+    { path: "/admin", element: <Admin /> },
   ]);
 
   return (

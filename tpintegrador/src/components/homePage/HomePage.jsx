@@ -48,7 +48,9 @@ const HomePage = () => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="divForm">
-              <label className="labelTipoMascota">Busco guardería para mi:</label>
+              <label className="labelTipoMascota">
+                Busco guardería para mi:
+              </label>
               <select
                 name="petType"
                 value={formData.petType}

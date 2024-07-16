@@ -1,5 +1,6 @@
 // components/HeaderHome.js
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate desde react-router-dom
 import { AuthContext } from "../context/AuthenticationContext";
 import { ThemeContext } from "../context/Context";
 import Header from "../header/Header";
@@ -7,7 +8,12 @@ import "./Home.css";
 
 const HeaderHome = () => {
   const { theme } = useContext(ThemeContext);
-  const { currentUser } = useContext(AuthContext);
+  const { loggedUser } = useContext(AuthContext);
+  const navigate = useNavigate(); // Obtiene la función de navegación
+
+  const handleNavigateToInfoUser = () => {
+    navigate("/infoUser");
+  };
 
   return (
     <>
@@ -31,8 +37,14 @@ const HeaderHome = () => {
         <button className={`boton-añade-guarderia zIndex5 ${theme}`}>
           Añade tu guarderia
         </button>
-        {currentUser ? (
-          <span className="nombre-usuario zIndex5">{currentUser.email}</span>
+        {loggedUser ? (
+          <span
+            className="nombre-usuario zIndex5"
+            onClick={handleNavigateToInfoUser}
+            style={{ cursor: "pointer" }}
+          >
+            {loggedUser.email}
+          </span>
         ) : (
           <button className="iniciar-sesion zIndex5">Iniciar sesión</button>
         )}

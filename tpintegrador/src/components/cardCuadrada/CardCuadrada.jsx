@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import "./CardCuadrada.css";
+import { ThemeContext } from "../context/Context";
+import { useContext } from "react";
 
 const CardCuadrada = ({ title, items, scrollable }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <div className="card-cuadrada">
+    <div className={`card-square ${theme}`}>
       <h3>{title}</h3>
       <div className={scrollable ? "scrollable-table" : ""}>
         <table>

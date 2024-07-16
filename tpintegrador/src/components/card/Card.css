@@ -10,6 +10,11 @@
   height: 480px;
 }
 
+.card.dark {
+  background-color: #7e7dff;
+  border: 20px solid #586e80;
+}
+
 .card h2 {
   margin-bottom: 20px;
   font-size: 1.5em;

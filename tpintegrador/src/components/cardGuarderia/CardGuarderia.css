@@ -6,12 +6,20 @@
   margin: 0 auto;
 }
 
+.guarderia-container.dark {
+  background-color: #586e80;
+}
+
 .guarderia-container h2 {
   text-align: center;
   background-color: #81d4fa;
   padding: 10px;
   border-radius: 10px;
   color: #000;
+}
+
+.guarderia-container.dark h2 {
+  background-color: #4891f7;
 }
 
 .guarderia-item {
@@ -22,6 +30,10 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.guarderia-item.dark {
+  background-color: #7e7dff;
 }
 
 .foto {

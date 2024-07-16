@@ -1,3 +1,7 @@
+body {
+  overflow-y: hidden;
+}
+
 .bells-icon {
   fill: black;
   z-index: 3;
