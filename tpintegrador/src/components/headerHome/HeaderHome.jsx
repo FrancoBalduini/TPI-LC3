@@ -1,6 +1,5 @@
-// components/HeaderHome.js
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate desde react-router-dom
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthenticationContext";
 import { ThemeContext } from "../context/Context";
 import Header from "../header/Header";
@@ -9,10 +8,15 @@ import "./Home.css";
 const HeaderHome = () => {
   const { theme } = useContext(ThemeContext);
   const { loggedUser } = useContext(AuthContext);
-  const navigate = useNavigate(); // Obtiene la función de navegación
+  const navigate = useNavigate();
 
   const handleNavigateToInfoUser = () => {
     navigate("/infoUser");
+  };
+
+  // Función para obtener el nombre de usuario sin el dominio
+  const getUsernameWithoutDomain = (email) => {
+    return email.split("@")[0];
   };
 
   return (
@@ -34,16 +38,18 @@ const HeaderHome = () => {
           className="input-busqueda zIndex5"
           placeholder="Buscar guarderia"
         />
-        <button className={`boton-añade-guarderia zIndex5 ${theme}`}>
-          Añade tu guarderia
-        </button>
+        {loggedUser && loggedUser.role === "dueño" && (
+          <button className={`boton-añade-guarderia zIndex5 ${theme}`}>
+            Añade tu guarderia
+          </button>
+        )}
         {loggedUser ? (
           <span
             className="nombre-usuario zIndex5"
             onClick={handleNavigateToInfoUser}
             style={{ cursor: "pointer" }}
           >
-            {loggedUser.email}
+            {getUsernameWithoutDomain(loggedUser.email)}
           </span>
         ) : (
           <button className="iniciar-sesion zIndex5">Iniciar sesión</button>

@@ -3,6 +3,7 @@ import "./HomePage.css";
 import HeaderHome from "../headerHome/HeaderHome";
 import { ThemeContext } from "../context/Context";
 import { useContext } from "react";
+import { availableDates } from "../../../fake-api-nodejs/database.json";
 
 const HomePage = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,6 @@ const HomePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(formData);
   };
 
@@ -41,7 +41,11 @@ const HomePage = () => {
         }
       />
       <body className={`body ${theme}`}>
-        <img src="src\img\goldenChiquito.jpg" className="golden-chiquito"></img>
+        <img
+          src="src\img\goldenChiquito.jpg"
+          className="golden-chiquito"
+          alt="Golden Chiquito"
+        ></img>
         <div className={`reservation ${theme}`}>
           <h2>
             <em>Donde tus mascotas se sientan como en casa</em>
@@ -56,7 +60,7 @@ const HomePage = () => {
                 value={formData.petType}
                 onChange={handleChange}
               >
-                <option disabled value={""}>
+                <option disabled value="">
                   Mascota
                 </option>
                 <option value="Perro/a">Perro/a</option>
@@ -70,12 +74,16 @@ const HomePage = () => {
                 name="entryDate"
                 value={formData.entryDate}
                 onChange={handleChange}
+                min={availableDates[0]}
+                max={availableDates[availableDates.length - 1]}
               />
               <input
                 type="date"
                 name="exitDate"
                 value={formData.exitDate}
                 onChange={handleChange}
+                min={formData.entryDate || availableDates[0]}
+                max={availableDates[availableDates.length - 1]}
               />
             </div>
             <div>

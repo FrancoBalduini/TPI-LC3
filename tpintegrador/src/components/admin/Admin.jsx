@@ -7,9 +7,10 @@ import Card from "../card/Card";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
-  const { userList, guarderiaList } = useContext(AuthContext);
+  const { userList, guarderiaList, setUserList } = useContext(AuthContext);
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
+  const [editingUser, setEditingUser] = useState(null);
 
   useEffect(() => {
     document.body.className = theme;
@@ -23,8 +24,44 @@ const Admin = () => {
     setGuarderiaSearchTerm(e.target.value);
   };
 
-  const filteredUsers = userList.filter((user) =>
-    user.email.toLowerCase().includes(userSearchTerm.toLowerCase())
+  const handleEditUser = (user) => {
+    setEditingUser({ ...user });
+  };
+
+  const handleSaveUserChanges = () => {
+    if (!editingUser) return;
+
+    const updatedUserList = userList.map((user) =>
+      user.id === editingUser.id ? editingUser : user
+    );
+
+    setUserList(updatedUserList);
+    localStorage.setItem("userList", JSON.stringify(updatedUserList));
+    setEditingUser(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingUser(null);
+  };
+
+  const handleDeleteUser = (userId) => {
+    const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
+    if (!confirmed) return;
+
+    const updatedUserList = userList.filter((user) => user.id !== userId);
+    setUserList(updatedUserList);
+    localStorage.setItem("userList", JSON.stringify(updatedUserList));
+
+    if (editingUser && editingUser.id === userId) {
+      setEditingUser(null);
+    }
+  };
+
+  const filteredUsers = userList.filter(
+    (user) =>
+      user.role !== "admin" &&
+      (user.nombre.toLowerCase().includes(userSearchTerm.toLowerCase()) ||
+        user.apellido.toLowerCase().includes(userSearchTerm.toLowerCase()))
   );
 
   const filteredGuarderias = guarderiaList.filter((guarderia) =>
@@ -77,26 +114,69 @@ const Admin = () => {
           onSearchChange={handleUserSearchChange}
         >
           {filteredUsers.length > 0 ? (
-            <ul>
-              {filteredUsers.map((user) => (
-                <li key={user.id}>
-                  {user.email} - {user.role}
-                </li>
-              ))}
-            </ul>
+            <div className="scrollable-list">
+              <ul>
+                {filteredUsers.map((user) => (
+                  <li key={user.id}>
+                    {editingUser && editingUser.id === user.id ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={editingUser.nombre}
+                          onChange={(e) =>
+                            setEditingUser({
+                              ...editingUser,
+                              nombre: e.target.value,
+                            })
+                          }
+                        />
+                        <input
+                          type="text"
+                          value={editingUser.apellido}
+                          onChange={(e) =>
+                            setEditingUser({
+                              ...editingUser,
+                              apellido: e.target.value,
+                            })
+                          }
+                        />
+                        <select
+                          value={editingUser.role}
+                          onChange={(e) =>
+                            setEditingUser({
+                              ...editingUser,
+                              role: e.target.value,
+                            })
+                          }
+                        >
+                          <option value="cliente">Cliente</option>
+                          <option value="dueño">Dueño</option>
+                        </select>
+                        <button onClick={handleSaveUserChanges}>Guardar</button>
+                        <button onClick={handleCancelEdit}>Cancelar</button>
+                      </div>
+                    ) : (
+                      <>
+                        {user.nombre} {user.apellido} - {user.role}
+                        <div className="button-container">
+                          <button onClick={() => handleEditUser(user)}>
+                            Editar ✏️
+                          </button>
+                          <button onClick={() => handleDeleteUser(user.id)}>
+                            Eliminar ❌
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : (
             <p>No hay usuarios registrados.</p>
           )}
           <div className="button-container">
-            <a href="#">
-              <button>Editar ✏️</button>
-            </a>{" "}
-            <a href="#">
-              <button>Eliminar ❌</button>
-            </a>{" "}
-            <a href="#">
-              <button>Agregar usuario ✅</button>
-            </a>{" "}
+            <button>Agregar usuario ✅</button>
           </div>
         </Card>
         <Card
@@ -107,23 +187,23 @@ const Admin = () => {
           onSearchChange={handleGuarderiaSearchChange}
         >
           {filteredGuarderias.length > 0 ? (
-            <ul>
-              {filteredGuarderias.map((guarderia) => (
-                <li key={guarderia.id}>
-                  {guarderia.name} - {guarderia.address}
-                </li>
-              ))}
-            </ul>
+            <div className="scrollable-list">
+              <ul>
+                {filteredGuarderias.map((guarderia) => (
+                  <li key={guarderia.id}>
+                    {guarderia.name} - {guarderia.address}
+                    <div className="button-container">
+                      <button>Editar ✏️</button>
+                      <button>Eliminar ❌</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : (
             <p>No hay guarderías registradas.</p>
           )}
           <div className="button-container">
-            <a href="#">
-              <button>Editar ✏️</button>
-            </a>{" "}
-            <a href="#">
-              <button>Eliminar ❌</button>
-            </a>{" "}
             <a href="#">
               <button>Agregar guarderia ✅</button>
             </a>{" "}

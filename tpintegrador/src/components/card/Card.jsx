@@ -23,7 +23,7 @@ const Card = ({
         onChange={onSearchChange}
       />
       <h2>{title}</h2>
-      {children}
+      <div className="scrollable-list">{children}</div>
     </div>
   );
 };

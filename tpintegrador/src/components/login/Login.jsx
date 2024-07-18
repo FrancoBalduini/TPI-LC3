@@ -56,7 +56,7 @@ const Login = () => {
         </div>
         <div>
           <input
-            className="email-input"
+            className="email-input-login"
             type="email"
             value={email}
             id="email"
@@ -66,7 +66,7 @@ const Login = () => {
         </div>
         <div>
           <input
-            className="password-input"
+            className="password-input-login"
             type="password"
             value={password}
             id="password"

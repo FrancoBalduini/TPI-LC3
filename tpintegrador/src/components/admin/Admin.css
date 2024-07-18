@@ -33,10 +33,7 @@ body {
 .button-container {
   display: flex;
   flex-direction: column;
-}
-
-.button-container button {
-  margin-bottom: 8px;
+  margin-top: 50px;
 }
 
 .cuerpo {
@@ -57,4 +54,19 @@ body {
 
 .button-container a button {
   cursor: pointer;
+}
+.scrollable-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scrollable-list li {
+  margin-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

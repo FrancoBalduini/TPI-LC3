@@ -2,13 +2,16 @@
 * {
   font-family: "Bree Serif", serif;
 }
-
+body {
+  overflow-y: auto;
+}
 .cuadradoRegister {
   width: 500px;
   height: 500px;
   background: bisque;
   margin: 150px auto auto auto;
   border-radius: 15px;
+  margin-top: 50px;
 }
 
 .button {
@@ -26,9 +29,26 @@
 .button:hover {
   color: grey;
 }
-
+.nombre-input {
+  margin-top: 20px;
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  margin-left: 100px;
+}
+.apellido-input {
+  margin-top: 20px;
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  margin-left: 100px;
+}
 .email-input {
-  margin-top: 70px;
+  margin-top: 20px;
   height: 30px;
   width: 60%;
   text-align: center;
@@ -37,7 +57,7 @@
   margin-left: 100px;
 }
 .password-input {
-  margin-top: 40px;
+  margin-top: 20px;
   height: 30px;
   width: 60%;
   text-align: center;
@@ -60,7 +80,6 @@
   margin-left: 205px;
 }
 
-.error-message{
+.error-message {
   margin-left: 150px;
 }
-

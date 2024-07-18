@@ -8,17 +8,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   height: 480px;
+  max-width: 100%;
 }
 
 .card.dark {
   background-color: #7e7dff;
   border: 20px solid #586e80;
-}
-
-.card h2 {
-  margin-bottom: 20px;
-  font-size: 1.5em;
-  margin-top: 150px;
 }
 
 h3 {
@@ -27,4 +22,34 @@ h3 {
 
 .input-busqueda-usuario {
   margin-left: 16px;
+}
+
+.scrollable-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scrollable-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.scrollable-list li {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scrollable-list .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
 }

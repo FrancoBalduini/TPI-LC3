@@ -9,6 +9,7 @@
   background: #ffe8b1;
   margin: 150px auto auto auto;
   border-radius: 15px;
+  margin-top: 50px;
 }
 
 .boton {
@@ -27,7 +28,7 @@
   color: grey;
 }
 
-.email-input {
+.email-input-login {
   margin-top: 70px;
   height: 30px;
   width: 60%;
@@ -36,7 +37,7 @@
   border: none;
   margin-left: 100px;
 }
-.password-input {
+.password-input-login {
   margin-top: 70px;
   height: 30px;
   width: 60%;

@@ -1,25 +1,64 @@
 import Header from "../header/Header";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/Context";
-import { AuthContext } from "../context/AuthenticationContext"; // Importa AuthContext
+import { AuthContext } from "../context/AuthenticationContext";
 import "./InfoUser.css";
 import CardCuadrada from "./CardCuadrada";
 
 const InfoUser = () => {
   const { theme } = useContext(ThemeContext);
-  const { currentUser } = useContext(AuthContext); // Obtén currentUser del contexto de autenticación
+  const { loggedUser, setLoggedUser } = useContext(AuthContext);
+  const [localLoggedUser, setLocalLoggedUser] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editUser, setEditUser] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+  });
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
-  // Ejemplo de reservas
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedUser");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setLocalLoggedUser(parsedUser);
+      setLoggedUser(parsedUser);
+      setEditUser({
+        nombre: parsedUser.nombre,
+        apellido: parsedUser.apellido,
+        email: parsedUser.email,
+      });
+    }
+  }, [setLoggedUser]);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveClick = () => {
+    const updatedUser = { ...localLoggedUser, ...editUser };
+    setLocalLoggedUser(updatedUser);
+    setLoggedUser(updatedUser);
+    localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
+    setIsEditing(false);
+  };
+
   const reservas = [
     { text: "Mi Reserva 1" },
     { text: "Mi Reserva 2" },
     { text: "Mi Reserva 3" },
     { text: "Mi Reserva 4" },
   ];
+
+  const userToShow = localLoggedUser || loggedUser;
 
   return (
     <>
@@ -47,24 +86,48 @@ const InfoUser = () => {
 
           <CardCuadrada title="Mis Datos" scrollable={false}>
             <div className="user-details">
-              <button className="boton-editar">Editar ✏️</button>
-              {currentUser ? ( // Verifica si currentUser está definido
+              <button className="boton-editar" onClick={handleEditClick}>
+                Editar ✏️
+              </button>
+              {isEditing ? (
                 <>
-                  <p>Nombre: {currentUser.nombre}</p>
-                  <p>Apellido: {currentUser.apellido}</p>
-                  <p>Email: {currentUser.email}</p>
-                  <p>Dirección: {currentUser.direccion}</p>
-                  <p>Num. Tel: {currentUser.numTelefono}</p>
-                  {/* Aquí puedes mostrar las mascotas del usuario si tienes esa información */}
-                  <h4>Mis Mascotas</h4>
-                  <div className="pet-info">
-                    <div className="pet-photo">Foto</div>
-                    <p>Descripción de la mascota</p>
-                  </div>
-                  <div className="pet-info">
-                    <div className="pet-photo">Foto</div>
-                    <p>Descripción de la mascota</p>
-                  </div>
+                  <p>
+                    Nombre:{" "}
+                    <input
+                      type="text"
+                      name="nombre"
+                      value={editUser.nombre}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                  <p>
+                    Apellido:{" "}
+                    <input
+                      type="text"
+                      name="apellido"
+                      value={editUser.apellido}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                  <p>
+                    Email:{" "}
+                    <input
+                      type="email"
+                      name="email"
+                      value={editUser.email}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                  <button className="boton-guardar" onClick={handleSaveClick}>
+                    Guardar ✔️
+                  </button>
+                </>
+              ) : userToShow ? (
+                <>
+                  <p>Nombre: {userToShow.nombre}</p>
+                  <p>Apellido: {userToShow.apellido}</p>
+                  <p>Email: {userToShow.email}</p>
+                  {/* Agregar más campos si están disponibles en loggedUser */}
                 </>
               ) : (
                 <p>No se ha encontrado información del usuario.</p>
