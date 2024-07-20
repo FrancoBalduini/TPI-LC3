@@ -7,8 +7,7 @@ import CardCuadrada from "./CardCuadrada";
 
 const InfoUser = () => {
   const { theme } = useContext(ThemeContext);
-  const { loggedUser, setLoggedUser } = useContext(AuthContext);
-  const [localLoggedUser, setLocalLoggedUser] = useState(null);
+  const { loggedUser, setLoggedUser, updateUser } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editUser, setEditUser] = useState({
     nombre: "",
@@ -21,18 +20,14 @@ const InfoUser = () => {
   }, [theme]);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("loggedUser");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setLocalLoggedUser(parsedUser);
-      setLoggedUser(parsedUser);
+    if (loggedUser) {
       setEditUser({
-        nombre: parsedUser.nombre,
-        apellido: parsedUser.apellido,
-        email: parsedUser.email,
+        nombre: loggedUser.nombre,
+        apellido: loggedUser.apellido,
+        email: loggedUser.email,
       });
     }
-  }, [setLoggedUser]);
+  }, [loggedUser]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -43,12 +38,16 @@ const InfoUser = () => {
     setEditUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveClick = () => {
-    const updatedUser = { ...localLoggedUser, ...editUser };
-    setLocalLoggedUser(updatedUser);
-    setLoggedUser(updatedUser);
-    localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
-    setIsEditing(false);
+  const handleSaveClick = async () => {
+    try {
+      const updatedUser = { ...loggedUser, ...editUser };
+      const updatedUserFromServer = await updateUser(updatedUser); // Actualizar en el contexto y servidor
+      setLoggedUser(updatedUserFromServer);
+      localStorage.setItem("loggedUser", JSON.stringify(updatedUserFromServer));
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error al actualizar usuario:", error);
+    }
   };
 
   const reservas = [
@@ -57,8 +56,6 @@ const InfoUser = () => {
     { text: "Mi Reserva 3" },
     { text: "Mi Reserva 4" },
   ];
-
-  const userToShow = localLoggedUser || loggedUser;
 
   return (
     <>
@@ -122,12 +119,11 @@ const InfoUser = () => {
                     Guardar ✔️
                   </button>
                 </>
-              ) : userToShow ? (
+              ) : loggedUser ? (
                 <>
-                  <p>Nombre: {userToShow.nombre}</p>
-                  <p>Apellido: {userToShow.apellido}</p>
-                  <p>Email: {userToShow.email}</p>
-                  {/* Agregar más campos si están disponibles en loggedUser */}
+                  <p>Nombre: {loggedUser.nombre}</p>
+                  <p>Apellido: {loggedUser.apellido}</p>
+                  <p>Email: {loggedUser.email}</p>
                 </>
               ) : (
                 <p>No se ha encontrado información del usuario.</p>

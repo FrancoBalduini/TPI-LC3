@@ -1,7 +1,17 @@
 {
   "protectedResources": {
-    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
-    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
+    "users": [
+      "GET,DELETE",
+      "POST",
+      "PUT",
+      "PATCH"
+    ],
+    "Guarderias": [
+      "GET,POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
   },
   "users": [
     {
@@ -25,16 +35,6 @@
     },
     {
       "id": 3,
-      "nombre": "Lionel",
-      "apellido": "Messi",
-      "email": "messi@gmail.com",
-      "password": "99999",
-      "role": "cliente",
-      "createdAt": 1721323895877,
-      "modifiedAt": 1721323895877
-    },
-    {
-      "id": 4,
       "nombre": "Franco",
       "apellido": "Balduini",
       "email": "franco233433@gmail.com",
@@ -45,13 +45,13 @@
     },
     {
       "id": 5,
-      "nombre": "Malenia",
-      "apellido": "Mikela",
-      "email": "mikela@gmali.com",
-      "password": "elden",
+      "nombre": "Kratos",
+      "apellido": "will Murder",
+      "email": "kratos@gmail.com",
+      "password": "kratos",
       "role": "cliente",
-      "createdAt": 1721509803701,
-      "modifiedAt": 1721509803701
+      "createdAt": 1721512858737,
+      "modifiedAt": 1721512858737
     }
   ],
   "Guarderias": [
@@ -65,12 +65,6 @@
       "id": 2,
       "name": "Bokita papa",
       "address": "El templo 6",
-      "dates": "availableDates"
-    },
-    {
-      "id": 3,
-      "name": "Elden Ring",
-      "address": "Radhagon 1890",
       "dates": "availableDates"
     }
   ],

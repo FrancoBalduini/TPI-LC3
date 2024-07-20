@@ -7,10 +7,18 @@ import Card from "../card/Card";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
-  const { userList, guarderiaList, setUserList } = useContext(AuthContext);
+  const {
+    userList,
+    guarderiaList,
+    updateUser,
+    deleteUser,
+    updateGuarderia,
+    deleteGuarderia,
+  } = useContext(AuthContext);
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
   const [editingUser, setEditingUser] = useState(null);
+  const [editingGuarderia, setEditingGuarderia] = useState(null);
 
   useEffect(() => {
     document.body.className = theme;
@@ -28,32 +36,47 @@ const Admin = () => {
     setEditingUser({ ...user });
   };
 
-  const handleSaveUserChanges = () => {
+  const handleSaveUserChanges = async () => {
     if (!editingUser) return;
-
-    const updatedUserList = userList.map((user) =>
-      user.id === editingUser.id ? editingUser : user
-    );
-
-    setUserList(updatedUserList);
-    localStorage.setItem("userList", JSON.stringify(updatedUserList));
+    await updateUser(editingUser);
     setEditingUser(null);
   };
 
-  const handleCancelEdit = () => {
+  const handleCancelEditUser = () => {
     setEditingUser(null);
   };
 
-  const handleDeleteUser = (userId) => {
+  const handleDeleteUser = async (userId) => {
     const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
     if (!confirmed) return;
-
-    const updatedUserList = userList.filter((user) => user.id !== userId);
-    setUserList(updatedUserList);
-    localStorage.setItem("userList", JSON.stringify(updatedUserList));
-
+    await deleteUser(userId);
     if (editingUser && editingUser.id === userId) {
       setEditingUser(null);
+    }
+  };
+
+  const handleEditGuarderia = (guarderia) => {
+    setEditingGuarderia({ ...guarderia });
+  };
+
+  const handleSaveGuarderiaChanges = async () => {
+    if (!editingGuarderia) return;
+    await updateGuarderia(editingGuarderia);
+    setEditingGuarderia(null);
+  };
+
+  const handleCancelEditGuarderia = () => {
+    setEditingGuarderia(null);
+  };
+
+  const handleDeleteGuarderia = async (guarderiaId) => {
+    const confirmed = window.confirm(
+      "¿Estás seguro de eliminar esta guardería?"
+    );
+    if (!confirmed) return;
+    await deleteGuarderia(guarderiaId);
+    if (editingGuarderia && editingGuarderia.id === guarderiaId) {
+      setEditingGuarderia(null);
     }
   };
 
@@ -72,7 +95,7 @@ const Admin = () => {
     <>
       <Header />
       <div className={`lupa-input ${theme}`}>
-        <span>Admin</span> {}
+        <span>Admin</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -153,7 +176,7 @@ const Admin = () => {
                           <option value="dueño">Dueño</option>
                         </select>
                         <button onClick={handleSaveUserChanges}>Guardar</button>
-                        <button onClick={handleCancelEdit}>Cancelar</button>
+                        <button onClick={handleCancelEditUser}>Cancelar</button>
                       </div>
                     ) : (
                       <>
@@ -181,8 +204,8 @@ const Admin = () => {
         </Card>
         <Card
           title="Lista de Guarderías Registradas"
-          placeholder="Buscar guarderias"
-          typeTitle="Guarderias"
+          placeholder="Buscar guarderías"
+          typeTitle="Guarderías"
           searchTerm={guarderiaSearchTerm}
           onSearchChange={handleGuarderiaSearchChange}
         >
@@ -191,11 +214,43 @@ const Admin = () => {
               <ul>
                 {filteredGuarderias.map((guarderia) => (
                   <li key={guarderia.id}>
-                    {guarderia.name} - {guarderia.address}
-                    <div className="button-container">
-                      <button>Editar ✏️</button>
-                      <button>Eliminar ❌</button>
-                    </div>
+                    {editingGuarderia &&
+                    editingGuarderia.id === guarderia.id ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={editingGuarderia.name}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: e.target.value,
+                            })
+                          }
+                        />
+                        <button onClick={handleSaveGuarderiaChanges}>
+                          Guardar
+                        </button>
+                        <button onClick={handleCancelEditGuarderia}>
+                          Cancelar
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        {guarderia.name}
+                        <div className="button-container">
+                          <button
+                            onClick={() => handleEditGuarderia(guarderia)}
+                          >
+                            Editar ✏️
+                          </button>
+                          <button
+                            onClick={() => handleDeleteGuarderia(guarderia.id)}
+                          >
+                            Eliminar ❌
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -204,9 +259,7 @@ const Admin = () => {
             <p>No hay guarderías registradas.</p>
           )}
           <div className="button-container">
-            <a href="#">
-              <button>Agregar guarderia ✅</button>
-            </a>{" "}
+            <button>Agregar guardería ✅</button>
           </div>
         </Card>
       </div>

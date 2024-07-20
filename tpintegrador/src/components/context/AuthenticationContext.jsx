@@ -8,6 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const [userList, setUserList] = useState([]);
   const [guarderiaList, setGuarderiaList] = useState([]);
 
+  // Fetch functions
   const fetchUsers = async () => {
     try {
       const response = await fetch("http://localhost:8000/users");
@@ -33,35 +34,22 @@ const AuthContextProvider = ({ children }) => {
     fetchGuarderias();
   }, []);
 
-  const registerUser = async (
-    nombre,
-    apellido,
-    email,
-    password,
-    role = "cliente"
-  ) => {
+  // Auth functions
+  const registerUser = async (nombre, apellido, email, password, role) => {
     try {
-      const response = await fetch("http://localhost:8000/register", {
+      const response = await fetch("http://localhost:8000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ nombre, apellido, email, password, role }),
       });
-
-      if (response.ok) {
-        const user = await response.json();
-        setUserList((prevUserList) => [...prevUserList, user]);
-        return user;
-      } else {
-        throw new Error("Error al registrar usuario");
-      }
+      const newUser = await response.json();
+      setUserList((prevUsers) => [...prevUsers, newUser]);
     } catch (error) {
-      console.error("Error al registrar usuario:", error.message);
-      throw error;
+      console.error("Error registering user:", error);
     }
   };
-
   const loginUser = async (email, password) => {
     try {
       const response = await fetch("http://localhost:8000/login", {
@@ -107,36 +95,65 @@ const AuthContextProvider = ({ children }) => {
           body: JSON.stringify(updatedUser),
         }
       );
-      if (response.ok) {
-        const updatedUserFromServer = await response.json();
-        setUserList((prevUsers) =>
-          prevUsers.map((user) =>
-            user.id === updatedUserFromServer.id ? updatedUserFromServer : user
-          )
-        );
-      } else {
-        console.error("Error al actualizar usuario:", response.statusText);
-      }
+      const updatedUserFromServer = await response.json();
+      setUserList((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === updatedUserFromServer.id ? updatedUserFromServer : user
+        )
+      );
     } catch (error) {
-      console.error("Error al actualizar usuario:", error);
+      console.error("Error updating user:", error);
     }
   };
 
   const deleteUser = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:8000/users/${userId}`, {
+      await fetch(`http://localhost:8000/users/${userId}`, {
         method: "DELETE",
       });
-      if (response.ok) {
-        console.log(`User with id ${userId} deleted successfully`);
-        setUserList((prevUsers) =>
-          prevUsers.filter((user) => user.id !== userId)
-        );
-      } else {
-        console.error("Error al eliminar usuario:", response.statusText);
-      }
+      setUserList((prevUsers) =>
+        prevUsers.filter((user) => user.id !== userId)
+      );
     } catch (error) {
-      console.error("Error al eliminar usuario:", error);
+      console.error("Error deleting user:", error);
+    }
+  };
+
+  const updateGuarderia = async (updatedGuarderia) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/guarderias/${updatedGuarderia.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedGuarderia),
+        }
+      );
+      const updatedGuarderiaFromServer = await response.json();
+      setGuarderiaList((prevGuarderias) =>
+        prevGuarderias.map((guarderia) =>
+          guarderia.id === updatedGuarderiaFromServer.id
+            ? updatedGuarderiaFromServer
+            : guarderia
+        )
+      );
+    } catch (error) {
+      console.error("Error updating guarderia:", error);
+    }
+  };
+
+  const deleteGuarderia = async (guarderiaId) => {
+    try {
+      await fetch(`http://localhost:8000/guarderias/${guarderiaId}`, {
+        method: "DELETE",
+      });
+      setGuarderiaList((prevGuarderias) =>
+        prevGuarderias.filter((guarderia) => guarderia.id !== guarderiaId)
+      );
+    } catch (error) {
+      console.error("Error deleting guarderia:", error);
     }
   };
 
@@ -144,13 +161,17 @@ const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         loggedUser,
+        setLoggedUser,
         userList,
+        setUserList,
+        guarderiaList,
+        setGuarderiaList,
         registerUser,
-        loginUser,
         updateUser,
         deleteUser,
-        setLoggedUser,
-        guarderiaList,
+        updateGuarderia,
+        deleteGuarderia,
+        loginUser,
       }}
     >
       {children}
@@ -159,7 +180,7 @@ const AuthContextProvider = ({ children }) => {
 };
 
 AuthContextProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default AuthContextProvider;
