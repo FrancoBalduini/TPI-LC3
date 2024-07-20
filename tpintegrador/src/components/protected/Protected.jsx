@@ -1,22 +1,20 @@
-import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthenticationContext";
 import PropTypes from "prop-types";
 
-const Protected = ({ allowedRoles }) => {
+const ProtectedRoute = ({ allowedRoles }) => {
   const { loggedUser } = useContext(AuthContext);
 
-  if (!loggedUser) return <Navigate to="/" replace />;
-
-  if (!allowedRoles.includes(loggedUser.role)) {
-    return <Navigate to="/" replace />;
+  if (!loggedUser || !allowedRoles.includes(loggedUser.role)) {
+    return <Navigate to="/" />;
   }
 
   return <Outlet />;
 };
 
-Protected.propTypes = {
-  allowedRoles: PropTypes.arrayOf(PropTypes.string).isRequired,
+ProtectedRoute.propTypes = {
+  allowedRoles: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default Protected;
+export default ProtectedRoute;

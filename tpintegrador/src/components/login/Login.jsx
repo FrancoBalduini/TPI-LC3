@@ -27,8 +27,10 @@ const Login = () => {
         navigate("/admin");
       } else if (user.role === "dueño") {
         navigate("/duenoguarderia");
-      } else {
+      } else if (user.role === "cliente") {
         navigate("/home");
+      } else {
+        navigate("/");
       }
     } catch (error) {
       setErrorMessage("Credenciales incorrectas");
@@ -41,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <body className="bodyLogin">
+    <div className="bodyLogin">
       <form className="cuadradoLogin" onSubmit={handleSubmit}>
         <div className="patitaLogin">
           <svg
@@ -85,7 +87,8 @@ const Login = () => {
           </a>
         </div>
       </form>
-    </body>
+    </div>
   );
 };
+
 export default Login;

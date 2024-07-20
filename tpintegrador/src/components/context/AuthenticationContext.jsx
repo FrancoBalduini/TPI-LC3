@@ -129,7 +129,6 @@ const AuthContextProvider = ({ children }) => {
       });
       if (response.ok) {
         console.log(`User with id ${userId} deleted successfully`);
-
         setUserList((prevUsers) =>
           prevUsers.filter((user) => user.id !== userId)
         );

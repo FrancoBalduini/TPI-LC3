@@ -1,37 +1,46 @@
-import Login from "./components/login/Login";
-// // // // import Register from "./components/register/Register";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// // // // import ThemeProvider from "./components/context/Context";
-// // // // import Header from "./components/header/Header";
-// // // // import HeaderHome from "./components/headerHome/HeaderHome";
-import HomePage from "./components/homePage/HomePage";
+import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import HomePage from "./components/homePage/HomePage";
 import UserHome from "./components/userHome/UserHome";
 import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
 import Admin from "./components/admin/Admin";
 import DuenoGuarderia from "./components/duenoGuarderia/DuenoGuarderia";
 import InfoUser from "./components/infoUser/InfoUser";
-// // import UserHome from "./components/userHome/UserHome";
-// // //import GuarderiaPage from "./components/guarderiaPage/GuarderiaPage";
+import ProtectedRoute from "./components/protected/Protected";
 
 const App = () => {
   const router = createBrowserRouter([
-    { path: "/", element: <Login /> },
-    { path: "/home", element: <HomePage /> },
-    { path: "/register", element: <Register /> },
-    { path: "/userHome", element: <UserHome /> },
-    { path: "/guarderia", element: <GuarderiaPage /> }, //Esta no carga bien el fondo
-    { path: "/duenoguarderia", element: <DuenoGuarderia /> },
-    { path: "/infouser", element: <InfoUser /> },
-    { path: "/admin", element: <Admin /> },
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      element: <ProtectedRoute allowedRoles={["cliente", "admin"]} />,
+      children: [
+        { path: "/home", element: <HomePage /> },
+        { path: "/userHome", element: <UserHome /> },
+        { path: "/infouser", element: <InfoUser /> },
+      ],
+    },
+    {
+      element: <ProtectedRoute allowedRoles={["dueño", "admin"]} />,
+      children: [
+        { path: "/guarderia", element: <GuarderiaPage /> },
+        { path: "/duenoguarderia", element: <DuenoGuarderia /> },
+      ],
+    },
+    {
+      element: <ProtectedRoute allowedRoles={["admin"]} />,
+      children: [{ path: "/admin", element: <Admin /> }],
+    },
   ]);
 
-  return (
-    <>
-      {/* <UserHome /> */}
-      {<RouterProvider router={router} />}
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

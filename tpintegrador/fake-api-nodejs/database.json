@@ -13,7 +13,6 @@
       "createdAt": 1609483221000,
       "modifiedAt": 1609483221000
     },
-
     {
       "id": 2,
       "nombre": "Leonidas",
@@ -29,7 +28,7 @@
       "nombre": "Lionel",
       "apellido": "Messi",
       "email": "messi@gmail.com",
-      "password": "12345",
+      "password": "99999",
       "role": "cliente",
       "createdAt": 1721323895877,
       "modifiedAt": 1721323895877
@@ -43,6 +42,16 @@
       "role": "cliente",
       "createdAt": 1721325538795,
       "modifiedAt": 1721325538795
+    },
+    {
+      "id": 5,
+      "nombre": "Malenia",
+      "apellido": "Mikela",
+      "email": "mikela@gmali.com",
+      "password": "elden",
+      "role": "cliente",
+      "createdAt": 1721509803701,
+      "modifiedAt": 1721509803701
     }
   ],
   "Guarderias": [
