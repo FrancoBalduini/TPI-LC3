@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { AuthContext } from "../context/AuthenticationContext"; // Importa el contexto de autenticación
+import { AuthContext } from "../context/AuthenticationContext";
 
 const Register = () => {
   const [nombre, setNombre] = useState(""); // Estado para el nombre
@@ -9,9 +9,11 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isCliente, setIsCliente] = useState(false); // Estado para cliente
+  const [isDueno, setIsDueno] = useState(false); // Estado para dueño
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { registerUser, setRegisterUser } = useContext(AuthContext); // Obtén la función de registro de usuario y el estado de usuario actual del contexto
+  const { registerUser, setRegisterUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const nombreHandler = (e) => {
@@ -34,26 +36,61 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
+  const isClienteHandler = (e) => {
+    setIsCliente(e.target.checked);
+    if (e.target.checked) {
+      setIsDueno(false);
+    }
+  };
+
+  const isDuenoHandler = (e) => {
+    setIsDueno(e.target.checked);
+    if (e.target.checked) {
+      setIsCliente(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Las contraseñas no coinciden");
-    } else {
-      try {
-        const user = await registerUser(nombre, apellido, email, password); // Pasar nombre y apellido al método registerUser
-        setRegisterUser(user);
-        setErrorMessage("");
-        setNombre("");
-        setApellido("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-
-        navigate("/"); // Navega después de registrar y establecer el usuario
-      } catch (error) {
-        setErrorMessage("Error al registrar usuario: " + error.message);
-      }
+      return;
     }
+
+    let userRole = "";
+    if (isCliente) {
+      userRole = "cliente";
+    } else if (isDueno) {
+      userRole = "dueño";
+    }
+
+    try {
+      const user = await registerUser(
+        nombre,
+        apellido,
+        email,
+        password,
+        userRole
+      );
+      setRegisterUser(user);
+      setErrorMessage("");
+      setNombre("");
+      setApellido("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setIsCliente(false);
+      setIsDueno(false);
+
+      navigate("/");
+    } catch (error) {
+      setErrorMessage("Error al registrar usuario: " + error.message);
+    }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/");
   };
 
   return (
@@ -70,6 +107,7 @@ const Register = () => {
           </svg>
           <h2>Happy Pet</h2>
         </div>
+
         <div>
           <input
             className="nombre-input"
@@ -126,6 +164,28 @@ const Register = () => {
             required
           />
         </div>
+        <div className="check-inputs">
+          <div className="form-group">
+            <label htmlFor="cliente">Cliente</label>
+            <input
+              className="checkbox-input"
+              type="checkbox"
+              id="cliente"
+              checked={isCliente}
+              onChange={isClienteHandler}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="dueno">Dueño</label>
+            <input
+              className="checkbox-input"
+              type="checkbox"
+              id="dueno"
+              checked={isDueno}
+              onChange={isDuenoHandler}
+            />
+          </div>
+        </div>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button className="button" type="submit">
@@ -133,7 +193,7 @@ const Register = () => {
         </button>
         <div>
           <h3 className="cuenta">¿Ya tienes cuenta?</h3>
-          <a href="#" className="link">
+          <a href="#" className="link" onClick={handleLogin}>
             Inicia Sesión
           </a>
         </div>

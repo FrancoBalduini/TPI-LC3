@@ -7,7 +7,7 @@ body {
 }
 .cuadradoRegister {
   width: 500px;
-  height: 500px;
+  height: 600px;
   background: bisque;
   margin: 150px auto auto auto;
   border-radius: 15px;
@@ -82,4 +82,26 @@ body {
 
 .error-message {
   margin-left: 150px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.form-group label {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.check-inputs {
+  margin-right: 250px;
 }

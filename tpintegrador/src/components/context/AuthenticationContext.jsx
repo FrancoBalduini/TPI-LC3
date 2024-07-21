@@ -37,7 +37,7 @@ const AuthContextProvider = ({ children }) => {
   // Auth functions
   const registerUser = async (nombre, apellido, email, password, role) => {
     try {
-      const response = await fetch("http://localhost:8000/users", {
+      const response = await fetch("http://localhost:8000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,14 +95,26 @@ const AuthContextProvider = ({ children }) => {
           body: JSON.stringify(updatedUser),
         }
       );
+
+      if (!response.ok) {
+        // Manejo de errores basado en el código de estado
+        const errorText = await response.text();
+        console.error("Error updating user:", response.status, errorText);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const updatedUserFromServer = await response.json();
+      // Actualiza la lista de usuarios en el estado
       setUserList((prevUsers) =>
         prevUsers.map((user) =>
           user.id === updatedUserFromServer.id ? updatedUserFromServer : user
         )
       );
+
+      return updatedUserFromServer;
     } catch (error) {
       console.error("Error updating user:", error);
+      throw error;
     }
   };
 

@@ -1,17 +1,7 @@
 {
   "protectedResources": {
-    "users": [
-      "GET,DELETE",
-      "POST",
-      "PUT",
-      "PATCH"
-    ],
-    "Guarderias": [
-      "GET,POST",
-      "PUT",
-      "PATCH",
-      "DELETE"
-    ]
+    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
+    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
   },
   "users": [
     {
@@ -52,6 +42,25 @@
       "role": "cliente",
       "createdAt": 1721512858737,
       "modifiedAt": 1721512858737
+    },
+    {
+      "id": 6,
+      "nombre": "pinocho",
+      "apellido": "loco",
+      "email": "liesofp@gmai.com",
+      "password": "lies",
+      "createdAt": 1721515308437,
+      "modifiedAt": 1721515308437
+    },
+    {
+      "id": 7,
+      "nombre": "gabriel",
+      "apellido": "golzman",
+      "email": "gabi@gmail.com",
+      "password": "123",
+      "role": "dueño",
+      "createdAt": 1721519971261,
+      "modifiedAt": 1721519971261
     }
   ],
   "Guarderias": [
