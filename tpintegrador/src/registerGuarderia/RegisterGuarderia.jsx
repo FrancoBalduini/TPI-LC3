@@ -41,14 +41,10 @@ const RegisterGuarderia = () => {
       setOpenSpace(false);
       setWalker(false);
 
-      navigate("/");
+      navigate("/duenoguarderia");
     } catch (error) {
       setErrorMessage("Error al registrar guardería: " + error.message);
     }
-  };
-  const handlerDueñoGuarderia = (e) => {
-    e.preventDefault();
-    navigate("/duenoguarderia");
   };
 
   return (
@@ -146,11 +142,7 @@ const RegisterGuarderia = () => {
         </div>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <button
-          className="boton-register-guarderia"
-          type="submit"
-          onClick={handlerDueñoGuarderia}
-        >
+        <button className="boton-register-guarderia" type="submit">
           Registrar Guardería
         </button>
       </form>

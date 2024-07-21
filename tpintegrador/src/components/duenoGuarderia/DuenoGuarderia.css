@@ -1,14 +1,17 @@
+body {
+  overflow-y: auto;
+}
+
 .dueno-guarderia {
   font-family: Arial, sans-serif;
 }
 
-
-.bodyDuenoG{
-  background-color: #ffd4b1 ;
+.bodyDuenoG {
+  background-color: #ffd4b1;
   margin-bottom: 0px;
 }
 
-.bodyDuenoG.dark{
+.bodyDuenoG.dark {
   background-color: #806a58;
 }
 

@@ -173,6 +173,20 @@
       "createdAt": 1721596809228,
       "modifiedAt": 1721596809228,
       "id": 7
+    },
+    {
+      "name": {
+        "name": "XDDDDDDDDDDD",
+        "address": "DDDDFFFFF",
+        "area": "sur",
+        "medication": "Si",
+        "openSpace": false,
+        "walker": true,
+        "dueñoId": 10
+      },
+      "createdAt": 1721598336077,
+      "modifiedAt": 1721598336077,
+      "id": 8
     }
   ],
   "availableDates": [

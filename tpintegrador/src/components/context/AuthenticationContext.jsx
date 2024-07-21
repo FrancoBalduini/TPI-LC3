@@ -1,3 +1,4 @@
+// AuthContextProvider.js
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -50,6 +51,7 @@ const AuthContextProvider = ({ children }) => {
       console.error("Error registering user:", error);
     }
   };
+
   const loginUser = async (email, password) => {
     try {
       const response = await fetch("http://localhost:8000/login", {
