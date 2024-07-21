@@ -4,16 +4,16 @@ import "./Register.css";
 import { AuthContext } from "../context/AuthenticationContext";
 
 const Register = () => {
-  const [nombre, setNombre] = useState(""); // Estado para el nombre
-  const [apellido, setApellido] = useState(""); // Estado para el apellido
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isCliente, setIsCliente] = useState(false); // Estado para cliente
-  const [isDueno, setIsDueno] = useState(false); // Estado para dueño
+  const [isCliente, setIsCliente] = useState(false);
+  const [isDueno, setIsDueno] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { registerUser, setRegisterUser } = useContext(AuthContext);
+  const { registerUser, setLoggedUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const nombreHandler = (e) => {
@@ -72,7 +72,7 @@ const Register = () => {
         password,
         userRole
       );
-      setRegisterUser(user);
+      setLoggedUser(user);
       setErrorMessage("");
       setNombre("");
       setApellido("");

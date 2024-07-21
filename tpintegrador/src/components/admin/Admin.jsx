@@ -87,9 +87,10 @@ const Admin = () => {
         user.apellido.toLowerCase().includes(userSearchTerm.toLowerCase()))
   );
 
-  const filteredGuarderias = guarderiaList.filter((guarderia) =>
-    guarderia.name.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
-  );
+  const filteredGuarderias = guarderiaList.filter((guarderia) => {
+    const guarderiaName = guarderia?.name?.name?.toLowerCase() || "";
+    return guarderiaName.includes(guarderiaSearchTerm.toLowerCase());
+  });
 
   return (
     <>
@@ -219,14 +220,88 @@ const Admin = () => {
                       <div>
                         <input
                           type="text"
-                          value={editingGuarderia.name}
+                          value={editingGuarderia.name.name}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
-                              name: e.target.value,
+                              name: {
+                                ...editingGuarderia.name,
+                                name: e.target.value,
+                              },
                             })
                           }
                         />
+                        <input
+                          type="text"
+                          value={editingGuarderia.name.address}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: {
+                                ...editingGuarderia.name,
+                                address: e.target.value,
+                              },
+                            })
+                          }
+                        />
+                        <input
+                          type="text"
+                          value={editingGuarderia.name.area}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: {
+                                ...editingGuarderia.name,
+                                area: e.target.value,
+                              },
+                            })
+                          }
+                        />
+                        <select
+                          value={editingGuarderia.name.medication}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: {
+                                ...editingGuarderia.name,
+                                medication: e.target.value,
+                              },
+                            })
+                          }
+                        >
+                          <option value="Si">Si</option>
+                          <option value="No">No</option>
+                        </select>
+                        <select
+                          value={editingGuarderia.name.openSpace}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: {
+                                ...editingGuarderia.name,
+                                openSpace: e.target.value === "true",
+                              },
+                            })
+                          }
+                        >
+                          <option value="true">Si</option>
+                          <option value="false">No</option>
+                        </select>
+                        <select
+                          value={editingGuarderia.name.walker}
+                          onChange={(e) =>
+                            setEditingGuarderia({
+                              ...editingGuarderia,
+                              name: {
+                                ...editingGuarderia.name,
+                                walker: e.target.value === "true",
+                              },
+                            })
+                          }
+                        >
+                          <option value="true">Si</option>
+                          <option value="false">No</option>
+                        </select>
                         <button onClick={handleSaveGuarderiaChanges}>
                           Guardar
                         </button>
@@ -236,7 +311,8 @@ const Admin = () => {
                       </div>
                     ) : (
                       <>
-                        {guarderia.name}
+                        {guarderia.name.name} - {guarderia.name.address} -{" "}
+                        {guarderia.name.area}
                         <div className="button-container">
                           <button
                             onClick={() => handleEditGuarderia(guarderia)}

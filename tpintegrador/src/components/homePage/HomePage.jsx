@@ -59,6 +59,7 @@ const HomePage = () => {
                 name="petType"
                 value={formData.petType}
                 onChange={handleChange}
+                className="select-home"
               >
                 <option disabled value="">
                   Mascota

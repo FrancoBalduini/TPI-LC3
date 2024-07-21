@@ -43,7 +43,7 @@ form div {
   margin-bottom: 10px;
 }
 
-form label {
+.labelTipoMascota {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
@@ -51,7 +51,7 @@ form label {
 }
 
 form input[type="date"],
-form select {
+.select-home {
   width: calc(50% - 10px);
   padding: 5px;
   margin-top: 5px;

@@ -14,7 +14,10 @@ const HeaderHome = () => {
     navigate("/infoUser");
   };
 
-  // Función para obtener el nombre de usuario sin el dominio
+  const handleNavigateToRegisterGuarderia = () => {
+    navigate("/registerguarderia");
+  };
+
   const getUsernameWithoutDomain = (email) => {
     return email.split("@")[0];
   };
@@ -39,7 +42,10 @@ const HeaderHome = () => {
           placeholder="Buscar guarderia"
         />
         {loggedUser && loggedUser.role === "dueño" && (
-          <button className={`boton-añade-guarderia zIndex5 ${theme}`}>
+          <button
+            className={`boton-añade-guarderia zIndex5 ${theme}`}
+            onClick={handleNavigateToRegisterGuarderia}
+          >
             Añade tu guarderia
           </button>
         )}

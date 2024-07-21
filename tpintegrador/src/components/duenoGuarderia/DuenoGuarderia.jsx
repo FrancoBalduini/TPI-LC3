@@ -1,9 +1,9 @@
-import Header from "../header/Header";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../context/Context";
 import "./DuenoGuarderia.css";
 import CardCuadrada from "../cardCuadrada/CardCuadrada";
 import CardGuarderia from "../cardGuarderia/CardGuarderia";
+import HeaderHome from "../headerHome/HeaderHome";
 
 const DuenoGuarderia = () => {
   const { theme } = useContext(ThemeContext);
@@ -19,8 +19,8 @@ const DuenoGuarderia = () => {
     { text: "Turno 4" },
   ];
   return (
-    <body className={`bodyDuenoG ${theme}`}>
-      <Header />
+    <div className={`bodyDuenoG ${theme}`}>
+      <HeaderHome />
       <div className="content">
         <div>
           <CardCuadrada title="Turnos" items={turnos} />
@@ -28,7 +28,7 @@ const DuenoGuarderia = () => {
         </div>
         <CardGuarderia />
       </div>
-    </body>
+    </div>
   );
 };
 

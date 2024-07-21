@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+* {
+  font-family: "Bree Serif", serif;
+}
+
+.cuadradoRegisterGuarderia {
+  width: 500px;
+  height: 500px;
+  background: #ffe8b1;
+  margin: 150px auto auto auto;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+.boton-register-guarderia {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  border: none;
+  width: 120px;
+  height: 50px;
+  font-size: 13px;
+  margin-top: 80px;
+  cursor: pointer;
+  margin-left: 200px;
+}
+.boton-register-guarderia:hover {
+  color: grey;
+}
+
+.name-input {
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  margin-left: 100px;
+  margin-top: 30px;
+}
+
+.address-input {
+  height: 30px;
+  width: 60%;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  margin-left: 100px;
+}
+
+.label-register-guarderia {
+  margin-left: 170px;
+}
+
+.select-guarderia {
+  width: calc(50% - 10px);
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 140px;
+}
+
+.checkbox-register input {
+  display: inline;
+  margin-left: 40px;
+}
+
+.checkbox-register label {
+  margin-left: 100px;
+}
+
+.checkboxes {
+  margin-left: 200px;
+  margin-top: 40px;
+}
+
+.patitaLogin {
+  display: flex;
+  align-items: center;
+  margin-left: 170px;
+  margin-top: 10px;
+}

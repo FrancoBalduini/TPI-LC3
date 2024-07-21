@@ -1,7 +1,17 @@
 {
   "protectedResources": {
-    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
-    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
+    "users": [
+      "GET,DELETE",
+      "POST",
+      "PUT",
+      "PATCH"
+    ],
+    "Guarderias": [
+      "GET,POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
   },
   "users": [
     {
@@ -49,6 +59,7 @@
       "apellido": "loco",
       "email": "liesofp@gmai.com",
       "password": "lies",
+      "role": "cliente",
       "createdAt": 1721515308437,
       "modifiedAt": 1721515308437
     },
@@ -61,20 +72,107 @@
       "role": "dueño",
       "createdAt": 1721519971261,
       "modifiedAt": 1721519971261
+    },
+    {
+      "id": 8,
+      "nombre": "Lucas",
+      "apellido": "Cereijo",
+      "email": "cereijol@gamail.com",
+      "password": "cereijo",
+      "role": "dueño",
+      "createdAt": 1721596338823,
+      "modifiedAt": 1721596338823
+    },
+    {
+      "id": 9,
+      "nombre": "Malenia",
+      "apellido": "Guachin",
+      "email": "guachon20@gmail.com",
+      "password": "messi",
+      "role": "dueño",
+      "createdAt": 1721596631917,
+      "modifiedAt": 1721596631917
+    },
+    {
+      "id": 10,
+      "nombre": "Caronte",
+      "apellido": "Caronte",
+      "email": "Caronte@gmail.com",
+      "password": "caronte",
+      "role": "dueño",
+      "createdAt": 1721596676743,
+      "modifiedAt": 1721596676743
     }
   ],
   "Guarderias": [
     {
-      "id": 1,
-      "name": "Lionel Messi",
-      "address": "La Scaloneta 54",
-      "dates": "availableDates"
+      "name": {
+        "name": "Ore Wa Daree",
+        "address": "Valentina Cereijo 24",
+        "area": "centro",
+        "medication": "Si",
+        "openSpace": false,
+        "walker": true
+      },
+      "createdAt": 1721593320405,
+      "modifiedAt": 1721593320405,
+      "id": 3
     },
     {
-      "id": 2,
-      "name": "Bokita papa",
-      "address": "El templo 6",
-      "dates": "availableDates"
+      "dueñoId": {
+        "name": "NASHEEEE",
+        "address": "Martina Casadei 25",
+        "area": "este",
+        "medication": "No",
+        "openSpace": true,
+        "walker": false,
+        "ownerId": 2
+      },
+      "createdAt": 1721594104115,
+      "modifiedAt": 1721594104115,
+      "id": 4
+    },
+    {
+      "name": {
+        "name": "Micaela",
+        "address": "Paez 3455",
+        "area": "sur",
+        "medication": "Si",
+        "openSpace": true,
+        "walker": false,
+        "dueñoId": 2
+      },
+      "createdAt": 1721596161640,
+      "modifiedAt": 1721596161640,
+      "id": 5
+    },
+    {
+      "name": {
+        "name": "NASHEEEE23432",
+        "address": "1423432143",
+        "area": "norte",
+        "medication": "No",
+        "openSpace": true,
+        "walker": false,
+        "dueñoId": 8
+      },
+      "createdAt": 1721596377123,
+      "modifiedAt": 1721596377123,
+      "id": 6
+    },
+    {
+      "name": {
+        "name": "Facundo",
+        "address": "Belen en 4",
+        "area": "este",
+        "medication": "Si",
+        "openSpace": false,
+        "walker": true,
+        "dueñoId": 10
+      },
+      "createdAt": 1721596809228,
+      "modifiedAt": 1721596809228,
+      "id": 7
     }
   ],
   "availableDates": [

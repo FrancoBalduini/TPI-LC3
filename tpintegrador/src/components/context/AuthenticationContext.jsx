@@ -8,7 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const [userList, setUserList] = useState([]);
   const [guarderiaList, setGuarderiaList] = useState([]);
 
-  // Fetch functions
+  // Funciones Fetch
   const fetchUsers = async () => {
     try {
       const response = await fetch("http://localhost:8000/users");
@@ -34,7 +34,7 @@ const AuthContextProvider = ({ children }) => {
     fetchGuarderias();
   }, []);
 
-  // Auth functions
+  // Funciones
   const registerUser = async (nombre, apellido, email, password, role) => {
     try {
       const response = await fetch("http://localhost:8000/register", {
@@ -97,14 +97,13 @@ const AuthContextProvider = ({ children }) => {
       );
 
       if (!response.ok) {
-        // Manejo de errores basado en el código de estado
         const errorText = await response.text();
         console.error("Error updating user:", response.status, errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const updatedUserFromServer = await response.json();
-      // Actualiza la lista de usuarios en el estado
+
       setUserList((prevUsers) =>
         prevUsers.map((user) =>
           user.id === updatedUserFromServer.id ? updatedUserFromServer : user
@@ -169,6 +168,48 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const registerGuarderia = async (
+    name,
+    address,
+    area,
+    medication,
+    openSpace,
+    walker
+  ) => {
+    try {
+      const response = await fetch("http://localhost:8000/guarderias", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          address,
+          area,
+          medication,
+          openSpace,
+          walker,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(
+          "Error registering guarderia:",
+          response.status,
+          errorText
+        );
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const newGuarderia = await response.json();
+      setGuarderiaList((prevGuarderias) => [...prevGuarderias, newGuarderia]);
+    } catch (error) {
+      console.error("Error registering guarderia:", error);
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -181,6 +222,7 @@ const AuthContextProvider = ({ children }) => {
         registerUser,
         updateUser,
         deleteUser,
+        registerGuarderia,
         updateGuarderia,
         deleteGuarderia,
         loginUser,
