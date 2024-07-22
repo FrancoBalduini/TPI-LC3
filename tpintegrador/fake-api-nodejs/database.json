@@ -24,16 +24,6 @@
       "modifiedAt": 1609483221000
     },
     {
-      "id": 2,
-      "nombre": "Leonidas",
-      "apellido": "Scaloni",
-      "email": "eldenring@gmail.com",
-      "password": "12345",
-      "role": "dueño",
-      "createdAt": 1721323186657,
-      "modifiedAt": 1721323186657
-    },
-    {
       "id": 3,
       "nombre": "Franco",
       "apellido": "Balduini",
@@ -105,19 +95,6 @@
     }
   ],
   "Guarderias": [
-    {
-      "name": {
-        "name": "Ore Wa Daree",
-        "address": "Valentina Cereijo 24",
-        "area": "centro",
-        "medication": "Si",
-        "openSpace": false,
-        "walker": true
-      },
-      "createdAt": 1721593320405,
-      "modifiedAt": 1721593320405,
-      "id": 3
-    },
     {
       "dueñoId": {
         "name": "NASHEEEE",

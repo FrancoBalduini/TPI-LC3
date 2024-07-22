@@ -220,7 +220,7 @@ const Admin = () => {
                       <div>
                         <input
                           type="text"
-                          value={editingGuarderia.name.name}
+                          value={editingGuarderia.name?.name || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -233,7 +233,7 @@ const Admin = () => {
                         />
                         <input
                           type="text"
-                          value={editingGuarderia.name.address}
+                          value={editingGuarderia.name?.address || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -246,7 +246,7 @@ const Admin = () => {
                         />
                         <input
                           type="text"
-                          value={editingGuarderia.name.area}
+                          value={editingGuarderia.name?.area || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -258,7 +258,7 @@ const Admin = () => {
                           }
                         />
                         <select
-                          value={editingGuarderia.name.medication}
+                          value={editingGuarderia.name?.medication || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -269,39 +269,41 @@ const Admin = () => {
                             })
                           }
                         >
-                          <option value="Si">Si</option>
+                          <option value="Si">Sí</option>
                           <option value="No">No</option>
                         </select>
-                        <select
-                          value={editingGuarderia.name.openSpace}
-                          onChange={(e) =>
-                            setEditingGuarderia({
-                              ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                openSpace: e.target.value === "true",
-                              },
-                            })
-                          }
-                        >
-                          <option value="true">Si</option>
-                          <option value="false">No</option>
-                        </select>
-                        <select
-                          value={editingGuarderia.name.walker}
-                          onChange={(e) =>
-                            setEditingGuarderia({
-                              ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                walker: e.target.value === "true",
-                              },
-                            })
-                          }
-                        >
-                          <option value="true">Si</option>
-                          <option value="false">No</option>
-                        </select>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={editingGuarderia.name?.openSpace || false}
+                            onChange={(e) =>
+                              setEditingGuarderia({
+                                ...editingGuarderia,
+                                name: {
+                                  ...editingGuarderia.name,
+                                  openSpace: e.target.checked,
+                                },
+                              })
+                            }
+                          />
+                          Espacio Abierto
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={editingGuarderia.name?.walker || false}
+                            onChange={(e) =>
+                              setEditingGuarderia({
+                                ...editingGuarderia,
+                                name: {
+                                  ...editingGuarderia.name,
+                                  walker: e.target.checked,
+                                },
+                              })
+                            }
+                          />
+                          Paseador
+                        </label>
                         <button onClick={handleSaveGuarderiaChanges}>
                           Guardar
                         </button>
@@ -311,8 +313,19 @@ const Admin = () => {
                       </div>
                     ) : (
                       <>
-                        {guarderia.name.name} - {guarderia.name.address} -{" "}
-                        {guarderia.name.area}
+                        {guarderia.name?.name || "Nombre no disponible"} -{" "}
+                        {guarderia.name?.address || "Dirección no disponible"} -{" "}
+                        {guarderia.name?.area || "Área no disponible"} -{" "}
+                        {guarderia.name?.medication ||
+                          "Medicación no disponible"}{" "}
+                        -{" "}
+                        {guarderia.name?.openSpace
+                          ? "Espacio abierto"
+                          : "Sin espacio abierto"}{" "}
+                        -{" "}
+                        {guarderia.name?.walker
+                          ? "Con paseador"
+                          : "Sin paseador"}
                         <div className="button-container">
                           <button
                             onClick={() => handleEditGuarderia(guarderia)}
