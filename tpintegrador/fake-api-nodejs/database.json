@@ -24,34 +24,16 @@
       "modifiedAt": 1609483221000
     },
     {
-      "id": 2,
-      "nombre": "Leonidas",
-      "apellido": "Scaloni",
-      "email": "eldenring@gmail.com",
-      "password": "12345",
-      "role": "dueño",
-      "createdAt": 1721323186657,
-      "modifiedAt": 1721323186657
-    },
-    {
-      "id": 3,
-      "nombre": "Franco",
-      "apellido": "Balduini",
-      "email": "franco233433@gmail.com",
-      "password": "6789",
-      "role": "cliente",
-      "createdAt": 1721325538795,
-      "modifiedAt": 1721325538795
-    },
-    {
       "id": 5,
-      "nombre": "Kratos",
-      "apellido": "will Murder",
       "email": "kratos@gmail.com",
-      "password": "kratos",
       "role": "cliente",
+      "status": true,
       "createdAt": 1721512858737,
-      "modifiedAt": 1721512858737
+      "modifiedAt": 1721682244310,
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5hbWUiOiJ1bmRlZmluZWQgdW5kZWZpbmVkIiwiaWF0IjoxNzIxNjgxOTI0LCJleHAiOjE3MjE2ODI4MjR9.NOceVtFfsqZPVebMXaWTo1Sl5Ifrt7DW73ujZvb0Ls0",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImlhdCI6MTcyMTY4MTkyNCwiZXhwIjoxNzIyMjg2NzI0fQ.XcstOtHiMfNFuyv0E4x7w529rbrfdus3s_UvqmWW1As",
+      "nombre": "lucas",
+      "apellido": "will Murder"
     },
     {
       "id": 6,
@@ -74,26 +56,6 @@
       "modifiedAt": 1721519971261
     },
     {
-      "id": 8,
-      "nombre": "Lucas",
-      "apellido": "Cereijo",
-      "email": "cereijol@gamail.com",
-      "password": "cereijo",
-      "role": "dueño",
-      "createdAt": 1721596338823,
-      "modifiedAt": 1721596338823
-    },
-    {
-      "id": 9,
-      "nombre": "Malenia",
-      "apellido": "Guachin",
-      "email": "guachon20@gmail.com",
-      "password": "messi",
-      "role": "dueño",
-      "createdAt": 1721596631917,
-      "modifiedAt": 1721596631917
-    },
-    {
       "id": 10,
       "nombre": "Caronte",
       "apellido": "Caronte",
@@ -107,43 +69,17 @@
   "Guarderias": [
     {
       "name": {
-        "name": "Ore Wa Daree",
-        "address": "Valentina Cereijo 24",
-        "area": "centro",
-        "medication": "Si",
-        "openSpace": false,
-        "walker": true
-      },
-      "createdAt": 1721593320405,
-      "modifiedAt": 1721593320405,
-      "id": 3
-    },
-    {
-      "dueñoId": {
-        "name": "NASHEEEE",
-        "address": "Martina Casadei 25",
-        "area": "este",
-        "medication": "No",
-        "openSpace": true,
-        "walker": false,
-        "ownerId": 2
-      },
-      "createdAt": 1721594104115,
-      "modifiedAt": 1721594104115,
-      "id": 4
-    },
-    {
-      "name": {
         "name": "Micaela",
-        "address": "Paez 3455",
+        "address": "Paez 345",
         "area": "sur",
         "medication": "Si",
         "openSpace": true,
         "walker": false,
-        "dueñoId": 2
+        "dueñoId": 2,
+        "dates": "availableDates"
       },
       "createdAt": 1721596161640,
-      "modifiedAt": 1721596161640,
+      "modifiedAt": 1721682861413,
       "id": 5
     },
     {
@@ -154,7 +90,8 @@
         "medication": "No",
         "openSpace": true,
         "walker": false,
-        "dueñoId": 8
+        "dueñoId": 8,
+        "dates": "availableDates"
       },
       "createdAt": 1721596377123,
       "modifiedAt": 1721596377123,
@@ -163,7 +100,7 @@
     {
       "name": {
         "name": "Facundo",
-        "address": "Belen en 4",
+        "address": "Belen en 45",
         "area": "este",
         "medication": "Si",
         "openSpace": false,
@@ -171,22 +108,8 @@
         "dueñoId": 10
       },
       "createdAt": 1721596809228,
-      "modifiedAt": 1721596809228,
+      "modifiedAt": 1721678282904,
       "id": 7
-    },
-    {
-      "name": {
-        "name": "XDDDDDDDDDDD",
-        "address": "DDDDFFFFF",
-        "area": "sur",
-        "medication": "Si",
-        "openSpace": false,
-        "walker": true,
-        "dueñoId": 10
-      },
-      "createdAt": 1721598336077,
-      "modifiedAt": 1721598336077,
-      "id": 8
     }
   ],
   "availableDates": [

@@ -41,7 +41,7 @@ const InfoUser = () => {
   const handleSaveClick = async () => {
     try {
       const updatedUser = { ...loggedUser, ...editUser };
-      const updatedUserFromServer = await updateUser(updatedUser); // Actualizar en el contexto y servidor
+      const updatedUserFromServer = await updateUser(updatedUser);
       setLoggedUser(updatedUserFromServer);
       localStorage.setItem("loggedUser", JSON.stringify(updatedUserFromServer));
       setIsEditing(false);
