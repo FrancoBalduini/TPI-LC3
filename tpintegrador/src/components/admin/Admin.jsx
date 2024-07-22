@@ -151,6 +151,7 @@ const Admin = () => {
                         <input
                           type="text"
                           value={editingGuarderia.name?.name || ""}
+                          value={editingGuarderia.name?.name || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -163,6 +164,7 @@ const Admin = () => {
                         />
                         <input
                           type="text"
+                          value={editingGuarderia.name?.address || ""}
                           value={editingGuarderia.name?.address || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
@@ -177,6 +179,7 @@ const Admin = () => {
                         <input
                           type="text"
                           value={editingGuarderia.name?.area || ""}
+                          value={editingGuarderia.name?.area || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -189,6 +192,7 @@ const Admin = () => {
                         />
                         <select
                           value={editingGuarderia.name?.medication || ""}
+                          value={editingGuarderia.name?.medication || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -200,8 +204,41 @@ const Admin = () => {
                           }
                         >
                           <option value="Si">Sí</option>
+                          <option value="Si">Sí</option>
                           <option value="No">No</option>
                         </select>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={editingGuarderia.name?.openSpace || false}
+                            onChange={(e) =>
+                              setEditingGuarderia({
+                                ...editingGuarderia,
+                                name: {
+                                  ...editingGuarderia.name,
+                                  openSpace: e.target.checked,
+                                },
+                              })
+                            }
+                          />
+                          Espacio Abierto
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={editingGuarderia.name?.walker || false}
+                            onChange={(e) =>
+                              setEditingGuarderia({
+                                ...editingGuarderia,
+                                name: {
+                                  ...editingGuarderia.name,
+                                  walker: e.target.checked,
+                                },
+                              })
+                            }
+                          />
+                          Paseador
+                        </label>
                         <label>
                           <input
                             type="checkbox"

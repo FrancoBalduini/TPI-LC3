@@ -1,17 +1,7 @@
 {
   "protectedResources": {
-    "users": [
-      "GET,DELETE",
-      "POST",
-      "PUT",
-      "PATCH"
-    ],
-    "Guarderias": [
-      "GET,POST",
-      "PUT",
-      "PATCH",
-      "DELETE"
-    ]
+    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
+    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
   },
   "users": [
     {
@@ -22,6 +12,16 @@
       "status": true,
       "createdAt": 1609483221000,
       "modifiedAt": 1609483221000
+    },
+    {
+      "id": 3,
+      "nombre": "Franco",
+      "apellido": "Balduini",
+      "email": "franco233433@gmail.com",
+      "password": "6789",
+      "role": "cliente",
+      "createdAt": 1721325538795,
+      "modifiedAt": 1721325538795
     },
     {
       "id": 5,
@@ -67,6 +67,20 @@
     }
   ],
   "Guarderias": [
+    {
+      "dueñoId": {
+        "name": "NASHEEEE",
+        "address": "Martina Casadei 25",
+        "area": "este",
+        "medication": "No",
+        "openSpace": true,
+        "walker": false,
+        "ownerId": 2
+      },
+      "createdAt": 1721594104115,
+      "modifiedAt": 1721594104115,
+      "id": 4
+    },
     {
       "name": {
         "name": "Micaela",
