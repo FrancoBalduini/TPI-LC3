@@ -5,6 +5,8 @@ import "./Admin.css";
 import Card from "../card/Card";
 import useUserManagement from "../hooks/UseUserHook";
 import useGuarderiaManagement from "../hooks/UseGuarderiaHook";
+import AgregarGuarderia from "../agregarAdmin/AgregarGuarderia";
+import AgregarUsuario from "../agregarAdmin/AgregarUsuario";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
@@ -29,6 +31,8 @@ const Admin = () => {
 
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
+  const [showAgregarUsuario, setShowAgregarUsuario] = useState(false);
+  const [showAgregarGuarderia, setShowAgregarGuarderia] = useState(false);
 
   useEffect(() => {
     document.body.className = theme;
@@ -50,8 +54,11 @@ const Admin = () => {
   );
 
   const filteredGuarderias = guarderiaList.filter((guarderia) => {
-    const guarderiaName = guarderia?.name?.name?.toLowerCase() || "";
-    return guarderiaName.includes(guarderiaSearchTerm.toLowerCase());
+    const guarderiaName = guarderia.name.name;
+    return (
+      typeof guarderiaName === "string" &&
+      guarderiaName.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
+    );
   });
 
   return (
@@ -130,8 +137,13 @@ const Admin = () => {
             <p>No hay usuarios registrados.</p>
           )}
           <div className="button-container">
-            <button>Agregar usuario ✅</button>
+            <button onClick={() => setShowAgregarUsuario(true)}>
+              Agregar usuario ✅
+            </button>
           </div>
+          {showAgregarUsuario && (
+            <AgregarUsuario onClose={() => setShowAgregarUsuario(false)} />
+          )}
         </Card>
         <Card
           title="Lista de Guarderías Registradas"
@@ -234,38 +246,6 @@ const Admin = () => {
                           />
                           Paseador
                         </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={editingGuarderia.name?.openSpace || false}
-                            onChange={(e) =>
-                              setEditingGuarderia({
-                                ...editingGuarderia,
-                                name: {
-                                  ...editingGuarderia.name,
-                                  openSpace: e.target.checked,
-                                },
-                              })
-                            }
-                          />
-                          Espacio Abierto
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={editingGuarderia.name?.walker || false}
-                            onChange={(e) =>
-                              setEditingGuarderia({
-                                ...editingGuarderia,
-                                name: {
-                                  ...editingGuarderia.name,
-                                  walker: e.target.checked,
-                                },
-                              })
-                            }
-                          />
-                          Paseador
-                        </label>
                         <button onClick={handleSaveGuarderiaChanges}>
                           Guardar
                         </button>
@@ -307,8 +287,13 @@ const Admin = () => {
             <p>No hay guarderías registradas.</p>
           )}
           <div className="button-container">
-            <button>Agregar guardería ✅</button>
+            <button onClick={() => setShowAgregarGuarderia(true)}>
+              Agregar guardería ✅
+            </button>
           </div>
+          {showAgregarGuarderia && (
+            <AgregarGuarderia onClose={() => setShowAgregarGuarderia(false)} />
+          )}
         </Card>
       </div>
     </>

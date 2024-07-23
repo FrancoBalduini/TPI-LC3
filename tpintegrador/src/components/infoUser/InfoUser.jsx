@@ -13,6 +13,7 @@ const InfoUser = () => {
     nombre: "",
     apellido: "",
     email: "",
+    password: loggedUser.password,
   });
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const InfoUser = () => {
         nombre: loggedUser.nombre,
         apellido: loggedUser.apellido,
         email: loggedUser.email,
+        password: loggedUser.password,
       });
     }
   }, [loggedUser]);

@@ -33,6 +33,7 @@ const useGuarderiaHook = () => {
 
   return {
     editingGuarderia,
+    setEditingGuarderia,
     guarderiaList,
     handleEditGuarderia,
     handleSaveGuarderiaChanges,

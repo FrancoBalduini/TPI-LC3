@@ -1,0 +1,55 @@
+.agregar-guarderia-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.agregar-guarderia-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.agregar-guarderia-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.agregar-guarderia-form .form-group {
+  margin-bottom: 15px;
+}
+
+.agregar-guarderia-form .form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.agregar-guarderia-form .form-group input,
+.agregar-guarderia-form .form-group select,
+.agregar-guarderia-form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.agregar-guarderia-form .form-group input[type="submit"] {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.agregar-guarderia-form .form-group input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.agregar-guarderia-form .form-group input[type="submit"]:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}

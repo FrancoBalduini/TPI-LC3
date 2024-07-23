@@ -25,8 +25,7 @@ const UserHome = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleReserveSuccess = (guarderiaName, entryDate, exitDate) => {
-    const newReservation = { guarderiaName, entryDate, exitDate };
+  const handleReserveSuccess = (newReservation) => {
     setReservations((prevReservations) => [
       ...prevReservations,
       newReservation,

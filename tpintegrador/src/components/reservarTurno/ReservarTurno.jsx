@@ -4,18 +4,22 @@ import PropTypes from "prop-types";
 import "./ReservarTurno.css";
 
 const ReservarTurno = ({ onReserveSuccess }) => {
-  const { guarderiaList, updateGuarderia } = useContext(AuthContext);
+  const { guarderiaList, addReservation, loggedUser } = useContext(AuthContext);
   const [selectedGuarderia, setSelectedGuarderia] = useState("");
   const [entryDate, setEntryDate] = useState("");
   const [exitDate, setExitDate] = useState("");
 
-  const guarderiaOptions = guarderiaList.map((guarderia) => (
-    <option key={guarderia.id} value={guarderia.id}>
-      {guarderia.name && guarderia.name.name
+  const guarderiaOptions = guarderiaList.map((guarderia) => {
+    const guarderiaName =
+      guarderia.name && guarderia.name.name
         ? guarderia.name.name
-        : "Guardería sin nombre"}
-    </option>
-  ));
+        : "Nombre no disponible";
+    return (
+      <option key={guarderia.id} value={guarderia.id}>
+        {guarderiaName}
+      </option>
+    );
+  });
 
   const handleReserve = async (e) => {
     e.preventDefault();
@@ -25,35 +29,36 @@ const ReservarTurno = ({ onReserveSuccess }) => {
       return;
     }
 
-    const selected = guarderiaList.find(
-      (guarderia) => guarderia.id === parseInt(selectedGuarderia)
-    );
-
-    if (!selected) {
-      alert("Guardería no encontrada.");
+    if (!entryDate || !exitDate) {
+      alert("Por favor, completa todas las fechas.");
       return;
     }
 
-    const updatedGuarderia = {
-      ...selected,
-      reservas: (selected.reservas || 0) + 1,
-    };
+    if (new Date(entryDate) >= new Date(exitDate)) {
+      alert("La fecha de salida debe ser posterior a la fecha de entrada.");
+      return;
+    }
 
     try {
-      await updateGuarderia(updatedGuarderia);
+      const newReservation = await addReservation(parseInt(selectedGuarderia), {
+        entryDate,
+        exitDate,
+        clientId: loggedUser ? loggedUser.id : null,
+      });
 
       setSelectedGuarderia("");
       setEntryDate("");
       setExitDate("");
       alert("Reserva realizada con éxito.");
       if (onReserveSuccess) {
-        console.log(
-          "Llamando a onReserveSuccess con:",
-          selected.name.name,
+        onReserveSuccess({
           entryDate,
-          exitDate
-        );
-        onReserveSuccess(selected.name.name, entryDate, exitDate);
+          exitDate,
+          guarderiaName: guarderiaList.find(
+            (g) => g.id === parseInt(selectedGuarderia)
+          ).name.name,
+          reservationId: newReservation.id, // Asegúrate de manejar el ID de reserva aquí
+        });
       }
     } catch (error) {
       console.error("Error al hacer la reserva:", error);

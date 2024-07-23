@@ -30,6 +30,7 @@ const useUserHook = () => {
 
   return {
     editingUser,
+    setEditingUser,
     userList,
     handleEditUser,
     handleSaveUserChanges,

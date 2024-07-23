@@ -1,17 +1,7 @@
 {
   "protectedResources": {
-    "users": [
-      "GET,DELETE",
-      "POST",
-      "PUT",
-      "PATCH"
-    ],
-    "Guarderias": [
-      "GET,POST",
-      "PUT",
-      "PATCH",
-      "DELETE"
-    ]
+    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
+    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
   },
   "users": [
     {
@@ -24,48 +14,6 @@
       "modifiedAt": 1609483221000
     },
     {
-      "id": 3,
-      "nombre": "Franco",
-      "apellido": "Balduini",
-      "email": "franco233433@gmail.com",
-      "password": "6789",
-      "role": "cliente",
-      "createdAt": 1721325538795,
-      "modifiedAt": 1721325538795
-    },
-    {
-      "id": 5,
-      "email": "kratos@gmail.com",
-      "role": "cliente",
-      "status": true,
-      "createdAt": 1721512858737,
-      "modifiedAt": 1721682244310,
-      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5hbWUiOiJ1bmRlZmluZWQgdW5kZWZpbmVkIiwiaWF0IjoxNzIxNjgxOTI0LCJleHAiOjE3MjE2ODI4MjR9.NOceVtFfsqZPVebMXaWTo1Sl5Ifrt7DW73ujZvb0Ls0",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImlhdCI6MTcyMTY4MTkyNCwiZXhwIjoxNzIyMjg2NzI0fQ.XcstOtHiMfNFuyv0E4x7w529rbrfdus3s_UvqmWW1As",
-      "nombre": "lucas",
-      "apellido": "will Murder"
-    },
-    {
-      "id": 6,
-      "nombre": "pinocho",
-      "apellido": "loco",
-      "email": "liesofp@gmai.com",
-      "password": "lies",
-      "role": "cliente",
-      "createdAt": 1721515308437,
-      "modifiedAt": 1721515308437
-    },
-    {
-      "id": 7,
-      "nombre": "gabriel",
-      "apellido": "golzman",
-      "email": "gabi@gmail.com",
-      "password": "123",
-      "role": "dueño",
-      "createdAt": 1721519971261,
-      "modifiedAt": 1721519971261
-    },
-    {
       "id": 10,
       "nombre": "Caronte",
       "apellido": "Caronte",
@@ -74,42 +22,33 @@
       "role": "dueño",
       "createdAt": 1721596676743,
       "modifiedAt": 1721596676743
+    },
+    {
+      "id": 11,
+      "nombre": "Lionel",
+      "apellido": "Scalo",
+      "email": "scaloni@gmail.com",
+      "password": "1234",
+      "role": "cliente",
+      "createdAt": 1721738986722,
+      "modifiedAt": 1721742789367,
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExLCJpYXQiOjE3MjE3NDI3ODQsImV4cCI6MTcyMjM0NzU4NH0.le18uC5UHGHC2u8eWVz9LxYK8IKVsDCxxofc4A3c9uU"
+    },
+    {
+      "id": 12,
+      "nombre": "Lionel",
+      "apellido": "Messi",
+      "email": "messi@gmail.com",
+      "password": "eldiez",
+      "role": "admin",
+      "createdAt": 1721739400082,
+      "modifiedAt": 1721739400082
     }
   ],
   "Guarderias": [
     {
-      "dueñoId": {
-        "name": "NASHEEEE",
-        "address": "Martina Casadei 25",
-        "area": "este",
-        "medication": "No",
-        "openSpace": true,
-        "walker": false,
-        "ownerId": 2
-      },
-      "createdAt": 1721594104115,
-      "modifiedAt": 1721594104115,
-      "id": 4
-    },
-    {
       "name": {
-        "name": "Micaela",
-        "address": "Paez 345",
-        "area": "sur",
-        "medication": "Si",
-        "openSpace": true,
-        "walker": false,
-        "dueñoId": 2,
-        "dates": "availableDates"
-      },
-      "createdAt": 1721596161640,
-      "modifiedAt": 1721701352915,
-      "id": 5,
-      "reservas": 3
-    },
-    {
-      "name": {
-        "name": "NASHEEEE23432",
+        "name": "NASHEEEE2343",
         "address": "1423432143",
         "area": "norte",
         "medication": "No",
@@ -119,13 +58,13 @@
         "dates": "availableDates"
       },
       "createdAt": 1721596377123,
-      "modifiedAt": 1721701340066,
+      "modifiedAt": 1721741492032,
       "id": 6,
-      "reservas": 3
+      "reservas": 4
     },
     {
       "name": {
-        "name": "Facundo",
+        "name": "Facu",
         "address": "Belen en 45",
         "area": "este",
         "medication": "Si",
@@ -134,9 +73,78 @@
         "dueñoId": 10
       },
       "createdAt": 1721596809228,
-      "modifiedAt": 1721700415727,
+      "modifiedAt": 1721742005520,
       "id": 7,
-      "reservas": 1
+      "reservas": {
+        "list": [
+          {
+            "reservationId": 1721703153382,
+            "clientId": null,
+            "entryDate": "2024-07-11",
+            "exitDate": "2024-07-25"
+          },
+          {
+            "reservationId": 1721703545478,
+            "clientId": null,
+            "entryDate": "2024-07-05",
+            "exitDate": "2024-07-24"
+          },
+          {
+            "reservationId": 1721703602053,
+            "clientId": null,
+            "entryDate": "2024-07-11",
+            "exitDate": "2024-07-17"
+          }
+        ]
+      }
+    },
+    {
+      "name": {
+        "name": {
+          "name": "XDDDDDDDDDDD",
+          "address": "DDDDFFFFF",
+          "area": "centro",
+          "medication": "Si",
+          "openSpace": true,
+          "walker": false,
+          "dueñoId": 0
+        }
+      },
+      "createdAt": 1721737946283,
+      "modifiedAt": 1721737946283,
+      "id": 8
+    },
+    {
+      "name": {
+        "name": {
+          "name": "XDDDDDDDDDDD",
+          "address": "DDDDFFFFF",
+          "area": "centro",
+          "medication": "Si",
+          "openSpace": false,
+          "walker": true,
+          "dueñoId": 0
+        }
+      },
+      "createdAt": 1721738904344,
+      "modifiedAt": 1721738904344,
+      "id": 9
+    },
+    {
+      "name": {
+        "name": {
+          "name": "NASHEEEE",
+          "address": "1423432143",
+          "area": "norte",
+          "medication": "Si",
+          "openSpace": true,
+          "walker": false,
+          "dueñoId": "10"
+        }
+      },
+      "createdAt": 1721739227809,
+      "modifiedAt": 1721739227809,
+      "id": 10
     }
   ],
   "availableDates": [

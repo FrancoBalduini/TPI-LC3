@@ -62,9 +62,9 @@ const AuthContextProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        const user = await response.json();
+        const { accessToken, ...user } = await response.json();
         setLoggedUser(user);
-        localStorage.setItem("loggedUser", JSON.stringify(user));
+        localStorage.setItem("authToken", accessToken);
         return user;
       } else {
         const user = userList.find(
@@ -72,7 +72,7 @@ const AuthContextProvider = ({ children }) => {
         );
         if (user) {
           setLoggedUser(user);
-          localStorage.setItem("loggedUser", JSON.stringify(user));
+          localStorage.setItem("authToken", "");
           return user;
         } else {
           throw new Error("Credenciales incorrectas");
@@ -86,16 +86,22 @@ const AuthContextProvider = ({ children }) => {
 
   const updateUser = async (updatedUser) => {
     try {
+      const authToken = localStorage.getItem("authToken");
       const response = await fetch(
         `http://localhost:8000/users/${updatedUser.id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
           },
           body: JSON.stringify(updatedUser),
         }
       );
+
+      if (response.status === 401) {
+        throw new Error("Unauthorized: Invalid or expired token");
+      }
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -104,13 +110,11 @@ const AuthContextProvider = ({ children }) => {
       }
 
       const updatedUserFromServer = await response.json();
-
       setUserList((prevUsers) =>
         prevUsers.map((user) =>
           user.id === updatedUserFromServer.id ? updatedUserFromServer : user
         )
       );
-
       return updatedUserFromServer;
     } catch (error) {
       console.error("Error updating user:", error);
@@ -120,8 +124,12 @@ const AuthContextProvider = ({ children }) => {
 
   const deleteUser = async (userId) => {
     try {
+      const authToken = localStorage.getItem("authToken");
       await fetch(`http://localhost:8000/users/${userId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
       });
       setUserList((prevUsers) =>
         prevUsers.filter((user) => user.id !== userId)
@@ -133,19 +141,23 @@ const AuthContextProvider = ({ children }) => {
 
   const updateGuarderia = async (updatedGuarderia) => {
     try {
+      const authToken = localStorage.getItem("authToken");
       const response = await fetch(
         `http://localhost:8000/api/guarderias/${updatedGuarderia.id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
           },
           body: JSON.stringify(updatedGuarderia),
         }
       );
+
       if (!response.ok) {
         throw new Error("Error updating guardería");
       }
+
       const updatedGuarderiaFromServer = await response.json();
       setGuarderiaList((prevGuarderias) =>
         prevGuarderias.map((guarderia) =>
@@ -161,8 +173,12 @@ const AuthContextProvider = ({ children }) => {
 
   const deleteGuarderia = async (guarderiaId) => {
     try {
+      const authToken = localStorage.getItem("authToken");
       await fetch(`http://localhost:8000/guarderias/${guarderiaId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
       });
       setGuarderiaList((prevGuarderias) =>
         prevGuarderias.filter((guarderia) => guarderia.id !== guarderiaId)
@@ -181,10 +197,12 @@ const AuthContextProvider = ({ children }) => {
     walker
   ) => {
     try {
+      const authToken = localStorage.getItem("authToken"); // Obtén el token
       const response = await fetch("http://localhost:8000/guarderias", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`, // Incluye el token en el encabezado
         },
         body: JSON.stringify({
           name,
@@ -214,6 +232,33 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const addReservation = async (guarderiaId, reservationData) => {
+    try {
+      const authToken = localStorage.getItem("authToken");
+      const response = await fetch("http://localhost:8000/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          guarderiaId,
+          ...reservationData,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error creating reservation");
+      }
+
+      const newReservation = await response.json();
+      return newReservation;
+    } catch (error) {
+      console.error("Error adding reservation:", error);
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -230,6 +275,7 @@ const AuthContextProvider = ({ children }) => {
         updateGuarderia,
         deleteGuarderia,
         loginUser,
+        addReservation,
       }}
     >
       {children}
