@@ -3,8 +3,8 @@ import { ThemeContext } from "../context/Context";
 import { useContext, useEffect, useState } from "react";
 import "./Admin.css";
 import Card from "../card/Card";
-import useUserManagement from "../hooks/useUserHook";
-import useGuarderiaManagement from "../hooks/useGuarderiaHook";
+import useUserManagement from "../hooks/UseUserHook";
+import useGuarderiaManagement from "../hooks/UseGuarderiaHook";
 
 const Admin = () => {
   const { theme } = useContext(ThemeContext);
@@ -151,7 +151,6 @@ const Admin = () => {
                         <input
                           type="text"
                           value={editingGuarderia.name?.name || ""}
-                          value={editingGuarderia.name?.name || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -164,7 +163,6 @@ const Admin = () => {
                         />
                         <input
                           type="text"
-                          value={editingGuarderia.name?.address || ""}
                           value={editingGuarderia.name?.address || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
@@ -179,7 +177,6 @@ const Admin = () => {
                         <input
                           type="text"
                           value={editingGuarderia.name?.area || ""}
-                          value={editingGuarderia.name?.area || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -192,7 +189,6 @@ const Admin = () => {
                         />
                         <select
                           value={editingGuarderia.name?.medication || ""}
-                          value={editingGuarderia.name?.medication || ""}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
@@ -203,7 +199,6 @@ const Admin = () => {
                             })
                           }
                         >
-                          <option value="Si">Sí</option>
                           <option value="Si">Sí</option>
                           <option value="No">No</option>
                         </select>

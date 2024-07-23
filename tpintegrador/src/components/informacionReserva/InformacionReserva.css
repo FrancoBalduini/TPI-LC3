@@ -1,0 +1,13 @@
+.informacion-reserva {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.informacion-reserva h2 {
+  margin-bottom: 10px;
+}
+.informacion-reserva p {
+  margin: 5px 0;
+}

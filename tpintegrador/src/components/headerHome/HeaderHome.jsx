@@ -18,6 +18,10 @@ const HeaderHome = () => {
     navigate("/registerguarderia");
   };
 
+  const handleNavigateToUserHome = () => {
+    navigate("/userHome");
+  };
+
   const getUsernameWithoutDomain = (email) => {
     return email.split("@")[0];
   };
@@ -47,6 +51,14 @@ const HeaderHome = () => {
             onClick={handleNavigateToRegisterGuarderia}
           >
             Añade tu guarderia
+          </button>
+        )}
+        {loggedUser && loggedUser.role === "cliente" && (
+          <button
+            className={`boton-añade-guarderia zIndex5 ${theme}`}
+            onClick={handleNavigateToUserHome}
+          >
+            Hacer una reserva
           </button>
         )}
         {loggedUser ? (

@@ -134,7 +134,7 @@ const AuthContextProvider = ({ children }) => {
   const updateGuarderia = async (updatedGuarderia) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/guarderias/${updatedGuarderia.id}`,
+        `http://localhost:8000/api/guarderias/${updatedGuarderia.id}`,
         {
           method: "PUT",
           headers: {
@@ -143,6 +143,9 @@ const AuthContextProvider = ({ children }) => {
           body: JSON.stringify(updatedGuarderia),
         }
       );
+      if (!response.ok) {
+        throw new Error("Error updating guardería");
+      }
       const updatedGuarderiaFromServer = await response.json();
       setGuarderiaList((prevGuarderias) =>
         prevGuarderias.map((guarderia) =>

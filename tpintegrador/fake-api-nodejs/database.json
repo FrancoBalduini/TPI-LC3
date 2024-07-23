@@ -1,7 +1,17 @@
 {
   "protectedResources": {
-    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
-    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
+    "users": [
+      "GET,DELETE",
+      "POST",
+      "PUT",
+      "PATCH"
+    ],
+    "Guarderias": [
+      "GET,POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
   },
   "users": [
     {
@@ -93,8 +103,9 @@
         "dates": "availableDates"
       },
       "createdAt": 1721596161640,
-      "modifiedAt": 1721682861413,
-      "id": 5
+      "modifiedAt": 1721701352915,
+      "id": 5,
+      "reservas": 3
     },
     {
       "name": {
@@ -108,8 +119,9 @@
         "dates": "availableDates"
       },
       "createdAt": 1721596377123,
-      "modifiedAt": 1721596377123,
-      "id": 6
+      "modifiedAt": 1721701340066,
+      "id": 6,
+      "reservas": 3
     },
     {
       "name": {
@@ -122,8 +134,9 @@
         "dueñoId": 10
       },
       "createdAt": 1721596809228,
-      "modifiedAt": 1721678282904,
-      "id": 7
+      "modifiedAt": 1721700415727,
+      "id": 7,
+      "reservas": 1
     }
   ],
   "availableDates": [

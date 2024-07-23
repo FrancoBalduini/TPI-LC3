@@ -1,15 +1,17 @@
 import "./UserHome.css";
 import HeaderHome from "../headerHome/HeaderHome";
 import { ThemeContext } from "../context/Context";
-import { useContext } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ReservarTurno from "../reservarTurno/ReservarTurno";
+import InformacionReserva from "../informacionReserva/InformacionReserva";
 
 const images = ["src/img/goldenChiquito.jpg", "src/img/perros.png"];
 
 const UserHome = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { theme } = useContext(ThemeContext);
+  const [showReserveTurn, setShowReserveTurn] = useState(false);
+  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
     document.body.className = theme;
@@ -22,12 +24,25 @@ const UserHome = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleReserveSuccess = (guarderiaName, entryDate, exitDate) => {
+    const newReservation = { guarderiaName, entryDate, exitDate };
+    setReservations((prevReservations) => [
+      ...prevReservations,
+      newReservation,
+    ]);
+    setShowReserveTurn(false);
+  };
+
+  useEffect(() => {
+    console.log("Información de reserva actual:", reservations);
+  }, [reservations]);
+
   return (
     <>
       <HeaderHome />
-      <body className={`body ${theme}`}>
+      <div className={`body ${theme}`}>
         <div className="dynamic-image">
-          {" "}
           <img src={images[currentImageIndex]} alt="Dynamic" />
         </div>
         <div className="info-section">
@@ -36,11 +51,31 @@ const UserHome = () => {
             <p>Reseña de la guardería</p>
           </div>
           <div className="actions">
-            <button className={`btn-reserve ${theme}`}>Reservar turno</button>
+            <button
+              className={`btn-reserve ${theme}`}
+              onClick={() => setShowReserveTurn(true)}
+            >
+              Reservar turno
+            </button>
             <button className={`btn-info ${theme}`}>Información</button>
           </div>
         </div>
-      </body>
+        {showReserveTurn && (
+          <ReservarTurno onReserveSuccess={handleReserveSuccess} />
+        )}
+        {reservations.length > 0 && (
+          <div className="reservations-container">
+            {reservations.map((reservation, index) => (
+              <InformacionReserva
+                key={index}
+                guarderiaName={reservation.guarderiaName}
+                entryDate={reservation.entryDate}
+                exitDate={reservation.exitDate}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };
