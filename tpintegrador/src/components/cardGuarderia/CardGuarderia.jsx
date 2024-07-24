@@ -9,7 +9,7 @@ const CardGuarderia = () => {
 
   // Filtrar las guarderías asignadas al dueño logeado
   const guarderiasAsignadas = guarderiaList.filter(
-    (guarderia) => guarderia.name && guarderia.name.dueñoId === loggedUser.id
+    (guarderia) => guarderia.name && guarderia.dueñoId === loggedUser.id
   );
 
   return (
@@ -19,12 +19,12 @@ const CardGuarderia = () => {
         guarderiasAsignadas.map((guarderia) => (
           <div key={guarderia.id} className={`guarderia-item ${theme}`}>
             <div className="descripcion">
-              <p>Nombre: {guarderia.name.name}</p>
-              <p>Dirección: {guarderia.name.address}</p>
-              <p>Área: {guarderia.name.area}</p>
-              <p>Medicación: {guarderia.name.medication ? "Sí" : "No"}</p>
-              <p>Espacio abierto: {guarderia.name.openSpace ? "Sí" : "No"}</p>
-              <p>Paseador: {guarderia.name.walker ? "Sí" : "No"}</p>
+              <p>Nombre: {guarderia.name}</p>
+              <p>Dirección: {guarderia.address}</p>
+              <p>Área: {guarderia.area}</p>
+              <p>Medicación: {guarderia.medication ? "Sí" : "No"}</p>
+              <p>Espacio abierto: {guarderia.openSpace ? "Sí" : "No"}</p>
+              <p>Paseador: {guarderia.walker ? "Sí" : "No"}</p>
               <p>
                 <span className="modificar">Modificar</span>{" "}
                 <span className="icono">✏️</span>

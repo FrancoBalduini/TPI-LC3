@@ -5,13 +5,16 @@ import { useContext } from "react";
 
 const CardCuadrada = ({ title, items, scrollable }) => {
   const { theme } = useContext(ThemeContext);
+
+  const safeItems = Array.isArray(items) ? items : [];
+
   return (
     <div className={`card-square ${theme}`}>
       <h3>{title}</h3>
       <div className={scrollable ? "scrollable-table" : ""}>
         <table>
           <tbody>
-            {items.map((item, index) => (
+            {safeItems.map((item, index) => (
               <tr key={index}>
                 <td>{title === "Turnos" ? item.text : ""}</td>
                 <td>
@@ -19,9 +22,6 @@ const CardCuadrada = ({ title, items, scrollable }) => {
                 </td>
                 <td>
                   <button className="boton-borrar">Eliminar ❌</button>
-                </td>
-                <td>
-                  <button className="boton-editar">Modificar ✏️</button>
                 </td>
               </tr>
             ))}

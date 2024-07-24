@@ -8,53 +8,36 @@ import HeaderHome from "../headerHome/HeaderHome";
 
 const DuenoGuarderia = () => {
   const { theme } = useContext(ThemeContext);
-  const {
-    reservations = [],
-    deleteReservation,
-    guarderiaList = [],
-  } = useContext(AuthContext);
+  const { reservasList, guarderiaList, loggedUser } = useContext(AuthContext);
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
-  const handleDeleteReservation = (reservationId) => {
-    deleteReservation(reservationId);
-  };
+  console.log('lista de reservas dueño', reservasList)
+  console.log('lista de guarderias dueño', guarderiaList)
 
-  const turnos = [
-    { text: "Turno 1" },
-    { text: "Turno 2" },
-    { text: "Turno 3" },
-    { text: "Turno 4" },
-  ];
+  const userGuarderias = guarderiaList.filter(
+    (guarderia) => guarderia.dueñoId === loggedUser.id
+  );
 
+  const dueñoReserva = reservasList.filter(
+    (reserva) => reserva.dueñoId === loggedUser.id
+  );
+
+  console.log('dueño reserva', dueñoReserva)
+  
   return (
     <div className={`bodyDuenoG ${theme}`}>
       <HeaderHome />
       <div className="content">
         <div>
-          <CardCuadrada title="Turnos" items={turnos} />
-          <CardCuadrada title="Agregar Guarderías" items={turnos} />
+          <CardCuadrada title="Turnos" items={(dueñoReserva)} />
+          <CardCuadrada title="Agregar Guarderías" />
         </div>
-        <div className="guarderia-container">
-          <CardGuarderia guarderiaList={guarderiaList} />
-        </div>
-        <div className="reservations">
-          <h2>Reservas</h2>
-          {reservations.length > 0 ? (
-            reservations.map((reservation) => (
-              <div key={reservation.id} className="reservation">
-                <p>{reservation.details}</p>
-                <button onClick={() => handleDeleteReservation(reservation.id)}>
-                  Eliminar
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>No hay reservas.</p>
-          )}
-        </div>
+      </div>
+      <div className="guarderia-container">
+        <CardGuarderia guarderiaList={userGuarderias} />
       </div>
     </div>
   );

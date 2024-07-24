@@ -7,14 +7,26 @@ import CardCuadrada from "./CardCuadrada";
 
 const InfoUser = () => {
   const { theme } = useContext(ThemeContext);
-  const { loggedUser, setLoggedUser, updateUser } = useContext(AuthContext);
+  const {
+    loggedUser,
+    setLoggedUser,
+    updateUser,
+    reservasList,
+    deleteReservation,
+  } = useContext(AuthContext);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editUser, setEditUser] = useState({
     nombre: "",
     apellido: "",
     email: "",
-    password: loggedUser.password,
+    password: "",
   });
+
+  // Filtrar reservas para el usuario actual
+  const userReservations = reservasList.filter(
+    (reserva) => reserva.userId === loggedUser.id
+  );
 
   useEffect(() => {
     document.body.className = theme;
@@ -26,7 +38,6 @@ const InfoUser = () => {
         nombre: loggedUser.nombre,
         apellido: loggedUser.apellido,
         email: loggedUser.email,
-        password: loggedUser.password,
       });
     }
   }, [loggedUser]);
@@ -42,7 +53,14 @@ const InfoUser = () => {
 
   const handleSaveClick = async () => {
     try {
-      const updatedUser = { ...loggedUser, ...editUser };
+      const updatedUser = {
+        ...loggedUser,
+        nombre: editUser.nombre,
+        apellido: editUser.apellido,
+        email: editUser.email,
+        ...(editUser.password && { password: editUser.password }),
+      };
+
       const updatedUserFromServer = await updateUser(updatedUser);
       setLoggedUser(updatedUserFromServer);
       localStorage.setItem("loggedUser", JSON.stringify(updatedUserFromServer));
@@ -52,12 +70,13 @@ const InfoUser = () => {
     }
   };
 
-  const reservas = [
-    { text: "Mi Reserva 1" },
-    { text: "Mi Reserva 2" },
-    { text: "Mi Reserva 3" },
-    { text: "Mi Reserva 4" },
-  ];
+  const handleDeleteReservation = async (reservationId) => {
+    try {
+      await deleteReservation(reservationId);
+    } catch (error) {
+      console.error("Error al eliminar reserva:", error);
+    }
+  };
 
   return (
     <>
@@ -67,20 +86,31 @@ const InfoUser = () => {
           <CardCuadrada title="Mis Reservas" scrollable={true}>
             <table>
               <tbody>
-                {reservas.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.text}</td>
-                    <td>
-                      <button className="boton-borrar">Eliminar ❌</button>
-                    </td>
+                {userReservations && userReservations.length > 0 ? (
+                  userReservations.map((reserva) => (
+                    <tr key={reserva.id}>
+                      <td>
+                        Guardería: {reserva.guarderiaId} <br />
+                        Fecha Entrada: {reserva.checkInDate} <br />
+                        Fecha Salida: {reserva.checkOutDate}
+                      </td>
+                      <td>
+                        <button
+                          className="boton-borrar"
+                          onClick={() => handleDeleteReservation(reserva.id)}
+                        >
+                          Eliminar ❌
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="2">No tienes reservas.</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
-          </CardCuadrada>
-
-          <CardCuadrada title="Mis Favoritos" scrollable={false}>
-            <p>Lista con nombre de la guardería agregada a favoritos</p>
           </CardCuadrada>
 
           <CardCuadrada title="Mis Datos" scrollable={false}>
@@ -114,6 +144,15 @@ const InfoUser = () => {
                       type="email"
                       name="email"
                       value={editUser.email}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                  <p>
+                    Contraseña:{" "}
+                    <input
+                      type="password"
+                      name="password"
+                      value={editUser.password}
                       onChange={handleInputChange}
                     />
                   </p>
