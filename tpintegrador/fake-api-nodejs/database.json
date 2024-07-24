@@ -99,15 +99,15 @@
       "dates": "availableDates"
     },
     {
-      "name": "messi",
-      "address": "paraguay 123",
-      "area": "centro",
-      "medication": "Si",
-      "openSpace": true,
+      "name": "messi456",
+      "address": "Moreno 562",
+      "area": "norte",
+      "medication": "si",
+      "openSpace": false,
       "walker": true,
       "dueñoId": 16,
       "createdAt": 1721849447266,
-      "modifiedAt": 1721849447266,
+      "modifiedAt": 1721857580032,
       "id": 3
     }
   ],
