@@ -53,18 +53,16 @@ const Admin = () => {
         user.apellido.toLowerCase().includes(userSearchTerm.toLowerCase()))
   );
 
-  const filteredGuarderias = guarderiaList.filter((guarderia) => {
-    const guarderiaName = guarderia.name.name;
-    return (
-      typeof guarderiaName === "string" &&
-      guarderiaName.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
-    );
-  });
+  const filteredGuarderias = guarderiaList.filter((guarderia) =>
+    guarderia.name.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
+  );
 
   return (
     <>
       <Header />
-      <div className={`lupa-input ${theme}`}>{/* ... */}</div>
+      <div className={`lupa-input ${theme}`}>
+        {/* Add your search input fields here */}
+      </div>
       <div className={`cuerpo ${theme}`}>
         <Card
           title="Lista de Usuarios Registrados"
@@ -162,52 +160,40 @@ const Admin = () => {
                       <div>
                         <input
                           type="text"
-                          value={editingGuarderia.name?.name || ""}
+                          value={editingGuarderia.name}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                name: e.target.value,
-                              },
+                              name: e.target.value,
                             })
                           }
                         />
                         <input
                           type="text"
-                          value={editingGuarderia.name?.address || ""}
+                          value={editingGuarderia.address}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                address: e.target.value,
-                              },
+                              address: e.target.value,
                             })
                           }
                         />
                         <input
                           type="text"
-                          value={editingGuarderia.name?.area || ""}
+                          value={editingGuarderia.area}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                area: e.target.value,
-                              },
+                              area: e.target.value,
                             })
                           }
                         />
                         <select
-                          value={editingGuarderia.name?.medication || ""}
+                          value={editingGuarderia.medication}
                           onChange={(e) =>
                             setEditingGuarderia({
                               ...editingGuarderia,
-                              name: {
-                                ...editingGuarderia.name,
-                                medication: e.target.value,
-                              },
+                              medication: e.target.value,
                             })
                           }
                         >
@@ -217,14 +203,11 @@ const Admin = () => {
                         <label>
                           <input
                             type="checkbox"
-                            checked={editingGuarderia.name?.openSpace || false}
+                            checked={editingGuarderia.openSpace}
                             onChange={(e) =>
                               setEditingGuarderia({
                                 ...editingGuarderia,
-                                name: {
-                                  ...editingGuarderia.name,
-                                  openSpace: e.target.checked,
-                                },
+                                openSpace: e.target.checked,
                               })
                             }
                           />
@@ -233,14 +216,11 @@ const Admin = () => {
                         <label>
                           <input
                             type="checkbox"
-                            checked={editingGuarderia.name?.walker || false}
+                            checked={editingGuarderia.walker}
                             onChange={(e) =>
                               setEditingGuarderia({
                                 ...editingGuarderia,
-                                name: {
-                                  ...editingGuarderia.name,
-                                  walker: e.target.checked,
-                                },
+                                walker: e.target.checked,
                               })
                             }
                           />
@@ -255,16 +235,12 @@ const Admin = () => {
                       </div>
                     ) : (
                       <>
-                        {guarderia.name?.name || "Nombre no disponible"} -{" "}
-                        {guarderia.name?.address || "Dirección no disponible"} -{" "}
-                        {guarderia.name?.area || "Área no disponible"} -{" "}
-                        {guarderia.name?.openSpace
-                          ? "Posee espacio abierto"
-                          : "No posee espacio abierto"}{" "}
-                        -{" "}
-                        {guarderia.name?.walker
-                          ? "Posee paseador"
-                          : "No posee paseador"}
+                        {guarderia.name} - {guarderia.address} -{" "}
+                        {guarderia.area}
+                        <br />
+                        Espacio Abierto: {guarderia.openSpace ? "Sí" : "No"}
+                        <br />
+                        Paseador: {guarderia.walker ? "Sí" : "No"}
                         <div className="button-container">
                           <button
                             onClick={() => handleEditGuarderia(guarderia)}

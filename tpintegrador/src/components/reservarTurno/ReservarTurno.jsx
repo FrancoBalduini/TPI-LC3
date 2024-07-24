@@ -1,112 +1,96 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthenticationContext";
 import PropTypes from "prop-types";
-import "./ReservarTurno.css";
 
-const ReservarTurno = ({ onReserveSuccess }) => {
-  const { guarderiaList, addReservation, loggedUser } = useContext(AuthContext);
-  const [selectedGuarderia, setSelectedGuarderia] = useState("");
-  const [entryDate, setEntryDate] = useState("");
-  const [exitDate, setExitDate] = useState("");
-
-  const guarderiaOptions = guarderiaList.map((guarderia) => {
-    const guarderiaName =
-      guarderia.name && guarderia.name.name
-        ? guarderia.name.name
-        : "Nombre no disponible";
-    return (
-      <option key={guarderia.id} value={guarderia.id}>
-        {guarderiaName}
-      </option>
-    );
-  });
+const ReservarTurno = ({ guarderiaOptions }) => {
+  const { loggedUser, createReservation } = useContext(AuthContext);
+  const [selectedGuarderia, setSelectedGuarderia] = useState(
+    guarderiaOptions[0]?.id || null
+  );
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [error, setError] = useState(null);
 
   const handleReserve = async (e) => {
     e.preventDefault();
 
-    if (!selectedGuarderia) {
-      alert("Por favor, selecciona una guardería.");
+    if (!loggedUser) {
+      setError("Debes iniciar sesión para hacer una reserva.");
       return;
     }
 
-    if (!entryDate || !exitDate) {
-      alert("Por favor, completa todas las fechas.");
-      return;
-    }
-
-    if (new Date(entryDate) >= new Date(exitDate)) {
-      alert("La fecha de salida debe ser posterior a la fecha de entrada.");
+    if (!startDate || !endDate) {
+      setError("Debes seleccionar las fechas de entrada y salida.");
       return;
     }
 
     try {
-      const newReservation = await addReservation(parseInt(selectedGuarderia), {
-        entryDate,
-        exitDate,
-        clientId: loggedUser ? loggedUser.id : null,
-      });
-
-      setSelectedGuarderia("");
-      setEntryDate("");
-      setExitDate("");
-      alert("Reserva realizada con éxito.");
-      if (onReserveSuccess) {
-        onReserveSuccess({
-          entryDate,
-          exitDate,
-          guarderiaName: guarderiaList.find(
-            (g) => g.id === parseInt(selectedGuarderia)
-          ).name.name,
-          reservationId: newReservation.id, // Asegúrate de manejar el ID de reserva aquí
-        });
-      }
-    } catch (error) {
-      console.error("Error al hacer la reserva:", error);
-      alert("Hubo un error al hacer la reserva.");
+      await createReservation(
+        selectedGuarderia,
+        loggedUser.id,
+        startDate,
+        endDate
+      );
+      alert("Reserva creada exitosamente!");
+      setStartDate("");
+      setEndDate("");
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   return (
-    <div className="reserve-turn">
-      <h2>Reservar Turno</h2>
+    <div>
       <form onSubmit={handleReserve}>
-        <label htmlFor="guarderia">Selecciona una guardería:</label>
-        <select
-          id="guarderia"
-          value={selectedGuarderia}
-          onChange={(e) => setSelectedGuarderia(e.target.value)}
-        >
-          {guarderiaOptions}
-        </select>
-
-        <label htmlFor="entryDate">Fecha de entrada:</label>
-        <input
-          type="date"
-          id="entryDate"
-          value={entryDate}
-          onChange={(e) => setEntryDate(e.target.value)}
-        />
-
-        <label htmlFor="exitDate">Fecha de salida:</label>
-        <input
-          type="date"
-          id="exitDate"
-          value={exitDate}
-          onChange={(e) => setExitDate(e.target.value)}
-        />
-
-        <div className="actions">
-          <button type="submit" className="btn-reserve">
-            Reservar
-          </button>
+        <div>
+          <label htmlFor="guarderia">Selecciona una guardería:</label>
+          <select
+            id="guarderia"
+            value={selectedGuarderia}
+            onChange={(e) => setSelectedGuarderia(parseInt(e.target.value, 10))}
+          >
+            {guarderiaOptions.map(({ id, name }) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <div>
+          <label htmlFor="startDate">Fecha de entrada:</label>
+          <input
+            type="date"
+            id="startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="endDate">Fecha de salida:</label>
+          <input
+            type="date"
+            id="endDate"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </div>
+
+        <button type="submit">Reservar turno</button>
       </form>
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 ReservarTurno.propTypes = {
-  onReserveSuccess: PropTypes.func.isRequired,
+  guarderiaOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ReservarTurno;

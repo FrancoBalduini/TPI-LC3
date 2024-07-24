@@ -23,16 +23,15 @@ const RegisterGuarderia = () => {
     }
 
     try {
-      const newGuarderia = {
+      await registerGuarderia(
         name,
         address,
         area,
         medication,
         openSpace,
         walker,
-        dueñoId: loggedUser.id,
-      };
-      await registerGuarderia(newGuarderia);
+        loggedUser.id
+      );
       setErrorMessage("");
       setName("");
       setAddress("");
@@ -102,23 +101,27 @@ const RegisterGuarderia = () => {
           </select>
         </div>
         <div className="checkbox-register">
-          <label>Proporciona Medicación</label>
-          <input
-            type="checkbox"
-            name="medication"
-            value="Si"
-            checked={medication === "Si"}
-            onChange={(e) => setMedication(e.target.value)}
-          />{" "}
-          Si
-          <input
-            type="checkbox"
-            name="medication"
-            value="No"
-            checked={medication === "No"}
-            onChange={(e) => setMedication(e.target.value)}
-          />{" "}
-          No
+          <label>Proporciona Medicación:</label>
+          <label>
+            <input
+              type="radio"
+              name="medication"
+              value="Si"
+              checked={medication === "Si"}
+              onChange={(e) => setMedication(e.target.value)}
+            />{" "}
+            Si
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="medication"
+              value="No"
+              checked={medication === "No"}
+              onChange={(e) => setMedication(e.target.value)}
+            />{" "}
+            No
+          </label>
         </div>
         <div className="checkboxes">
           <label>

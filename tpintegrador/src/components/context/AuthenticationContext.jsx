@@ -12,6 +12,7 @@ const AuthContextProvider = ({ children }) => {
   const fetchUsers = async () => {
     try {
       const response = await fetch("http://localhost:8000/users");
+      if (!response.ok) throw new Error("Failed to fetch users");
       const users = await response.json();
       setUserList(users);
     } catch (error) {
@@ -22,7 +23,9 @@ const AuthContextProvider = ({ children }) => {
   const fetchGuarderias = async () => {
     try {
       const response = await fetch("http://localhost:8000/guarderias");
+      if (!response.ok) throw new Error("Failed to fetch guarderias");
       const guarderias = await response.json();
+      console.log("Datos de guarderías:", guarderias);
       setGuarderiaList(guarderias);
     } catch (error) {
       console.error("Error fetching guarderias:", error);
@@ -44,6 +47,7 @@ const AuthContextProvider = ({ children }) => {
         },
         body: JSON.stringify({ nombre, apellido, email, password, role }),
       });
+      if (!response.ok) throw new Error("Failed to register user");
       const newUser = await response.json();
       setUserList((prevUsers) => [...prevUsers, newUser]);
     } catch (error) {
@@ -99,14 +103,9 @@ const AuthContextProvider = ({ children }) => {
         }
       );
 
-      if (response.status === 401) {
-        throw new Error("Unauthorized: Invalid or expired token");
-      }
-
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("Error updating user:", response.status, errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Error updating user: ${errorText}`);
       }
 
       const updatedUserFromServer = await response.json();
@@ -125,12 +124,18 @@ const AuthContextProvider = ({ children }) => {
   const deleteUser = async (userId) => {
     try {
       const authToken = localStorage.getItem("authToken");
-      await fetch(`http://localhost:8000/users/${userId}`, {
+      const response = await fetch(`http://localhost:8000/users/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
       });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error deleting user: ${errorText}`);
+      }
+
       setUserList((prevUsers) =>
         prevUsers.filter((user) => user.id !== userId)
       );
@@ -141,21 +146,20 @@ const AuthContextProvider = ({ children }) => {
 
   const updateGuarderia = async (updatedGuarderia) => {
     try {
-      const authToken = localStorage.getItem("authToken");
       const response = await fetch(
-        `http://localhost:8000/api/guarderias/${updatedGuarderia.id}`,
+        `http://localhost:8000/guarderias/${updatedGuarderia.id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`,
           },
           body: JSON.stringify(updatedGuarderia),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Error updating guardería");
+        const errorText = await response.text();
+        throw new Error(`Error updating guardería: ${errorText}`);
       }
 
       const updatedGuarderiaFromServer = await response.json();
@@ -174,12 +178,21 @@ const AuthContextProvider = ({ children }) => {
   const deleteGuarderia = async (guarderiaId) => {
     try {
       const authToken = localStorage.getItem("authToken");
-      await fetch(`http://localhost:8000/guarderias/${guarderiaId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8000/guarderias/${guarderiaId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error deleting guardería: ${errorText}`);
+      }
+
       setGuarderiaList((prevGuarderias) =>
         prevGuarderias.filter((guarderia) => guarderia.id !== guarderiaId)
       );
@@ -194,15 +207,16 @@ const AuthContextProvider = ({ children }) => {
     area,
     medication,
     openSpace,
-    walker
+    walker,
+    dueñoId
   ) => {
     try {
-      const authToken = localStorage.getItem("authToken"); // Obtén el token
+      const authToken = localStorage.getItem("authToken");
       const response = await fetch("http://localhost:8000/guarderias", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`, // Incluye el token en el encabezado
+          Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify({
           name,
@@ -211,28 +225,24 @@ const AuthContextProvider = ({ children }) => {
           medication,
           openSpace,
           walker,
+          dueñoId,
         }),
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error(
-          "Error registering guarderia:",
-          response.status,
-          errorText
-        );
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Error registering guardería: ${errorText}`);
       }
 
       const newGuarderia = await response.json();
       setGuarderiaList((prevGuarderias) => [...prevGuarderias, newGuarderia]);
     } catch (error) {
-      console.error("Error registering guarderia:", error);
+      console.error("Error registering guardería:", error);
       throw error;
     }
   };
 
-  const addReservation = async (guarderiaId, reservationData) => {
+  const createReservation = async (guarderiaId, clienteId) => {
     try {
       const authToken = localStorage.getItem("authToken");
       const response = await fetch("http://localhost:8000/reservations", {
@@ -243,39 +253,58 @@ const AuthContextProvider = ({ children }) => {
         },
         body: JSON.stringify({
           guarderiaId,
-          ...reservationData,
+          clienteId,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Error creating reservation");
+        const errorText = await response.text();
+        throw new Error(`Error creating reservation: ${errorText}`);
       }
 
       const newReservation = await response.json();
-      return newReservation;
+      setGuarderiaList((prevGuarderias) =>
+        prevGuarderias.map((guarderia) =>
+          guarderia.id === guarderiaId
+            ? {
+                ...guarderia,
+                reservations: [
+                  ...(guarderia.reservations || []),
+                  newReservation,
+                ],
+              }
+            : guarderia
+        )
+      );
     } catch (error) {
-      console.error("Error adding reservation:", error);
+      console.error("Error creating reservation:", error);
       throw error;
     }
+  };
+
+  const logoutUser = () => {
+    setLoggedUser(null);
+    localStorage.removeItem("authToken");
   };
 
   return (
     <AuthContext.Provider
       value={{
         loggedUser,
-        setLoggedUser,
         userList,
-        setUserList,
         guarderiaList,
-        setGuarderiaList,
+
         registerUser,
+        loginUser,
         updateUser,
         deleteUser,
         registerGuarderia,
         updateGuarderia,
         deleteGuarderia,
-        loginUser,
-        addReservation,
+        createReservation,
+
+        logoutUser,
+        setLoggedUser,
       }}
     >
       {children}

@@ -2,7 +2,7 @@ body.dark {
   background-color: #806a58;
 }
 
-.reserve-turn {
+.reservar-turno {
   background-color: #ffffff;
   padding: 20px;
   margin: 50px auto;
@@ -11,24 +11,24 @@ body.dark {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.reserve-turn h2 {
+.reservar-turno h2 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
 }
 
-.reserve-turn form {
+.reservar-turno form {
   display: flex;
   flex-direction: column;
 }
 
-.reserve-turn label {
+.reservar-turno label {
   font-size: 1em;
   margin-bottom: 5px;
 }
 
-.reserve-turn select,
-.reserve-turn input[type="date"] {
+.reservar-turno select,
+.reservar-turno input[type="date"] {
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -36,14 +36,14 @@ body.dark {
   width: 40%;
 }
 
-.reserve-turn .actions {
+.reservar-turno .actions {
   display: flex;
   justify-content: center;
 }
 
 .btn-reserve {
   background-color: #add8e6;
-  border: 1px black solid;
+  border: 1px solid black;
   border-radius: 10px;
   padding: 15px 20px;
   cursor: pointer;

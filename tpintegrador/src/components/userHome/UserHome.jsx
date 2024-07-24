@@ -1,17 +1,17 @@
-import "./UserHome.css";
+import { useState, useEffect, useContext } from "react";
 import HeaderHome from "../headerHome/HeaderHome";
 import { ThemeContext } from "../context/Context";
-import { useContext, useEffect, useState } from "react";
 import ReservarTurno from "../reservarTurno/ReservarTurno";
-import InformacionReserva from "../informacionReserva/InformacionReserva";
+import { AuthContext } from "../context/AuthenticationContext";
+import "./UserHome.css";
 
 const images = ["src/img/goldenChiquito.jpg", "src/img/perros.png"];
 
 const UserHome = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showReservation, setShowReservation] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const [showReserveTurn, setShowReserveTurn] = useState(false);
-  const [reservations, setReservations] = useState([]);
+  const { guarderiaList } = useContext(AuthContext);
 
   useEffect(() => {
     document.body.className = theme;
@@ -25,17 +25,7 @@ const UserHome = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleReserveSuccess = (newReservation) => {
-    setReservations((prevReservations) => [
-      ...prevReservations,
-      newReservation,
-    ]);
-    setShowReserveTurn(false);
-  };
-
-  useEffect(() => {
-    console.log("Información de reserva actual:", reservations);
-  }, [reservations]);
+  const toggleReservation = () => setShowReservation((prev) => !prev);
 
   return (
     <>
@@ -52,27 +42,20 @@ const UserHome = () => {
           <div className="actions">
             <button
               className={`btn-reserve ${theme}`}
-              onClick={() => setShowReserveTurn(true)}
+              onClick={toggleReservation}
             >
               Reservar turno
             </button>
             <button className={`btn-info ${theme}`}>Información</button>
           </div>
         </div>
-        {showReserveTurn && (
-          <ReservarTurno onReserveSuccess={handleReserveSuccess} />
-        )}
-        {reservations.length > 0 && (
-          <div className="reservations-container">
-            {reservations.map((reservation, index) => (
-              <InformacionReserva
-                key={index}
-                guarderiaName={reservation.guarderiaName}
-                entryDate={reservation.entryDate}
-                exitDate={reservation.exitDate}
-              />
-            ))}
-          </div>
+        {showReservation && (
+          <ReservarTurno
+            guarderiaOptions={guarderiaList.map(({ id, name }) => ({
+              id,
+              name: name.name,
+            }))}
+          />
         )}
       </div>
     </>

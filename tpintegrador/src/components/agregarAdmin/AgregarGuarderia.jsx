@@ -34,7 +34,7 @@ const AgregarGuarderia = ({ onClose }) => {
   };
 
   return (
-    <div className="add-guarderia">
+    <div className="agregar-guarderia">
       <h2>Agregar Guardería</h2>
       <form onSubmit={handleSubmit}>
         <input

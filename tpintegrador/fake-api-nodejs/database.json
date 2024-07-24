@@ -34,16 +34,6 @@
       "modifiedAt": 1721786408278
     },
     {
-      "id": 11,
-      "nombre": "Lionel",
-      "apellido": "Scalo",
-      "email": "scaloni@gmail.com",
-      "password": "1234",
-      "role": "cliente",
-      "createdAt": 1721738986722,
-      "modifiedAt": 1721742789367
-    },
-    {
       "id": 12,
       "nombre": "Lionel",
       "apellido": "Messi",
@@ -66,16 +56,16 @@
   ],
   "Guarderias": [
     {
-      "name": "Ore Wa Daree",
-      "address": "1423432143",
+      "name": "NASHEEEE",
+      "address": "DDDDFFFFF",
       "area": "norte",
       "medication": "Si",
       "openSpace": true,
       "walker": false,
       "dueñoId": 10,
-      "createdAt": 1721790551837,
-      "modifiedAt": 1721790551837,
-      "id": 1
+      "createdAt": 1721791378744,
+      "modifiedAt": 1721791378744,
+      "id": 2
     }
   ],
   "availableDates": [
