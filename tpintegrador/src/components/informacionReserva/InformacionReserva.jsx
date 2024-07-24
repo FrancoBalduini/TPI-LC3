@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import "./InformacionReserva.css";
 
-const InformacionReserva = ({ guarderiaName, entryDate, exitDate }) => {
+const InformacionReserva = ({ guarderiaId, entryDate, exitDate }) => {
   return (
     <div className="informacion-reserva">
-      <h3>{guarderiaName}</h3>
+      <h3>Reserva a la guarderia: {guarderiaId}</h3>
       <p>Fecha de entrada: {entryDate}</p>
       <p>Fecha de salida: {exitDate}</p>
     </div>
@@ -11,7 +12,7 @@ const InformacionReserva = ({ guarderiaName, entryDate, exitDate }) => {
 };
 
 InformacionReserva.propTypes = {
-  guarderiaName: PropTypes.string.isRequired,
+  guarderiaId: PropTypes.number.isRequired,
   entryDate: PropTypes.string.isRequired,
   exitDate: PropTypes.string.isRequired,
 };

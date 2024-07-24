@@ -1,13 +1,45 @@
 .informacion-reserva {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 20px;
   margin: 20px 0;
   border: 1px solid #ccc;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  margin: 20px auto;
 }
-.informacion-reserva h2 {
+
+.informacion-reserva h3 {
   margin-bottom: 10px;
+  text-align: center;
+  color: black;
 }
+
 .informacion-reserva p {
   margin: 5px 0;
+  font-size: 1em;
+}
+
+.informacion-reserva .btn-close {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #add8e6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+}
+
+.informacion-reserva .btn-close:hover {
+  background-color: #fffbb1;
+}
+
+.informacion-reserva.dark {
+  background-color: #f4d03f;
+}
+
+.informacion-reserva.dark:hover {
+  background-color: #c8ffb1;
 }

@@ -7,6 +7,7 @@ const AuthContextProvider = ({ children }) => {
   const [loggedUser, setLoggedUser] = useState(null);
   const [userList, setUserList] = useState([]);
   const [guarderiaList, setGuarderiaList] = useState([]);
+  const [reservasList, setReservasList] = useState([]);
 
   // Funciones Fetch
   const fetchUsers = async () => {
@@ -32,9 +33,22 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const fetchReservas = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/reservas");
+      if (!response.ok) throw new Error("Failed to fetch reservas");
+      const reservas = await response.json();
+      console.log("Datos de reservas:", reservas);
+      setReservasList(reservas);
+    } catch (error) {
+      console.error("Error fetching reservas:", error);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
     fetchGuarderias();
+    fetchReservas();
   }, []);
 
   // Funciones
@@ -69,6 +83,7 @@ const AuthContextProvider = ({ children }) => {
         const { accessToken, ...user } = await response.json();
         setLoggedUser(user);
         localStorage.setItem("authToken", accessToken);
+        fetchUserReservations(user.id); // Fetch reservations after login
         return user;
       } else {
         const user = userList.find(
@@ -77,6 +92,7 @@ const AuthContextProvider = ({ children }) => {
         if (user) {
           setLoggedUser(user);
           localStorage.setItem("authToken", "");
+          fetchUserReservations(user.id); // Fetch reservations after login
           return user;
         } else {
           throw new Error("Credenciales incorrectas");
@@ -254,35 +270,30 @@ const AuthContextProvider = ({ children }) => {
         body: JSON.stringify(reservation),
       });
 
-      const contentType = response.headers.get("Content-Type");
-
-      if (response.ok) {
-        if (contentType && contentType.includes("application/json")) {
-          const data = await response.json();
-          return data;
-        } else {
-          const errorText = await response.text();
-          console.error("Respuesta no JSON:", errorText);
-          throw new Error("La respuesta del servidor no es JSON");
-        }
-      } else {
+      if (!response.ok) {
         const errorText = await response.text();
-        console.error("Error al crear la reserva:", errorText);
-        throw new Error(`Error al crear la reserva: ${errorText}`);
+        throw new Error(`Error creating reservation: ${errorText}`);
       }
+
+      const newReservation = await response.json();
+      setReservasList((prevReservas) => [...prevReservas, newReservation]);
     } catch (error) {
-      console.error("Error en la solicitud:", error);
-      throw error;
+      console.error("Error creating reservation:", error);
     }
   };
 
-  const addUser = async (nombre, apellido, email, password, role) => {
-    await registerUser(nombre, apellido, email, password, role);
-  };
-
-  const logoutUser = () => {
-    setLoggedUser(null);
-    localStorage.removeItem("authToken");
+  const fetchUserReservations = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/reservas?userId=${userId}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch user reservations");
+      const userReservations = await response.json();
+      console.log("User reservations:", userReservations);
+      setReservasList(userReservations);
+    } catch (error) {
+      console.error("Error fetching user reservations:", error);
+    }
   };
 
   return (
@@ -291,7 +302,7 @@ const AuthContextProvider = ({ children }) => {
         loggedUser,
         userList,
         guarderiaList,
-
+        reservasList,
         registerUser,
         loginUser,
         updateUser,
@@ -300,9 +311,6 @@ const AuthContextProvider = ({ children }) => {
         updateGuarderia,
         deleteGuarderia,
         createReservation,
-        logoutUser,
-        setLoggedUser,
-        addUser,
       }}
     >
       {children}
