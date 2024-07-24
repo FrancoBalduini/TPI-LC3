@@ -114,69 +114,6 @@
   "reservas": [
     {
       "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-23",
-      "checkOutDate": "2024-07-26",
-      "createdAt": 1721794464438,
-      "modifiedAt": 1721794464438,
-      "id": 1
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-08-02",
-      "createdAt": 1721845846288,
-      "modifiedAt": 1721845846288,
-      "id": 2
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-26",
-      "createdAt": 1721846478533,
-      "modifiedAt": 1721846478533,
-      "id": 3
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-26",
-      "createdAt": 1721846792909,
-      "modifiedAt": 1721846792909,
-      "id": 4
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-26",
-      "createdAt": 1721847210649,
-      "modifiedAt": 1721847210649,
-      "id": 5
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-27",
-      "createdAt": 1721847297261,
-      "modifiedAt": 1721847297261,
-      "id": 6
-    },
-    {
-      "guarderiaId": "2",
-      "userId": 13,
-      "checkInDate": "2024-07-26",
-      "checkOutDate": "2024-07-28",
-      "createdAt": 1721847844660,
-      "modifiedAt": 1721847844660,
-      "id": 7
-    },
-    {
-      "guarderiaId": "2",
       "dueñoId": 10,
       "userId": 13,
       "checkInDate": "2024-07-25",

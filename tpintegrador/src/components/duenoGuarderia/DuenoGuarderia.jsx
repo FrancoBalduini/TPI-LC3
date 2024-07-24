@@ -10,34 +10,31 @@ const DuenoGuarderia = () => {
   const { theme } = useContext(ThemeContext);
   const { reservasList, guarderiaList, loggedUser } = useContext(AuthContext);
 
+  console.log("reservasList:", reservasList);
+  console.log("loggedUser:", loggedUser);
+
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
-  console.log('lista de reservas dueño', reservasList)
-  console.log('lista de guarderias dueño', guarderiaList)
-
-  const userGuarderias = guarderiaList.filter(
-    (guarderia) => guarderia.dueñoId === loggedUser.id
+  const guarderiasDueño = guarderiaList.filter(
+    (guarderia) => guarderia.dueñoId === loggedUser.Id
   );
 
-  const dueñoReserva = reservasList.filter(
+  const dueñoReservations = reservasList.filter(
     (reserva) => reserva.dueñoId === loggedUser.id
   );
 
-  console.log('dueño reserva', dueñoReserva)
-  
   return (
     <div className={`bodyDuenoG ${theme}`}>
       <HeaderHome />
       <div className="content">
         <div>
-          <CardCuadrada title="Turnos" items={(dueñoReserva)} />
-          <CardCuadrada title="Agregar Guarderías" />
+          <CardCuadrada title="Mis Reservas" reservas={dueñoReservations} />
         </div>
-      </div>
-      <div className="guarderia-container">
-        <CardGuarderia guarderiaList={userGuarderias} />
+        <div className="guarderia-container">
+          <CardGuarderia guarderiaList={guarderiasDueño} />
+        </div>
       </div>
     </div>
   );

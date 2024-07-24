@@ -1,45 +1,48 @@
 import PropTypes from "prop-types";
 import "./CardCuadrada.css";
-import { ThemeContext } from "../context/Context";
-import { useContext } from "react";
 
-const CardCuadrada = ({ title, items, scrollable }) => {
-  const { theme } = useContext(ThemeContext);
-
-  const safeItems = Array.isArray(items) ? items : [];
-
+const CardCuadrada = ({ title, reservas }) => {
   return (
-    <div className={`card-square ${theme}`}>
-      <h3>{title}</h3>
-      <div className={scrollable ? "scrollable-table" : ""}>
+    <div className="card-cuadrada">
+      <h2>{title}</h2>
+      {reservas && reservas.length > 0 ? (
         <table>
+          <thead>
+            <tr>
+              <th>Reserva ID</th>
+              <th>Guardería ID</th>
+              <th>Check-In</th>
+              <th>Check-Out</th>
+            </tr>
+          </thead>
           <tbody>
-            {safeItems.map((item, index) => (
-              <tr key={index}>
-                <td>{title === "Turnos" ? item.text : ""}</td>
-                <td>
-                  <button className="boton-agregar">Agregar ✅</button>
-                </td>
-                <td>
-                  <button className="boton-borrar">Eliminar ❌</button>
-                </td>
+            {reservas.map((reserva) => (
+              <tr key={reserva.id}>
+                <td>{reserva.id}</td>
+                <td>{reserva.guarderiaId}</td>
+                <td>{reserva.checkInDate}</td>
+                <td>{reserva.checkOutDate}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      ) : (
+        <p>No tienes reservas.</p>
+      )}
     </div>
   );
 };
 
 CardCuadrada.propTypes = {
   title: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(
+  reservas: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      guarderiaId: PropTypes.string.isRequired,
+      checkInDate: PropTypes.string.isRequired,
+      checkOutDate: PropTypes.string.isRequired,
     })
   ).isRequired,
-  scrollable: PropTypes.bool,
 };
 
 export default CardCuadrada;

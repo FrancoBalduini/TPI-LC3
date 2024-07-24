@@ -45,11 +45,47 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const fetchUserReservations = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/reservas?userId=${userId}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch user reservations");
+      const userReservations = await response.json();
+      console.log("User reservations:", userReservations);
+      setReservasList(userReservations);
+    } catch (error) {
+      console.error("Error fetching user reservations:", error);
+    }
+  };
+
+  const fetchDueñoReservations = async (dueñoId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/reservas?dueñoId=${dueñoId}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch dueño reservations");
+      const dueñoReservations = await response.json();
+      console.log("Dueño reservations:", dueñoReservations);
+      setReservasList(dueñoReservations);
+    } catch (error) {
+      console.error("Error fetching dueño reservations:", error);
+    }
+  };
+
   useEffect(() => {
-    fetchUsers();
-    fetchGuarderias();
-    fetchReservas();
-  }, []);
+    const fetchData = async () => {
+      await fetchUsers();
+      await fetchGuarderias();
+      await fetchReservas();
+      if (loggedUser) {
+        await fetchUserReservations(loggedUser.id);
+        await fetchDueñoReservations(loggedUser.id);
+      }
+    };
+
+    fetchData();
+  }, [loggedUser]);
 
   // Funciones
   const registerUser = async (nombre, apellido, email, password, role) => {
@@ -279,20 +315,6 @@ const AuthContextProvider = ({ children }) => {
       setReservasList((prevReservas) => [...prevReservas, newReservation]);
     } catch (error) {
       console.error("Error creating reservation:", error);
-    }
-  };
-
-  const fetchUserReservations = async (userId) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8000/reservas?userId=${userId}`
-      );
-      if (!response.ok) throw new Error("Failed to fetch user reservations");
-      const userReservations = await response.json();
-      console.log("User reservations:", userReservations);
-      setReservasList(userReservations);
-    } catch (error) {
-      console.error("Error fetching user reservations:", error);
     }
   };
 
