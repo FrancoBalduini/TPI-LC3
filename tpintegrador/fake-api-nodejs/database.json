@@ -1,7 +1,17 @@
 {
   "protectedResources": {
-    "users": ["GET,DELETE", "POST", "PUT", "PATCH"],
-    "Guarderias": ["GET,POST", "PUT", "PATCH", "DELETE"]
+    "users": [
+      "GET,DELETE",
+      "POST",
+      "PUT",
+      "PATCH"
+    ],
+    "Guarderias": [
+      "GET,POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
   },
   "users": [
     {
@@ -15,13 +25,13 @@
     },
     {
       "id": 10,
-      "nombre": "Caronte",
+      "nombre": "Kronte",
       "apellido": "Caronte",
       "email": "Caronte@gmail.com",
       "password": "caronte",
       "role": "dueño",
       "createdAt": 1721596676743,
-      "modifiedAt": 1721596676743
+      "modifiedAt": 1721786408278
     },
     {
       "id": 11,
@@ -31,8 +41,7 @@
       "password": "1234",
       "role": "cliente",
       "createdAt": 1721738986722,
-      "modifiedAt": 1721742789367,
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExLCJpYXQiOjE3MjE3NDI3ODQsImV4cCI6MTcyMjM0NzU4NH0.le18uC5UHGHC2u8eWVz9LxYK8IKVsDCxxofc4A3c9uU"
+      "modifiedAt": 1721742789367
     },
     {
       "id": 12,
@@ -43,108 +52,30 @@
       "role": "admin",
       "createdAt": 1721739400082,
       "modifiedAt": 1721739400082
+    },
+    {
+      "id": 13,
+      "nombre": "Franco",
+      "apellido": "Bestia",
+      "email": "beast@gmail.com",
+      "password": "beast",
+      "role": "cliente",
+      "createdAt": 1721785503757,
+      "modifiedAt": 1721785503757
     }
   ],
   "Guarderias": [
     {
-      "name": {
-        "name": "NASHEEEE2343",
-        "address": "1423432143",
-        "area": "norte",
-        "medication": "No",
-        "openSpace": true,
-        "walker": false,
-        "dueñoId": 8,
-        "dates": "availableDates"
-      },
-      "createdAt": 1721596377123,
-      "modifiedAt": 1721741492032,
-      "id": 6,
-      "reservas": 4
-    },
-    {
-      "name": {
-        "name": "Facu",
-        "address": "Belen en 45",
-        "area": "este",
-        "medication": "Si",
-        "openSpace": false,
-        "walker": true,
-        "dueñoId": 10
-      },
-      "createdAt": 1721596809228,
-      "modifiedAt": 1721742005520,
-      "id": 7,
-      "reservas": {
-        "list": [
-          {
-            "reservationId": 1721703153382,
-            "clientId": null,
-            "entryDate": "2024-07-11",
-            "exitDate": "2024-07-25"
-          },
-          {
-            "reservationId": 1721703545478,
-            "clientId": null,
-            "entryDate": "2024-07-05",
-            "exitDate": "2024-07-24"
-          },
-          {
-            "reservationId": 1721703602053,
-            "clientId": null,
-            "entryDate": "2024-07-11",
-            "exitDate": "2024-07-17"
-          }
-        ]
-      }
-    },
-    {
-      "name": {
-        "name": {
-          "name": "XDDDDDDDDDDD",
-          "address": "DDDDFFFFF",
-          "area": "centro",
-          "medication": "Si",
-          "openSpace": true,
-          "walker": false,
-          "dueñoId": 0
-        }
-      },
-      "createdAt": 1721737946283,
-      "modifiedAt": 1721737946283,
-      "id": 8
-    },
-    {
-      "name": {
-        "name": {
-          "name": "XDDDDDDDDDDD",
-          "address": "DDDDFFFFF",
-          "area": "centro",
-          "medication": "Si",
-          "openSpace": false,
-          "walker": true,
-          "dueñoId": 0
-        }
-      },
-      "createdAt": 1721738904344,
-      "modifiedAt": 1721738904344,
-      "id": 9
-    },
-    {
-      "name": {
-        "name": {
-          "name": "NASHEEEE",
-          "address": "1423432143",
-          "area": "norte",
-          "medication": "Si",
-          "openSpace": true,
-          "walker": false,
-          "dueñoId": "10"
-        }
-      },
-      "createdAt": 1721739227809,
-      "modifiedAt": 1721739227809,
-      "id": 10
+      "name": "Ore Wa Daree",
+      "address": "1423432143",
+      "area": "norte",
+      "medication": "Si",
+      "openSpace": true,
+      "walker": false,
+      "dueñoId": 10,
+      "createdAt": 1721790551837,
+      "modifiedAt": 1721790551837,
+      "id": 1
     }
   ],
   "availableDates": [
