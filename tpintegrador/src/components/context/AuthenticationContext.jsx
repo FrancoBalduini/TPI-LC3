@@ -296,6 +296,10 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const addUser = async (nombre, apellido, email, password, role) => {
+    await registerUser(nombre, apellido, email, password, role);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -311,6 +315,7 @@ const AuthContextProvider = ({ children }) => {
         updateGuarderia,
         deleteGuarderia,
         createReservation,
+        addUser,
       }}
     >
       {children}

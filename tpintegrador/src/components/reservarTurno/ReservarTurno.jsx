@@ -9,10 +9,12 @@ const ReservarTurno = () => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleReservation = async () => {
     if (!selectedGuarderiaId || !checkInDate || !checkOutDate) {
       setError("Debes completar todos los campos.");
+
       return;
     }
 
@@ -26,8 +28,11 @@ const ReservarTurno = () => {
     try {
       const result = await createReservation(reservation);
       console.log("Reserva creada con éxito:", result);
+      setSuccessMessage("Reserva creada con éxito.");
+      setError("");
     } catch (err) {
       setError(`Error al realizar la reserva: ${err.message}`);
+      setSuccessMessage("");
     }
   };
 
@@ -35,6 +40,7 @@ const ReservarTurno = () => {
     <div className="reservar-turno">
       <h2>Reservar Turno</h2>
       {error && <p className="error">{error}</p>}
+
       <form>
         <label htmlFor="guarderia">Selecciona una guardería:</label>
         <select
@@ -74,6 +80,11 @@ const ReservarTurno = () => {
           >
             Reservar
           </button>
+          {successMessage && (
+            <p className="success" style={{ textAlign: "center" }}>
+              {successMessage}
+            </p>
+          )}
         </div>
       </form>
     </div>

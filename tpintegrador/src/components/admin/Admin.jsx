@@ -3,8 +3,8 @@ import { ThemeContext } from "../context/Context";
 import { useContext, useEffect, useState } from "react";
 import "./Admin.css";
 import Card from "../card/Card";
-import useUserManagement from "../hooks/UseUserHook";
-import useGuarderiaManagement from "../hooks/UseGuarderiaHook";
+import useGuarderiaHook from "../hooks/useGuarderiaHook";
+import useUserHook from "../hooks/useUserHook";
 
 import AgregarUsuario from "../agregarAdmin/AgregarUsuario";
 
@@ -18,7 +18,7 @@ const Admin = () => {
     handleSaveUserChanges,
     handleCancelEditUser,
     handleDeleteUser,
-  } = useUserManagement();
+  } = useUserHook();
   const {
     guarderiaList,
     editingGuarderia,
@@ -27,7 +27,7 @@ const Admin = () => {
     handleSaveGuarderiaChanges,
     handleCancelEditGuarderia,
     handleDeleteGuarderia,
-  } = useGuarderiaManagement();
+  } = useGuarderiaHook();
 
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
