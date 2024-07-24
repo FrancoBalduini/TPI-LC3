@@ -242,44 +242,42 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const createReservation = async (guarderiaId, clienteId) => {
+  const createReservation = async (reservation) => {
     try {
       const authToken = localStorage.getItem("authToken");
-      const response = await fetch("http://localhost:8000/reservations", {
+      const response = await fetch("http://localhost:8000/reservas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify({
-          guarderiaId,
-          clienteId,
-        }),
+        body: JSON.stringify(reservation),
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Error creating reservation: ${errorText}`);
-      }
+      const contentType = response.headers.get("Content-Type");
 
-      const newReservation = await response.json();
-      setGuarderiaList((prevGuarderias) =>
-        prevGuarderias.map((guarderia) =>
-          guarderia.id === guarderiaId
-            ? {
-                ...guarderia,
-                reservations: [
-                  ...(guarderia.reservations || []),
-                  newReservation,
-                ],
-              }
-            : guarderia
-        )
-      );
+      if (response.ok) {
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          return data;
+        } else {
+          const errorText = await response.text();
+          console.error("Respuesta no JSON:", errorText);
+          throw new Error("La respuesta del servidor no es JSON");
+        }
+      } else {
+        const errorText = await response.text();
+        console.error("Error al crear la reserva:", errorText);
+        throw new Error(`Error al crear la reserva: ${errorText}`);
+      }
     } catch (error) {
-      console.error("Error creating reservation:", error);
+      console.error("Error en la solicitud:", error);
       throw error;
     }
+  };
+
+  const addUser = async (nombre, apellido, email, password, role) => {
+    await registerUser(nombre, apellido, email, password, role);
   };
 
   const logoutUser = () => {
@@ -302,9 +300,9 @@ const AuthContextProvider = ({ children }) => {
         updateGuarderia,
         deleteGuarderia,
         createReservation,
-
         logoutUser,
         setLoggedUser,
+        addUser,
       }}
     >
       {children}

@@ -52,11 +52,21 @@
       "role": "cliente",
       "createdAt": 1721785503757,
       "modifiedAt": 1721785503757
+    },
+    {
+      "id": 14,
+      "nombre": "Lucas",
+      "apellido": "Mikela",
+      "email": "xd@gmail.com",
+      "password": "12345",
+      "role": "cliente",
+      "createdAt": 1721792519002,
+      "modifiedAt": 1721792519002
     }
   ],
   "Guarderias": [
     {
-      "name": "NASHEEEE",
+      "name": "NASHEE",
       "address": "DDDDFFFFF",
       "area": "norte",
       "medication": "Si",
@@ -64,8 +74,20 @@
       "walker": false,
       "dueñoId": 10,
       "createdAt": 1721791378744,
-      "modifiedAt": 1721791378744,
-      "id": 2
+      "modifiedAt": 1721792734191,
+      "id": 2,
+      "dates": "availableDates"
+    }
+  ],
+  "reservas": [
+    {
+      "guarderiaId": "2",
+      "userId": 13,
+      "checkInDate": "2024-07-23",
+      "checkOutDate": "2024-07-26",
+      "createdAt": 1721794464438,
+      "modifiedAt": 1721794464438,
+      "id": 1
     }
   ],
   "availableDates": [

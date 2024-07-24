@@ -5,7 +5,7 @@ import "./Admin.css";
 import Card from "../card/Card";
 import useUserManagement from "../hooks/UseUserHook";
 import useGuarderiaManagement from "../hooks/UseGuarderiaHook";
-import AgregarGuarderia from "../agregarAdmin/AgregarGuarderia";
+
 import AgregarUsuario from "../agregarAdmin/AgregarUsuario";
 
 const Admin = () => {
@@ -32,7 +32,6 @@ const Admin = () => {
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [guarderiaSearchTerm, setGuarderiaSearchTerm] = useState("");
   const [showAgregarUsuario, setShowAgregarUsuario] = useState(false);
-  const [showAgregarGuarderia, setShowAgregarGuarderia] = useState(false);
 
   useEffect(() => {
     document.body.className = theme;
@@ -53,8 +52,11 @@ const Admin = () => {
         user.apellido.toLowerCase().includes(userSearchTerm.toLowerCase()))
   );
 
-  const filteredGuarderias = guarderiaList.filter((guarderia) =>
-    guarderia.name.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
+  const filteredGuarderias = guarderiaList.filter(
+    (guarderia) =>
+      guarderia.name &&
+      typeof guarderia.name === "string" &&
+      guarderia.name.toLowerCase().includes(guarderiaSearchTerm.toLowerCase())
   );
 
   return (
@@ -261,14 +263,6 @@ const Admin = () => {
             </div>
           ) : (
             <p>No hay guarderías registradas.</p>
-          )}
-          <div className="button-container">
-            <button onClick={() => setShowAgregarGuarderia(true)}>
-              Agregar guardería ✅
-            </button>
-          </div>
-          {showAgregarGuarderia && (
-            <AgregarGuarderia onClose={() => setShowAgregarGuarderia(false)} />
           )}
         </Card>
       </div>

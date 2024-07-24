@@ -1,96 +1,83 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthenticationContext";
-import PropTypes from "prop-types";
+import "./ReservarTurno.css";
 
-const ReservarTurno = ({ guarderiaOptions }) => {
-  const { loggedUser, createReservation } = useContext(AuthContext);
-  const [selectedGuarderia, setSelectedGuarderia] = useState(
-    guarderiaOptions[0]?.id || null
-  );
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [error, setError] = useState(null);
+const ReservarTurno = () => {
+  const { guarderiaList, createReservation, loggedUser } =
+    useContext(AuthContext);
+  const [selectedGuarderiaId, setSelectedGuarderiaId] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [error, setError] = useState("");
 
-  const handleReserve = async (e) => {
-    e.preventDefault();
-
-    if (!loggedUser) {
-      setError("Debes iniciar sesión para hacer una reserva.");
+  const handleReservation = async () => {
+    if (!selectedGuarderiaId || !checkInDate || !checkOutDate) {
+      setError("Debes completar todos los campos.");
       return;
     }
 
-    if (!startDate || !endDate) {
-      setError("Debes seleccionar las fechas de entrada y salida.");
-      return;
-    }
+    const reservation = {
+      guarderiaId: selectedGuarderiaId,
+      userId: loggedUser.id,
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate,
+    };
 
     try {
-      await createReservation(
-        selectedGuarderia,
-        loggedUser.id,
-        startDate,
-        endDate
-      );
-      alert("Reserva creada exitosamente!");
-      setStartDate("");
-      setEndDate("");
+      const result = await createReservation(reservation);
+      console.log("Reserva creada con éxito:", result);
     } catch (err) {
-      setError(err.message);
+      setError(`Error al realizar la reserva: ${err.message}`);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleReserve}>
-        <div>
-          <label htmlFor="guarderia">Selecciona una guardería:</label>
-          <select
-            id="guarderia"
-            value={selectedGuarderia}
-            onChange={(e) => setSelectedGuarderia(parseInt(e.target.value, 10))}
+    <div className="reservar-turno">
+      <h2>Reservar Turno</h2>
+      {error && <p className="error">{error}</p>}
+      <form>
+        <label htmlFor="guarderia">Selecciona una guardería:</label>
+        <select
+          id="guarderia"
+          value={selectedGuarderiaId}
+          onChange={(e) => setSelectedGuarderiaId(e.target.value)}
+        >
+          <option value="">Seleccione una guardería</option>
+          {guarderiaList.map((guarderia) => (
+            <option key={guarderia.id} value={guarderia.id}>
+              {guarderia.name}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor="check-in">Fecha de Entrada:</label>
+        <input
+          id="check-in"
+          type="date"
+          value={checkInDate}
+          onChange={(e) => setCheckInDate(e.target.value)}
+        />
+
+        <label htmlFor="check-out">Fecha de Salida:</label>
+        <input
+          id="check-out"
+          type="date"
+          value={checkOutDate}
+          onChange={(e) => setCheckOutDate(e.target.value)}
+        />
+
+        <div className="actions">
+          <button
+            type="button"
+            className="btn-reserve"
+            onClick={handleReservation}
           >
-            {guarderiaOptions.map(({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ))}
-          </select>
+            Reservar
+          </button>
         </div>
-
-        <div>
-          <label htmlFor="startDate">Fecha de entrada:</label>
-          <input
-            type="date"
-            id="startDate"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="endDate">Fecha de salida:</label>
-          <input
-            type="date"
-            id="endDate"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </div>
-
-        <button type="submit">Reservar turno</button>
       </form>
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
-};
-
-ReservarTurno.propTypes = {
-  guarderiaOptions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
 export default ReservarTurno;

@@ -62,3 +62,9 @@ body.dark {
 .btn-reserve.dark:hover {
   background-color: #c8ffb1;
 }
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
