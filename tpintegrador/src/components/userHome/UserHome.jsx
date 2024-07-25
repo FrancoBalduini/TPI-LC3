@@ -38,7 +38,7 @@ const UserHome = () => {
       <HeaderHome />
       <body className={`body ${theme}`}>
         <div className="dynamic-info">
-          {guarderiaList.length > 0 && (
+        {guarderiaList.length > 0 && (
             <div className="guarderia-info">
               <h2>
                 Nombre Guarderia: {guarderiaList[currentGuarderiaIndex].name}

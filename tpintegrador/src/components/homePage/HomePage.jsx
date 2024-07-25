@@ -4,18 +4,22 @@ import HeaderHome from "../headerHome/HeaderHome";
 import { ThemeContext } from "../context/Context";
 import { useContext } from "react";
 import { availableDates } from "../../../fake-api-nodejs/database.json";
+import { AuthContext } from "../context/AuthenticationContext";
+import { useCallback } from "react";
 
 const HomePage = () => {
   const [formData, setFormData] = useState({
-    search: "",
-    petType: "",
     entryDate: "",
     exitDate: "",
     area: "",
-    needsMedication: "No",
+    medication: "No",
     openSpace: false,
     walker: false,
   });
+
+  const [filteredGuarderias, setFilteredGuarderias] = useState([]);
+  const { theme } = useContext(ThemeContext);
+  const { guarderiaList } = useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,10 +31,51 @@ const HomePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    filterGuarderias();
   };
 
-  const { theme } = useContext(ThemeContext);
+  const filterGuarderias = useCallback(() => {
+    console.log("FormData:", formData); // Debugging: Check formData values
+    console.log("Guarderias List:", guarderiaList); // Debugging: Check guarderiaList values
+  
+    const {
+      entryDate,
+      exitDate,
+      area,
+      medication,
+      openSpace,
+      walker,
+    } = formData;
+  
+    const filtered = guarderiaList.filter((guarderia) => {
+
+      const availableFrom = new Date(guarderia.availableFrom);
+      const availableTo = new Date(guarderia.availableTo);
+      const selectedEntryDate = entryDate ? new Date(entryDate) : null;
+      const selectedExitDate = exitDate ? new Date(exitDate) : null;
+      
+      const matchesDateRange = entryDate && exitDate
+        ? (selectedEntryDate <= availableTo && selectedExitDate >= availableFrom)
+        : true;
+      
+      const matchesArea = area ? guarderia.area === area : true;
+      const matchesMedication = medication ? guarderia.medication === medication : true;
+      const matchesOpenSpace = openSpace ? guarderia.openSpace === openSpace : true;
+      const matchesWalker = walker ? guarderia.walker === walker : true;
+  
+      return (
+        matchesDateRange &&
+        matchesArea &&
+        matchesMedication &&
+        matchesOpenSpace &&
+        matchesWalker
+      );
+    });
+  
+    console.log("Filtered Guarderias:", filtered); 
+    setFilteredGuarderias(filtered);
+  }, [formData, guarderiaList]);
+  
 
   return (
     <>
@@ -137,10 +182,21 @@ const HomePage = () => {
                 Paseador
               </label>
             </div>
-            <button type="submit" className={`botonBuscar ${theme}`}>
+            <button type="button" onClick={filterGuarderias} className={`botonBuscar ${theme}`}>
               Buscar
             </button>
           </form>
+          <div className="filtered-results">
+            {filteredGuarderias.length > 0 ? (
+              <ul>
+                {filteredGuarderias.map((guarderia) => (
+                  <li key={guarderia.id}>{guarderia.name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No se encontraron guarderías que coincidan con los criterios.</p>
+            )}
+          </div>
         </div>
       </body>
     </>
