@@ -5,10 +5,11 @@ import "./DuenoGuarderia.css";
 import CardCuadrada from "../cardCuadrada/CardCuadrada";
 import CardGuarderia from "../cardGuarderia/CardGuarderia";
 import HeaderHome from "../headerHome/HeaderHome";
+import { useNavigate } from "react-router-dom";
 
 const DuenoGuarderia = () => {
   const { theme } = useContext(ThemeContext);
-  const { reservasList, guarderiaList, loggedUser, deleteReservation } =
+  const { reservasList, guarderiaList, loggedUser, deleteReservation,setLoggedUser,deleteUser } =
     useContext(AuthContext);
 
   console.log("reservasList:", reservasList);
@@ -29,6 +30,23 @@ const DuenoGuarderia = () => {
   const handleDelete = (reservationId) => {
     deleteReservation(reservationId);
   };
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
+    if (confirmed) {
+      const deleted = await deleteUser(loggedUser.id);
+      if (deleted) {
+        setLoggedUser(null);
+        localStorage.removeItem("loggedUser");
+        
+      } else {
+        console.error("Error al eliminar usuario");
+      }
+    }
+    navigate("/");
+  };
+
 
   return (
     <div className={`bodyDuenoG ${theme}`}>
@@ -46,6 +64,14 @@ const DuenoGuarderia = () => {
       <div className="guarderia-container">
         <CardGuarderia guarderiaList={guarderiasDueño} />
       </div>
+
+      <button
+          className={`boton-eliminar-cliente zIndex5 ${theme}`}
+          onClick={handleLogOut}
+        >
+          Eliminar usuario
+        </button>
+
     </div>
   );
 };

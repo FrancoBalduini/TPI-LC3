@@ -26,10 +26,13 @@ const HeaderHome = () => {
     return email.split("@")[0];
   };
 
+
+
   return (
     <>
       <Header />
       <div className={`lupa-input ${theme}`}>
+      
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -59,8 +62,11 @@ const HeaderHome = () => {
             onClick={handleNavigateToUserHome}
           >
             Hacer una reserva
-          </button>
+          </button> 
         )}
+
+
+
         {loggedUser ? (
           <span
             className="nombre-usuario zIndex5"

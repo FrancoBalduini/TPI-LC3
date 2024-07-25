@@ -44,26 +44,6 @@
       "modifiedAt": 1721739400082
     },
     {
-      "id": 13,
-      "nombre": "Franco",
-      "apellido": "Bestia",
-      "email": "beast@gmail.com",
-      "password": "beast",
-      "role": "cliente",
-      "createdAt": 1721785503757,
-      "modifiedAt": 1721785503757
-    },
-    {
-      "id": 14,
-      "nombre": "Lucas",
-      "apellido": "Mikela",
-      "email": "xd@gmail.com",
-      "password": "12345",
-      "role": "cliente",
-      "createdAt": 1721792519002,
-      "modifiedAt": 1721792519002
-    },
-    {
       "id": 15,
       "nombre": "samurai",
       "apellido": "ashinaa",
@@ -72,16 +52,6 @@
       "role": "dueño",
       "createdAt": 1721845715734,
       "modifiedAt": 1721864583391
-    },
-    {
-      "id": 16,
-      "nombre": "Mariano",
-      "apellido": "Gerosa",
-      "email": "nano@gmail.com",
-      "password": "1234",
-      "role": "dueño",
-      "createdAt": 1721849356445,
-      "modifiedAt": 1721849356445
     }
   ],
   "Guarderias": [

@@ -14,7 +14,10 @@ const InfoUser = () => {
     updateUser,
     reservasList,
     deleteReservation,
+    deleteUser
   } = useContext(AuthContext);
+
+
 
   const [isEditing, setIsEditing] = useState(false);
   const [editUser, setEditUser] = useState({
@@ -82,6 +85,21 @@ const InfoUser = () => {
   const handleBack = (e) => {
     e.preventDefault();
     navigate("/userHome");
+  };
+
+  const handleLogOut = async () => {
+    const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
+    if (confirmed) {
+      const deleted = await deleteUser(loggedUser.id);
+      if (deleted) {
+        setLoggedUser(null);
+        localStorage.removeItem("loggedUser");
+        
+      } else {
+        console.error("Error al eliminar usuario");
+      }
+    }
+    navigate("/");
   };
 
   return (
@@ -178,6 +196,14 @@ const InfoUser = () => {
             </div>
           </CardCuadrada>
         </div>
+
+        <button
+          className={`boton-eliminar-cliente zIndex5 ${theme}`}
+          onClick={handleLogOut}
+        >
+          Eliminar usuario
+        </button>
+
         <button onClick={handleBack} className={`boton-volver ${theme}`}>
           Volver atras
         </button>
