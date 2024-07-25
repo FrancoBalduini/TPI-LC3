@@ -37,45 +37,27 @@ const HomePage = () => {
   const filterGuarderias = useCallback(() => {
     console.log("FormData:", formData); // Debugging: Check formData values
     console.log("Guarderias List:", guarderiaList); // Debugging: Check guarderiaList values
-  
-    const {
-      entryDate,
-      exitDate,
-      area,
-      medication,
-      openSpace,
-      walker,
-    } = formData;
-  
-    const filtered = guarderiaList.filter((guarderia) => {
 
-      const availableFrom = new Date(guarderia.availableFrom);
-      const availableTo = new Date(guarderia.availableTo);
-      const selectedEntryDate = entryDate ? new Date(entryDate) : null;
-      const selectedExitDate = exitDate ? new Date(exitDate) : null;
-      
-      const matchesDateRange = entryDate && exitDate
-        ? (selectedEntryDate <= availableTo && selectedExitDate >= availableFrom)
-        : true;
-      
+    const { area, medication, openSpace, walker } = formData;
+
+    const filtered = guarderiaList.filter((guarderia) => {
       const matchesArea = area ? guarderia.area === area : true;
-      const matchesMedication = medication ? guarderia.medication === medication : true;
-      const matchesOpenSpace = openSpace ? guarderia.openSpace === openSpace : true;
+      const matchesMedication = medication
+        ? guarderia.medication === medication
+        : true;
+      const matchesOpenSpace = openSpace
+        ? guarderia.openSpace === openSpace
+        : true;
       const matchesWalker = walker ? guarderia.walker === walker : true;
-  
+
       return (
-        matchesDateRange &&
-        matchesArea &&
-        matchesMedication &&
-        matchesOpenSpace &&
-        matchesWalker
+        matchesArea && matchesMedication && matchesOpenSpace && matchesWalker
       );
     });
-  
-    console.log("Filtered Guarderias:", filtered); 
+
+    console.log("Filtered Guarderias:", filtered);
     setFilteredGuarderias(filtered);
   }, [formData, guarderiaList]);
-  
 
   return (
     <>
@@ -147,17 +129,17 @@ const HomePage = () => {
               <label>¿Necesita medicamento?</label>
               <input
                 type="radio"
-                name="needsMedication"
+                name="medication"
                 value="Si"
-                checked={formData.needsMedication === "Si"}
+                checked={formData.medication === "Si"}
                 onChange={handleChange}
               />{" "}
               Si
               <input
                 type="radio"
-                name="needsMedication"
+                name="medication"
                 value="No"
-                checked={formData.needsMedication === "No"}
+                checked={formData.medication === "No"}
                 onChange={handleChange}
               />{" "}
               No
@@ -182,7 +164,7 @@ const HomePage = () => {
                 Paseador
               </label>
             </div>
-            <button type="button" onClick={filterGuarderias} className={`botonBuscar ${theme}`}>
+            <button type="submit" className={`botonBuscar ${theme}`}>
               Buscar
             </button>
           </form>
@@ -190,11 +172,34 @@ const HomePage = () => {
             {filteredGuarderias.length > 0 ? (
               <ul>
                 {filteredGuarderias.map((guarderia) => (
-                  <li key={guarderia.id}>{guarderia.name}</li>
+                  <li key={guarderia.id}>
+                    <div>
+                      <strong>Nombre:</strong> {guarderia.name}
+                    </div>
+                    <div>
+                      <strong>Dirección:</strong> {guarderia.address}
+                    </div>
+                    <div>
+                      <strong>Área:</strong> {guarderia.area}
+                    </div>
+                    <div>
+                      <strong>Espacio Abierto:</strong>{" "}
+                      {guarderia.openSpace ? "Sí" : "No"}
+                    </div>
+                    <div>
+                      <strong>Paseador:</strong>{" "}
+                      {guarderia.walker ? "Sí" : "No"}
+                    </div>
+                    <div>
+                      <strong>Medicación:</strong> {guarderia.medication}
+                    </div>
+                  </li>
                 ))}
               </ul>
             ) : (
-              <p>No se encontraron guarderías que coincidan con los criterios.</p>
+              <p>
+                No se encontraron guarderías que coincidan con los criterios.
+              </p>
             )}
           </div>
         </div>
