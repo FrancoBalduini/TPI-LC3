@@ -23,6 +23,7 @@
   background-color: #ffd4b1;
   border-radius: 10px;
   grid-column-start: 2;
+  margin-top: 50px;
 }
 
 .reservation.dark {
@@ -95,4 +96,10 @@ form .checkboxes label {
 
 .botonBuscar:hover {
   background-color: #0056b3;
+}
+
+.reservation2 {
+  border: 4px solid black;
+  border-radius: 40px;
+  background-color: #ffff;
 }
