@@ -9,10 +9,10 @@ const CardCuadrada = ({ title, reservas, onDelete }) => {
         <table>
           <thead>
             <tr>
-              <th>Reserva ID</th>
-              <th>Guardería ID</th>
-              <th>Check-In</th>
-              <th>Check-Out</th>
+              <th>Reserva</th>
+              <th>Guardería</th>
+              <th>Fecha de entrada</th>
+              <th>Fecha de salida</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +40,7 @@ const CardCuadrada = ({ title, reservas, onDelete }) => {
 
 CardCuadrada.propTypes = {
   title: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
   reservas: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

@@ -4,6 +4,7 @@ import { ThemeContext } from "../context/Context";
 import { AuthContext } from "../context/AuthenticationContext";
 import "./InfoUser.css";
 import CardCuadrada from "./CardCuadrada";
+import { useNavigate } from "react-router-dom";
 
 const InfoUser = () => {
   const { theme } = useContext(ThemeContext);
@@ -22,8 +23,8 @@ const InfoUser = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
-  // Filtrar reservas para el usuario actual
   const userReservations = reservasList.filter(
     (reserva) => reserva.userId === loggedUser.id
   );
@@ -76,6 +77,11 @@ const InfoUser = () => {
     } catch (error) {
       console.error("Error al eliminar reserva:", error);
     }
+  };
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    navigate("/userHome");
   };
 
   return (
@@ -172,6 +178,9 @@ const InfoUser = () => {
             </div>
           </CardCuadrada>
         </div>
+        <button onClick={handleBack} className={`boton-volver ${theme}`}>
+          Volver atras
+        </button>
       </div>
     </>
   );

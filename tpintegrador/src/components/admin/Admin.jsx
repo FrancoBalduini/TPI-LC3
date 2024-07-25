@@ -62,9 +62,7 @@ const Admin = () => {
   return (
     <>
       <Header />
-      <div className={`lupa-input ${theme}`}>
-        {/* Add your search input fields here */}
-      </div>
+      <div className={`lupa-input ${theme}`}></div>
       <div className={`cuerpo ${theme}`}>
         <Card
           title="Lista de Usuarios Registrados"

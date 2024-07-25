@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthenticationContext";
 import "./ReservarTurno.css";
+import { ThemeContext } from "../context/Context";
 
 const ReservarTurno = () => {
   const { guarderiaList, createReservation, loggedUser } =
@@ -9,6 +10,7 @@ const ReservarTurno = () => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [error, setError] = useState("");
+  const { theme } = useContext(ThemeContext);
 
   const handleReservation = async () => {
     if (!selectedGuarderiaId || !checkInDate || !checkOutDate) {
@@ -47,51 +49,53 @@ const ReservarTurno = () => {
   };
 
   return (
-    <div className="reservar-turno">
-      <h2>Reservar Turno</h2>
-      {error && <p className="error">{error}</p>}
-      <form>
-        <label htmlFor="guarderia">Selecciona una guardería:</label>
-        <select
-          id="guarderia"
-          value={selectedGuarderiaId}
-          onChange={(e) => setSelectedGuarderiaId(e.target.value)}
-        >
-          <option value="">Seleccione una guardería</option>
-          {guarderiaList.map((guarderia) => (
-            <option key={guarderia.id} value={guarderia.id}>
-              {guarderia.name}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor="check-in">Fecha de Entrada:</label>
-        <input
-          id="check-in"
-          type="date"
-          value={checkInDate}
-          onChange={(e) => setCheckInDate(e.target.value)}
-        />
-
-        <label htmlFor="check-out">Fecha de Salida:</label>
-        <input
-          id="check-out"
-          type="date"
-          value={checkOutDate}
-          onChange={(e) => setCheckOutDate(e.target.value)}
-        />
-
-        <div className="actions">
-          <button
-            type="button"
-            className="btn-reserve"
-            onClick={handleReservation}
+    <body className={`body ${theme}`}>
+      <div className={`reservar-turno ${theme}`}>
+        <h2>Reservar Turno</h2>
+        {error && <p className="error">{error}</p>}
+        <form>
+          <label htmlFor="guarderia">Selecciona una guardería:</label>
+          <select
+            id="guarderia"
+            value={selectedGuarderiaId}
+            onChange={(e) => setSelectedGuarderiaId(e.target.value)}
           >
-            Reservar
-          </button>
-        </div>
-      </form>
-    </div>
+            <option value="">Seleccione una guardería</option>
+            {guarderiaList.map((guarderia) => (
+              <option key={guarderia.id} value={guarderia.id}>
+                {guarderia.name}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="check-in">Fecha de Entrada:</label>
+          <input
+            id="check-in"
+            type="date"
+            value={checkInDate}
+            onChange={(e) => setCheckInDate(e.target.value)}
+          />
+
+          <label htmlFor="check-out">Fecha de Salida:</label>
+          <input
+            id="check-out"
+            type="date"
+            value={checkOutDate}
+            onChange={(e) => setCheckOutDate(e.target.value)}
+          />
+
+          <div className="actions">
+            <button
+              type="button"
+              className={`btn-reserve ${theme}`}
+              onClick={handleReservation}
+            >
+              Reservar
+            </button>
+          </div>
+        </form>
+      </div>
+    </body>
   );
 };
 

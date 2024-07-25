@@ -36,7 +36,7 @@ const UserHome = () => {
   return (
     <>
       <HeaderHome />
-      <div className={`body ${theme}`}>
+      <body className={`body ${theme}`}>
         <div className="dynamic-info">
           {guarderiaList.length > 0 && (
             <div className="guarderia-info">
@@ -71,7 +71,7 @@ const UserHome = () => {
             Información
           </button>
         </div>
-      </div>
+      </body>
 
       {showReservation && (
         <ReservarTurno

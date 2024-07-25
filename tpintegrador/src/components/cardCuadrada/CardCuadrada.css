@@ -1,13 +1,27 @@
 .card-cuadrada {
+  background-color: #e0f7fa;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  margin: 0 auto;
+}
+
+.card-cuadrada.dark {
+  background-color: #586e80;
 }
 
 .card-cuadrada h2 {
   text-align: center;
+  background-color: #81d4fa;
+  padding: 10px;
+  border-radius: 10px;
+  color: #000;
+}
+
+.card-cuadrada.dark h2 {
+  background-color: #4891f7;
 }
 
 .card-cuadrada table {
@@ -24,7 +38,6 @@
 }
 
 .card-cuadrada th {
-  background-color: #f4f4f4;
   font-weight: bold;
 }
 
@@ -44,4 +57,33 @@
 
 .card-cuadrada button:hover {
   background-color: #e60000;
+}
+
+.card-cuadrada .guarderia-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-cuadrada .guarderia-item.dark {
+  background-color: #7e7dff;
+}
+
+.card-cuadrada .descripcion {
+  flex: 1;
+}
+
+.card-cuadrada .modificar {
+  color: #000;
+  cursor: pointer;
+}
+
+.card-cuadrada .icono {
+  font-size: 1rem;
+  margin-left: 5px;
+  cursor: pointer;
 }

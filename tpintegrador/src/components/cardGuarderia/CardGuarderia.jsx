@@ -5,7 +5,7 @@ import "./CardGuarderia.css";
 
 const CardGuarderia = () => {
   const { theme } = useContext(ThemeContext);
-  const { loggedUser, guarderiaList, updateGuarderia } =
+  const { loggedUser, guarderiaList, updateGuarderia, deleteGuarderia } =
     useContext(AuthContext);
 
   const [editingGuarderia, setEditingGuarderia] = useState(null);
@@ -13,7 +13,7 @@ const CardGuarderia = () => {
     name: "",
     address: "",
     area: "",
-    medication: "", // Medication is now a string to handle radio buttons
+    medication: "",
     openSpace: false,
     walker: false,
   });
@@ -32,6 +32,14 @@ const CardGuarderia = () => {
     setEditingGuarderia(guarderia);
   };
 
+  const handleDeleteClick = async (guarderiaId) => {
+    try {
+      await deleteGuarderia(guarderiaId);
+    } catch (error) {
+      console.error("Error deleting guardería:", error);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormState((prevState) => ({
@@ -44,14 +52,14 @@ const CardGuarderia = () => {
     e.preventDefault();
     try {
       await updateGuarderia({ ...formState, id: editingGuarderia.id });
-      setEditingGuarderia(null); // Close edit mode after saving
+      setEditingGuarderia(null);
     } catch (error) {
       console.error("Error saving guardería:", error);
     }
   };
 
   const handleCancel = () => {
-    setEditingGuarderia(null); // Close edit mode
+    setEditingGuarderia(null);
   };
 
   return (
@@ -69,12 +77,19 @@ const CardGuarderia = () => {
               <p>Paseador: {guarderia.walker ? "Sí" : "No"}</p>
               <p>
                 <span
-                  className="modificar"
+                  className={`modificar${theme}`}
                   onClick={() => handleModifyClick(guarderia)}
                 >
                   Modificar
                 </span>{" "}
                 <span className="icono">✏️</span>
+                <span
+                  className={`eliminar ${theme}`}
+                  onClick={() => handleDeleteClick(guarderia.id)}
+                >
+                  Eliminar
+                </span>{" "}
+                <span className="icono">🗑️</span>
               </p>
             </div>
           </div>
@@ -84,7 +99,7 @@ const CardGuarderia = () => {
       )}
 
       {editingGuarderia && (
-        <div className="edit-form">
+        <div className={`edit-form ${theme}`}>
           <h3>Editar Guardería</h3>
           <form onSubmit={handleSubmit}>
             <label>

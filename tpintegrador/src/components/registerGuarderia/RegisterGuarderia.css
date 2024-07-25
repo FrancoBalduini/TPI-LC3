@@ -20,7 +20,7 @@
   width: 120px;
   height: 50px;
   font-size: 13px;
-  margin-top: 80px;
+  margin-top: 20px;
   cursor: pointer;
   margin-left: 200px;
 }
@@ -63,11 +63,15 @@
 
 .checkbox-register input {
   display: inline;
-  margin-left: 40px;
 }
 
 .checkbox-register label {
-  margin-left: 100px;
+  margin-left: auto;
+  display: flex;
+}
+
+.checkbox-register p {
+  margin-left: 170px;
 }
 
 .checkboxes {

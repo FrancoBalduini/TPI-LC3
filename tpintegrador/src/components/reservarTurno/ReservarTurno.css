@@ -11,10 +11,19 @@ body.dark {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.reservar-turno.dark {
+  background-color: #3a4a57;
+  color: #fff;
+}
+
 .reservar-turno h2 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
+}
+
+.reservar-turno.dark h2 {
+  color: #fff;
 }
 
 .reservar-turno form {

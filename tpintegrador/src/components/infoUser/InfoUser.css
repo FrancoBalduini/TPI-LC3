@@ -37,3 +37,27 @@
   justify-content: center;
   align-items: center;
 }
+.boton-volver {
+  background-color: #b1dcff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px;
+  height: 50px;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 200px;
+}
+
+.boton-volver:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+
+.boton-volver.dark {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.boton-volver.dark:hover {
+  background-color: #007bff;
+}

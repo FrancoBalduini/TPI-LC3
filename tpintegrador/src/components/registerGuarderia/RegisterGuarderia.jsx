@@ -101,7 +101,7 @@ const RegisterGuarderia = () => {
           </select>
         </div>
         <div className="checkbox-register">
-          <label>Proporciona Medicación:</label>
+          <p>Proporciona Medicación:</p>
           <label>
             <input
               type="radio"
