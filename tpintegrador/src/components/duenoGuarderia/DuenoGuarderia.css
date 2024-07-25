@@ -54,3 +54,28 @@ header {
   border: 2px solid #a9c4d4;
   border-radius: 10px;
 }
+
+.boton-eliminar-dueño{
+  background-color: #b1dcff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px;
+  height: 50px;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 1100px;
+}
+
+.boton-eliminar-dueño:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+
+.boton-eliminar-dueño.dark {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.boton-eliminar-dueño.dark:hover {
+  background-color: #007bff;
+}

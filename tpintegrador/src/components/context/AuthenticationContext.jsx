@@ -365,6 +365,7 @@ const AuthContextProvider = ({ children }) => {
         createReservation,
         addUser,
         deleteReservation,
+        setLoggedUser
       }}
     >
       {children}

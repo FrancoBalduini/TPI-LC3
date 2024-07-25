@@ -61,3 +61,28 @@
 .boton-volver.dark:hover {
   background-color: #007bff;
 }
+
+.boton-eliminar-cliente{
+  background-color: #b1dcff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px;
+  height: 50px;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 460px;
+}
+
+.boton-eliminar-cliente:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+
+.boton-eliminar-cliente.dark {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.boton-eliminar-cliente.dark:hover {
+  background-color: #007bff;
+}

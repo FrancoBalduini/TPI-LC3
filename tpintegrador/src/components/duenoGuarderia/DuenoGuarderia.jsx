@@ -51,6 +51,13 @@ const DuenoGuarderia = () => {
   return (
     <div className={`bodyDuenoG ${theme}`}>
       <HeaderHome />
+      <button
+          className={`boton-eliminar-dueño zIndex5 ${theme}`}
+          onClick={handleLogOut}
+        >
+          Eliminar usuario
+        </button>
+
       <div className="content">
         <div>
           <CardCuadrada
@@ -64,14 +71,6 @@ const DuenoGuarderia = () => {
       <div className="guarderia-container">
         <CardGuarderia guarderiaList={guarderiasDueño} />
       </div>
-
-      <button
-          className={`boton-eliminar-cliente zIndex5 ${theme}`}
-          onClick={handleLogOut}
-        >
-          Eliminar usuario
-        </button>
-
     </div>
   );
 };

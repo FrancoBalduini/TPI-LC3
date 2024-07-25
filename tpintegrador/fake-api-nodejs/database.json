@@ -52,6 +52,47 @@
       "role": "dueño",
       "createdAt": 1721845715734,
       "modifiedAt": 1721864583391
+    },
+    {
+      "id": 16,
+      "nombre": "Mariano",
+      "apellido": "Gerosa",
+      "email": "nano@gmail.com",
+      "password": "123",
+      "role": "dueño",
+      "createdAt": 1721942541828,
+      "modifiedAt": 1721942541828
+    },
+    {
+      "id": 17,
+      "nombre": "HOLA",
+      "apellido": "nos",
+      "email": "hola@gmail.com",
+      "role": "cliente",
+      "createdAt": 1721942695406,
+      "modifiedAt": 1721943022455,
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJpYXQiOjE3MjE5NDI5MzIsImV4cCI6MTcyMjU0NzczMn0.PIzTnlS_36M064VSkMxS4edZ6wnjXf19wvkGv30eUZE",
+      "password": "12345"
+    },
+    {
+      "id": 18,
+      "nombre": "a",
+      "apellido": "a",
+      "email": "a@gmail.com",
+      "password": "aaa",
+      "role": "cliente",
+      "createdAt": 1721943408403,
+      "modifiedAt": 1721943408403
+    },
+    {
+      "id": 19,
+      "nombre": "b",
+      "apellido": "b",
+      "email": "b@gmail.com",
+      "password": "bbb",
+      "role": "cliente",
+      "createdAt": 1721943609349,
+      "modifiedAt": 1721943609349
     }
   ],
   "Guarderias": [
@@ -81,7 +122,18 @@
       "id": 3
     }
   ],
-  "reservas": [],
+  "reservas": [
+    {
+      "guarderiaId": "3",
+      "dueñoId": 16,
+      "userId": 17,
+      "checkInDate": "2024-07-26",
+      "checkOutDate": "2024-07-27",
+      "createdAt": 1721943074876,
+      "modifiedAt": 1721943074876,
+      "id": 1
+    }
+  ],
   "availableDates": [
     "2024-01-01",
     "2024-01-02",
