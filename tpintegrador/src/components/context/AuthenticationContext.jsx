@@ -318,6 +318,32 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const deleteReservation = async (reservationId) => {
+    try {
+      const authToken = localStorage.getItem("authToken");
+      const response = await fetch(
+        `http://localhost:8000/reservas/${reservationId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error deleting reservation: ${errorText}`);
+      }
+
+      setReservasList((prevReservas) =>
+        prevReservas.filter((reserva) => reserva.id !== reservationId)
+      );
+    } catch (error) {
+      console.error("Error deleting reservation:", error);
+    }
+  };
+
   const addUser = async (nombre, apellido, email, password, role) => {
     await registerUser(nombre, apellido, email, password, role);
   };
@@ -338,6 +364,7 @@ const AuthContextProvider = ({ children }) => {
         deleteGuarderia,
         createReservation,
         addUser,
+        deleteReservation,
       }}
     >
       {children}

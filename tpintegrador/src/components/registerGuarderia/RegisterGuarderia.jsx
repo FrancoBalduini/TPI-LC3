@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterGuarderia.css";
-import { AuthContext } from "../components/context/AuthenticationContext";
+import { AuthContext } from "../context/AuthenticationContext";
 
 const RegisterGuarderia = () => {
   const [name, setName] = useState("");

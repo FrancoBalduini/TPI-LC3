@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./CardCuadrada.css";
 
-const CardCuadrada = ({ title, reservas }) => {
+const CardCuadrada = ({ title, reservas, onDelete }) => {
   return (
     <div className="card-cuadrada">
       <h2>{title}</h2>
@@ -22,6 +22,11 @@ const CardCuadrada = ({ title, reservas }) => {
                 <td>{reserva.guarderiaId}</td>
                 <td>{reserva.checkInDate}</td>
                 <td>{reserva.checkOutDate}</td>
+                <td>
+                  <button onClick={() => onDelete(reserva.id)}>
+                    Borrar Reserva
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

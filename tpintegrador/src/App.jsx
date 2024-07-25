@@ -8,7 +8,7 @@ import Admin from "./components/admin/Admin";
 import DuenoGuarderia from "./components/duenoGuarderia/DuenoGuarderia";
 import InfoUser from "./components/infoUser/InfoUser";
 import ProtectedRoute from "./components/protected/Protected";
-import RegisterGuarderia from "./registerGuarderia/RegisterGuarderia";
+import RegisterGuarderia from "./components/registerGuarderia/RegisterGuarderia";
 
 const App = () => {
   const router = createBrowserRouter([

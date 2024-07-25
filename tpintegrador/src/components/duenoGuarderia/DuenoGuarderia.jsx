@@ -8,7 +8,8 @@ import HeaderHome from "../headerHome/HeaderHome";
 
 const DuenoGuarderia = () => {
   const { theme } = useContext(ThemeContext);
-  const { reservasList, guarderiaList, loggedUser } = useContext(AuthContext);
+  const { reservasList, guarderiaList, loggedUser, deleteReservation } =
+    useContext(AuthContext);
 
   console.log("reservasList:", reservasList);
   console.log("loggedUser:", loggedUser);
@@ -25,16 +26,25 @@ const DuenoGuarderia = () => {
     (reserva) => reserva.dueñoId === loggedUser.id
   );
 
+  const handleDelete = (reservationId) => {
+    deleteReservation(reservationId);
+  };
+
   return (
     <div className={`bodyDuenoG ${theme}`}>
       <HeaderHome />
       <div className="content">
         <div>
-          <CardCuadrada title="Mis Reservas" reservas={dueñoReservations} />
+          <CardCuadrada
+            title="Mis Reservas"
+            reservas={dueñoReservations}
+            onDelete={handleDelete}
+          />
         </div>
-        <div className="guarderia-container">
-          <CardGuarderia guarderiaList={guarderiasDueño} />
-        </div>
+      </div>
+
+      <div className="guarderia-container">
+        <CardGuarderia guarderiaList={guarderiasDueño} />
       </div>
     </div>
   );

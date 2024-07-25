@@ -65,13 +65,13 @@
     },
     {
       "id": 15,
-      "nombre": "geni",
-      "apellido": "ashina",
+      "nombre": "samurai",
+      "apellido": "ashinaa",
       "email": "geni@gmail.com",
       "password": "genihdpo",
-      "role": "cliente",
+      "role": "dueño",
       "createdAt": 1721845715734,
-      "modifiedAt": 1721845760912
+      "modifiedAt": 1721864583391
     },
     {
       "id": 16,
@@ -111,28 +111,7 @@
       "id": 3
     }
   ],
-  "reservas": [
-    {
-      "guarderiaId": "2",
-      "dueñoId": 10,
-      "userId": 13,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-29",
-      "createdAt": 1721853271066,
-      "modifiedAt": 1721853271066,
-      "id": 8
-    },
-    {
-      "guarderiaId": "3",
-      "dueñoId": 16,
-      "userId": 14,
-      "checkInDate": "2024-07-25",
-      "checkOutDate": "2024-07-31",
-      "createdAt": 1721853879725,
-      "modifiedAt": 1721853879725,
-      "id": 9
-    }
-  ],
+  "reservas": [],
   "availableDates": [
     "2024-01-01",
     "2024-01-02",
