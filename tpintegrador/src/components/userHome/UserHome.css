@@ -2,6 +2,10 @@ body.dark {
   background-color: #806a58;
 }
 
+.reservations-info.dark{
+  background-color: #806a58;
+}
+
 .dynamic-info {
   background-color: #ffffff;
   height: 300px;

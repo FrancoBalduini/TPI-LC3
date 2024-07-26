@@ -25,10 +25,10 @@
     },
     {
       "id": 10,
-      "nombre": "Kronte",
-      "apellido": "Caronte",
-      "email": "Caronte@gmail.com",
-      "password": "caronte",
+      "nombre": "Jhon",
+      "apellido": "Doe",
+      "email": "JhonDoe@gmail.com",
+      "password": "JDoe123",
       "role": "dueño",
       "createdAt": 1721596676743,
       "modifiedAt": 1721786408278
@@ -45,10 +45,10 @@
     },
     {
       "id": 15,
-      "nombre": "samurai",
-      "apellido": "ashinaa",
-      "email": "geni@gmail.com",
-      "password": "genihdpo",
+      "nombre": "Roman",
+      "apellido": "Riquelme",
+      "email": "JRR10@gmail.com",
+      "password": "eltorero",
       "role": "dueño",
       "createdAt": 1721845715734,
       "modifiedAt": 1721864583391
@@ -65,24 +65,14 @@
     },
     {
       "id": 17,
-      "nombre": "HOLA",
-      "apellido": "nos",
-      "email": "hola@gmail.com",
+      "nombre": "Example",
+      "apellido": "example",
+      "email": "example@gmail.com",
       "role": "cliente",
       "createdAt": 1721942695406,
       "modifiedAt": 1721943022455,
       "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJpYXQiOjE3MjE5NDI5MzIsImV4cCI6MTcyMjU0NzczMn0.PIzTnlS_36M064VSkMxS4edZ6wnjXf19wvkGv30eUZE",
-      "password": "12345"
-    },
-    {
-      "id": 18,
-      "nombre": "a",
-      "apellido": "a",
-      "email": "a@gmail.com",
-      "password": "aaa",
-      "role": "cliente",
-      "createdAt": 1721943408403,
-      "modifiedAt": 1721943408403
+      "password": "example1"
     },
     {
       "id": 19,
@@ -97,8 +87,8 @@
   ],
   "Guarderias": [
     {
-      "name": "NASHEE",
-      "address": "DDDDFFFFF",
+      "name": "Mascotas cuidadas",
+      "address": "Pelegrini 1520",
       "area": "norte",
       "medication": "Si",
       "openSpace": true,
@@ -110,8 +100,8 @@
       "dates": "availableDates"
     },
     {
-      "name": "Ore Wa Daree",
-      "address": "1423432143",
+      "name": "Perritos felices",
+      "address": "Oroño 583",
       "area": "sur",
       "medication": "Si",
       "openSpace": true,
@@ -119,19 +109,65 @@
       "dueñoId": 16,
       "createdAt": 1721878492216,
       "modifiedAt": 1721878492216,
-      "id": 3
+      "id": 3,
+      "dates": "availableDates"
     }
   ],
   "reservas": [
     {
+      "guarderiaName": "Perritos felices",
       "guarderiaId": "3",
       "dueñoId": 16,
       "userId": 17,
-      "checkInDate": "2024-07-26",
+      "checkInDate": "2024-07-27",
+      "checkOutDate": "2024-07-30",
+      "createdAt": 1721951970402,
+      "modifiedAt": 1721951970402,
+      "id": 6
+    },
+    {
+      "guarderiaName": "Mascotas cuidadas",
+      "guarderiaId": "2",
+      "dueñoId": 10,
+      "userId": 17,
+      "checkInDate": "2024-07-19",
       "checkOutDate": "2024-07-27",
-      "createdAt": 1721943074876,
-      "modifiedAt": 1721943074876,
-      "id": 1
+      "createdAt": 1721952034113,
+      "modifiedAt": 1721952034113,
+      "id": 7
+    },
+    {
+      "guarderiaName": "Perritos felices",
+      "guarderiaId": "3",
+      "dueñoId": 16,
+      "userId": 17,
+      "checkInDate": "2024-07-20",
+      "checkOutDate": "2024-07-29",
+      "createdAt": 1721952069746,
+      "modifiedAt": 1721952069746,
+      "id": 8
+    },
+    {
+      "guarderiaName": "Perritos felices",
+      "guarderiaId": "3",
+      "dueñoId": 16,
+      "userId": 17,
+      "checkInDate": "2024-07-27",
+      "checkOutDate": "2024-07-30",
+      "createdAt": 1721952818819,
+      "modifiedAt": 1721952818819,
+      "id": 9
+    },
+    {
+      "guarderiaName": "Mascotas cuidadas",
+      "guarderiaId": "2",
+      "dueñoId": 10,
+      "userId": 17,
+      "checkInDate": "2024-07-19",
+      "checkOutDate": "2024-07-29",
+      "createdAt": 1721953066477,
+      "modifiedAt": 1721953066477,
+      "id": 10
     }
   ],
   "availableDates": [

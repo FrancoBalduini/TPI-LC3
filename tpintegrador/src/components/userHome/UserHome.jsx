@@ -83,12 +83,12 @@ const UserHome = () => {
       )}
 
       {showInfo && (
-        <div className="reservations-info">
+        <div className={`reservations-info ${theme}`}>
           {userReservations.length > 0 ? (
             userReservations.map((reserva) => (
               <InformacionReserva
                 key={reserva.id}
-                guarderiaId={reserva.guarderiaId}
+                guarderiaName={reserva.guarderiaName}
                 entryDate={reserva.checkInDate}
                 exitDate={reserva.checkOutDate}
               />

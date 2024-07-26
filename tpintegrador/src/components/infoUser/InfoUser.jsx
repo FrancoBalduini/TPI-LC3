@@ -114,7 +114,7 @@ const InfoUser = () => {
                   userReservations.map((reserva) => (
                     <tr key={reserva.id}>
                       <td>
-                        Guardería: {reserva.guarderiaId} <br />
+                        Guardería: {reserva.guarderiaName} <br />
                         Fecha Entrada: {reserva.checkInDate} <br />
                         Fecha Salida: {reserva.checkOutDate}
                       </td>

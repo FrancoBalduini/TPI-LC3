@@ -1,3 +1,7 @@
+.body.dark{
+  background-color: #806a58;
+}
+
 .informacion-reserva {
   background-color: #fff;
   padding: 20px;
@@ -7,6 +11,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 80%;
   margin: 20px auto;
+}
+
+.informacion-reserva.dark{
+  background-color: #3a4a57;
+  color: #fff;
 }
 
 .informacion-reserva h3 {
@@ -34,12 +43,4 @@
 
 .informacion-reserva .btn-close:hover {
   background-color: #fffbb1;
-}
-
-.informacion-reserva.dark {
-  background-color: #f4d03f;
-}
-
-.informacion-reserva.dark:hover {
-  background-color: #c8ffb1;
 }

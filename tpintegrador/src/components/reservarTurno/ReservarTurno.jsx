@@ -28,6 +28,7 @@ const ReservarTurno = () => {
     }
 
     const reservation = {
+      guarderiaName: selectedGuarderia.name,
       guarderiaId: selectedGuarderiaId,
       dueñoId: selectedGuarderia.dueñoId,
       userId: loggedUser.id,

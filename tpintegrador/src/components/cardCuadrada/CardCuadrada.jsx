@@ -19,7 +19,7 @@ const CardCuadrada = ({ title, reservas, onDelete }) => {
             {reservas.map((reserva) => (
               <tr key={reserva.id}>
                 <td>{reserva.id}</td>
-                <td>{reserva.guarderiaId}</td>
+                <td>{reserva.guarderiaName}</td>
                 <td>{reserva.checkInDate}</td>
                 <td>{reserva.checkOutDate}</td>
                 <td>
