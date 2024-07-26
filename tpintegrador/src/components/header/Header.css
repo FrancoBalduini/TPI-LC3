@@ -46,6 +46,7 @@ body.dark {
   font-size: 24px;
   font-weight: bold;
   fill: var(--text-color);
+  cursor: pointer;
 }
 
 .header-right {
