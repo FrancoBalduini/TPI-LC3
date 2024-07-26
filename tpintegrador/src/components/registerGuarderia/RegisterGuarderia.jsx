@@ -15,6 +15,11 @@ const RegisterGuarderia = () => {
   const { loggedUser, registerGuarderia } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const handleBackDueno = (e) => {
+    e.preventDefault();
+    navigate("/duenoguarderia");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loggedUser.role !== "dueño") {
@@ -148,6 +153,7 @@ const RegisterGuarderia = () => {
         <button className="boton-register-guarderia" type="submit">
           Registrar Guardería
         </button>
+        <a className="back-CrearGuarderia" onClick={handleBackDueno}> Volver atras</a>
       </form>
     </div>
   );
