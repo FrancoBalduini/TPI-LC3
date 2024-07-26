@@ -115,17 +115,6 @@
   ],
   "reservas": [
     {
-      "guarderiaName": "Perritos felices",
-      "guarderiaId": "3",
-      "dueñoId": 16,
-      "userId": 17,
-      "checkInDate": "2024-07-27",
-      "checkOutDate": "2024-07-30",
-      "createdAt": 1721951970402,
-      "modifiedAt": 1721951970402,
-      "id": 6
-    },
-    {
       "guarderiaName": "Mascotas cuidadas",
       "guarderiaId": "2",
       "dueñoId": 10,
@@ -135,17 +124,6 @@
       "createdAt": 1721952034113,
       "modifiedAt": 1721952034113,
       "id": 7
-    },
-    {
-      "guarderiaName": "Perritos felices",
-      "guarderiaId": "3",
-      "dueñoId": 16,
-      "userId": 17,
-      "checkInDate": "2024-07-20",
-      "checkOutDate": "2024-07-29",
-      "createdAt": 1721952069746,
-      "modifiedAt": 1721952069746,
-      "id": 8
     },
     {
       "guarderiaName": "Perritos felices",
@@ -168,6 +146,39 @@
       "createdAt": 1721953066477,
       "modifiedAt": 1721953066477,
       "id": 10
+    },
+    {
+      "guarderiaName": "Mascotas cuidadas",
+      "guarderiaId": "2",
+      "dueñoId": 10,
+      "userId": 17,
+      "checkInDate": "2024-08-20",
+      "checkOutDate": "2024-08-22",
+      "createdAt": 1721956982685,
+      "modifiedAt": 1721956982685,
+      "id": 11
+    },
+    {
+      "guarderiaName": "Perritos felices",
+      "guarderiaId": "3",
+      "dueñoId": 16,
+      "userId": 17,
+      "checkInDate": "2024-08-01",
+      "checkOutDate": "2024-08-03",
+      "createdAt": 1721957322801,
+      "modifiedAt": 1721957322801,
+      "id": 12
+    },
+    {
+      "guarderiaName": "Mascotas cuidadas",
+      "guarderiaId": "2",
+      "dueñoId": 10,
+      "userId": 17,
+      "checkInDate": "2024-09-01",
+      "checkOutDate": "2024-09-02",
+      "createdAt": 1721957579889,
+      "modifiedAt": 1721957579889,
+      "id": 13
     }
   ],
   "availableDates": [

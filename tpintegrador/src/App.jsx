@@ -25,7 +25,12 @@ const App = () => {
       children: [
         { path: "/home", element: <HomePage /> },
         { path: "/userHome", element: <UserHome /> },
-        { path: "/infouser", element: <InfoUser /> },
+      ],
+    },
+    {
+      element: <ProtectedRoute allowedRoles={["cliente", "dueño"]} />,
+      children: [
+        { path: "/infouser", element: <InfoUser /> }
       ],
     },
     {

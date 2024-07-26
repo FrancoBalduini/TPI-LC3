@@ -82,10 +82,14 @@ const InfoUser = () => {
     }
   };
 
-  const handleBack = (e) => {
-    e.preventDefault();
-    navigate("/userHome");
-  };
+    const handleBack = (e) => {
+      e.preventDefault();
+      if (loggedUser.role === "cliente") {
+        navigate("/home");
+      } else if (loggedUser.role === "dueño") {
+        navigate("/duenoguarderia");
+      }
+    };
 
   const handleLogOut = async () => {
     const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
