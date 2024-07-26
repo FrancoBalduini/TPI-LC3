@@ -18,6 +18,8 @@ const HomePage = () => {
   });
 
   const [filteredGuarderias, setFilteredGuarderias] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
+
   const { theme } = useContext(ThemeContext);
   const { guarderiaList } = useContext(AuthContext);
 
@@ -31,12 +33,13 @@ const HomePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setHasSearched(true);
     filterGuarderias();
   };
 
   const filterGuarderias = useCallback(() => {
-    console.log("FormData:", formData); // Debugging: Check formData values
-    console.log("Guarderias List:", guarderiaList); // Debugging: Check guarderiaList values
+    console.log("FormData:", formData);
+    console.log("Guarderias List:", guarderiaList);
 
     const { area, medication, openSpace, walker } = formData;
 
@@ -45,10 +48,8 @@ const HomePage = () => {
       const matchesMedication = medication
         ? guarderia.medication === medication
         : true;
-      const matchesOpenSpace = openSpace
-        ? guarderia.openSpace === openSpace
-        : true;
-      const matchesWalker = walker ? guarderia.walker === walker : true;
+      const matchesOpenSpace = guarderia.openSpace === openSpace;
+      const matchesWalker = guarderia.walker === walker;
 
       return (
         matchesArea && matchesMedication && matchesOpenSpace && matchesWalker
@@ -168,9 +169,12 @@ const HomePage = () => {
                   ))}
                 </ul>
               ) : (
-                <p>
-                  No se encontraron guarderías que coincidan con los criterios.
-                </p>
+                hasSearched && (
+                  <p className="phrase-homepage">
+                    No se encontraron guarderías que coincidan con los criterios
+                    seleccionados.
+                  </p>
+                )
               )}
             </div>
           </div>

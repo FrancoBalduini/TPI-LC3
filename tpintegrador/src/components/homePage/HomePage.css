@@ -88,6 +88,7 @@ form .checkboxes label {
   cursor: pointer;
   margin-top: 20px;
   margin-left: 345px;
+  margin-bottom: 2px;
 }
 .botonBuscar.dark {
   background-color: #f4d03f;
@@ -102,4 +103,9 @@ form .checkboxes label {
   border: 4px solid black;
   border-radius: 40px;
   background-color: #ffff;
+}
+
+.phrase-homepage {
+  text-align: center;
+  margin-bottom: 2px;
 }

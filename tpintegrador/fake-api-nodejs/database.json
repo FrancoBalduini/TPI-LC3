@@ -111,6 +111,18 @@
       "modifiedAt": 1721878492216,
       "id": 3,
       "dates": "availableDates"
+    },
+    {
+      "name": "guarderiadelujo",
+      "address": "sarmiento 2539",
+      "area": "este",
+      "medication": "Si",
+      "openSpace": false,
+      "walker": true,
+      "dueñoId": 15,
+      "createdAt": 1721977145746,
+      "modifiedAt": 1721977145746,
+      "id": 4
     }
   ],
   "reservas": [
