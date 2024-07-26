@@ -78,8 +78,9 @@ const AuthContextProvider = ({ children }) => {
       await fetchUsers();
       await fetchGuarderias();
       await fetchReservas();
-      if (loggedUser) {
+      if (loggedUser.role === "cliente") {
         await fetchUserReservations(loggedUser.id);
+      } else if(loggedUser.role === "dueño")  {
         await fetchDueñoReservations(loggedUser.id);
       }
     };
